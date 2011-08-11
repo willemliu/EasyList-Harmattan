@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=0.1
+Name=EasyList
+GenericName=EasyList
+Comment=EasyList
+Exec=/usr/bin/single-instance /opt/easylist/bin/easylist
+Terminal=false
+Type=Application
+Icon=/usr/share/icons/hicolor/64x64/apps/easylist.png

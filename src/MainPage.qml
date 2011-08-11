@@ -1,0 +1,169 @@
+import com.meego 1.0
+import QtQuick 1.1
+import "mainPageDb.js" as DbConnection
+
+Page {
+    id: mainPage
+    property string listName: "default"
+    signal changeView
+    signal aboutView
+
+    tools: ToolBarLayout {
+        id: myToolbar
+        ToolIcon {
+            iconId: "toolbar-back-dimmed";
+            enabled: false
+            onClicked: {
+                myMenu.close();
+            }
+        }
+        ToolIcon {
+            iconId: "toolbar-edit";
+            onClicked: {
+                mainPage.changeView()
+            }
+        }
+        ToolIcon {
+            iconId: "toolbar-delete";
+            onClicked: {
+                myMenu.close();
+                removeDialog.open();
+            }
+        }
+        ToolIcon {
+            iconId: "toolbar-view-menu";
+            onClicked: {
+                if(myMenu.status == DialogStatus.Closed)
+                {
+                    myMenu.open();
+                }
+                else {
+                    myMenu.close();
+                }
+            }
+        }
+    }
+
+    Menu {
+        id: myMenu
+        MenuLayout {
+            MenuItem {
+                text: "Edit";
+                onClicked: {
+                    mainPage.changeView()
+                }
+            }
+            MenuItem {
+                text: "Deselect all";
+                onClicked: {
+                    DbConnection.deselectAll()
+                    DbConnection.loadDB(listName);
+                }
+            }
+            MenuItem {
+                text: "Remove selected";
+                onClicked: {
+                    removeDialog.open();
+                }
+            }
+            MenuItem {
+                text: "About";
+                onClicked: {
+                    onClicked: mainPage.aboutView()
+                }
+            }
+        }
+    }
+
+    QueryDialog {
+        id: removeDialog
+        titleText: "Remove selected items?"
+        message: "Do you really want to remove all selected items?"
+        acceptButtonText: "Ok"
+        rejectButtonText: "Cancel"
+        onAccepted: {
+            removeSelected();
+        }
+    }
+
+    Rectangle {
+        id: header
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: 70
+        color: "#333"
+        z: 1
+        Text {
+            id: title
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.verticalCenter: parent.verticalCenter
+            text: "EasyList"
+            font.pointSize: 30
+            color: "#fff"
+        }
+    }
+
+    ListModel {
+        id: listModel
+    }
+
+    ListView {
+        id: listView
+        anchors.top: header.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.leftMargin: 10
+        anchors.rightMargin: 10
+        model: DbConnection.loadDB(mainPage.listName)
+        delegate: itemComponent
+    }
+    ScrollDecorator {
+        flickableItem: listView
+    }
+    
+    Component {
+        id: itemComponent
+        ListItemDelegate {
+            id: listItem
+            itemIndex: model.itemIndex
+            itemText: model.itemText
+            itemSelected: model.itemSelected
+
+            onCheckChanged: {
+                DbConnection.saveRecord(itemIndex, itemSelected);
+                DbConnection.loadDB(listName);
+            }
+
+            ListView.onAdd: ParallelAnimation {
+                NumberAnimation {target: listItem; property: "opacity"; to: 1.0; duration: 300;}
+            }
+
+            ListView.onRemove: ParallelAnimation {
+                PropertyAction {target: listItem; property: "ListView.delayRemove"; value: true;}
+                NumberAnimation {target: listItem; property: "y"; to: 0; duration: 1000;}
+                NumberAnimation {target: listItem; property: "opacity"; to: 0.0; duration: 500;}
+                PropertyAction {target: listItem; property: "ListView.delayRemove"; value: false;}
+            }
+        }
+    }
+
+    function reloadDb()
+    {
+        DbConnection.loadDB(mainPage.listName);
+    }
+
+    function removeSelected()
+    {
+        var num = listModel.count;
+        for(var i = num-1; i >= 0; --i)
+        {
+            if(listModel.get(i).itemSelected == "true")
+            {
+                DbConnection.removeRecord(listModel.get(i).itemIndex);
+            }
+        }
+        DbConnection.populateModel();
+    }
+}
