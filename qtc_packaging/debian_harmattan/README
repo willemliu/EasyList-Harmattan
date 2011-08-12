@@ -1,6 +1,9 @@
 The Debian Package easylist
 ----------------------------
 
-Comments regarding the Package
+EasyList is an easy shopping/todo list tool. You can create a list
+by entering text in a text area. Each new line represents a new item
+in the actual list.
+The key focus is the ease of use.
 
- -- Willem Liu <wliu@unknown>  Sat, 06 Aug 2011 03:22:29 -0700
+ -- Willem Liu <willem.liu@gmail.com>  Sat, 06 Aug 2011 03:22:29 -0700

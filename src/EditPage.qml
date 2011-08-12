@@ -1,5 +1,5 @@
 import com.meego 1.0
-import QtQuick 1.1
+import QtQuick 1.0
 import "editPageDb.js" as EditDb
 
 Page {

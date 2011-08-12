@@ -1,17 +1,15 @@
-This package was debianized by Willem Liu <wliu@unknown> on
+This package was debianized by Willem Liu <willem.liu@gmail.com> on
 Sat, 06 Aug 2011 03:22:29 -0700.
 
-It was downloaded from <url://example.com>
+It was downloaded from https://github.com/willemliu/EasyList-Harmattan
 
 Upstream Author(s):
 
-    <put author's name and email here>
-    <likewise for another author>
+    Willem Liu <willem.liu@gmail.com>
 
 Copyright:
 
-    <Copyright (C) YYYY Name OfAuthor>
-    <likewise for another author>
+    Copyright (C) 2011 Willem Liu
 
 License:
 
@@ -32,7 +30,7 @@ License:
 On Debian systems, the complete text of the GNU General
 Public License can be found in `/usr/share/common-licenses/GPL'.
 
-The Debian packaging is (C) 2011, Willem Liu <wliu@unknown> and
+The Debian packaging is (C) 2011, Willem Liu <willem.liu@gmail.com> and
 is licensed under the GPL, see above.
 
 
