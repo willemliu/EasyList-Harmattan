@@ -14,6 +14,7 @@ Page {
         ToolIcon {
             iconId: "toolbar-save";
             onClicked: {
+                textEdit.closeSoftwareInputPanel();
                 EditDb.populateDB(textEdit.text);
                 editPage.changeView();
             }
@@ -21,6 +22,7 @@ Page {
         ToolIcon {
             iconId: "toolbar-view-menu";
             onClicked: {
+                textEdit.closeSoftwareInputPanel();
                 if(myMenu.status == DialogStatus.Closed)
                 {
                     myMenu.open()
@@ -39,9 +41,9 @@ Page {
             MenuItem {
                 text: "Save";
                 onClicked: {
+                    textEdit.closeSoftwareInputPanel();
                     EditDb.populateDB(textEdit.text);
                     editPage.changeView();
-                    textEdit.closeSoftwareInputPanel();
                 }
             }
             MenuItem {
@@ -54,7 +56,8 @@ Page {
             MenuItem {
                 text: "About";
                 onClicked: {
-                    onClicked: editPage.aboutView()
+                    textEdit.closeSoftwareInputPanel();
+                    editPage.aboutView();
                 }
             }
         }
