@@ -4,7 +4,7 @@ Version=0.1
 Name=EasyList
 GenericName=EasyList
 Comment=EasyList
-Exec=/usr/bin/single-instance /opt/easylist/bin/easylist
+Exec=invoker --type=e --splash=/usr/share/easylist/splash-p.jpg --splash-landscape=/usr/share/easylist/splash.jpg --single-instance /opt/easylist/bin/easylist
 Terminal=false
 Type=Application
 Icon=/usr/share/icons/hicolor/64x64/apps/easylist.png

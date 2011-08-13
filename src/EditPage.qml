@@ -1,10 +1,11 @@
 import com.meego 1.0
 import QtQuick 1.0
 import "editPageDb.js" as EditDb
+import "settingsDb.js" as SettingsDb
 
 Page {
     id: editPage
-    property string listName: "default"
+    property string listName: SettingsDb.getListName()
     property bool textChanged: false
     signal changeView
     signal aboutView
@@ -12,7 +13,14 @@ Page {
     tools: ToolBarLayout {
         id: myToolbar
         ToolIcon {
-            iconId: "toolbar-save";
+            iconId: "toolbar-back";
+            onClicked: {
+                textEdit.closeSoftwareInputPanel();
+                pageStack.pop();
+            }
+        }
+        ToolIcon {
+            iconId: "toolbar-done";
             onClicked: {
                 textEdit.closeSoftwareInputPanel();
                 EditDb.populateDB(textEdit.text);
@@ -53,6 +61,20 @@ Page {
                     editPage.pageStack.pop();
                 }
             }
+//            MenuItem {
+//                text: "Copy";
+//                onClicked: {
+//                    textEdit.closeSoftwareInputPanel();
+//                    textEdit.copy();
+//                }
+//            }
+//            MenuItem {
+//                text: "Paste";
+//                onClicked: {
+//                    textEdit.closeSoftwareInputPanel();
+//                    textEdit.paste();
+//                }
+//            }
             MenuItem {
                 text: "About";
                 onClicked: {
@@ -78,6 +100,25 @@ Page {
             text: "EasyList - Edit"
             font.pointSize: 30
             color: "#fff"
+        }
+        ToolIcon {
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: title.right
+            iconId: "toolbar-down-white";
+        }
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                textEdit.closeSoftwareInputPanel();
+                if(myMenu.status == DialogStatus.Closed)
+                {
+                    myMenu.open()
+                }
+                else
+                {
+                    myMenu.close()
+                }
+            }
         }
     }
 
@@ -136,6 +177,6 @@ Page {
     
     function reloadDb()
     {
-      textEdit.text = EditDb.loadDB(editPage.listName);
+      textEdit.text = EditDb.loadDB(SettingsDb.getListName());
     }
 }

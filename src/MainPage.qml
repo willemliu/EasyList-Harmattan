@@ -1,10 +1,11 @@
 import com.meego 1.0
 import QtQuick 1.0
 import "mainPageDb.js" as DbConnection
+import "settingsDb.js" as SettingsDb
 
 Page {
     id: mainPage
-    property string listName: "default"
+    property string listName: SettingsDb.getListName()
     signal changeView
     signal aboutView
 
@@ -102,6 +103,24 @@ Page {
             font.pointSize: 30
             color: "#fff"
         }
+        ToolIcon {
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: title.right
+            iconId: "toolbar-down-white";
+        }
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                if(myMenu.status == DialogStatus.Closed)
+                {
+                    myMenu.open()
+                }
+                else
+                {
+                    myMenu.close()
+                }
+            }
+        }
     }
 
     ListModel {
@@ -116,7 +135,7 @@ Page {
         anchors.bottom: parent.bottom
         anchors.leftMargin: 10
         anchors.rightMargin: 10
-        model: DbConnection.loadDB(mainPage.listName)
+        model: DbConnection.loadDB(SettingsDb.getListName())
         delegate: itemComponent
     }
     ScrollDecorator {
@@ -133,7 +152,7 @@ Page {
 
             onCheckChanged: {
                 DbConnection.saveRecord(itemIndex, itemSelected);
-                DbConnection.loadDB(listName);
+                DbConnection.loadDB(SettingsDb.getListName());
             }
 
             ListView.onAdd: ParallelAnimation {
@@ -151,7 +170,7 @@ Page {
 
     function reloadDb()
     {
-        DbConnection.loadDB(mainPage.listName);
+        DbConnection.loadDB(SettingsDb.getListName());
     }
 
     function removeSelected()

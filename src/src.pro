@@ -22,7 +22,7 @@ DEFINES += DATADIR=\\\"$$DATADIR\\\" PKGDATADIR=\\\"$$PKGDATADIR\\\"
 
 #MAKE INSTALL
 
-INSTALLS += target qmlgui js desktop service iconxpm icon26 icon48 icon64
+INSTALLS += target qmlgui js splash desktop service iconxpm icon26 icon48 icon64
 
   target.path =$$BINDIR
 
@@ -37,6 +37,11 @@ INSTALLS += target qmlgui js desktop service iconxpm icon26 icon48 icon64
   js.path = $$DATADIR/easylist
   js.files += mainPageDb.js
   js.files += editPageDb.js
+  js.files += settingsDb.js
+
+  splash.path = $$DATADIR/easylist
+  splash.files += splash.jpg
+  splash.files += splash-p.jpg
 
   desktop.path = $$DATADIR/applications
   desktop.files += $${TARGET}.desktop
