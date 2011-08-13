@@ -50,7 +50,7 @@ Item {
         id: divisionLine
         color: "#ccc"
         height: 1
-        anchors.top: checkBox.bottom
+        anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: parent.right
     }

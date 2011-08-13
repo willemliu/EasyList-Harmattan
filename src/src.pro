@@ -32,12 +32,15 @@ INSTALLS += target qmlgui js splash desktop service iconxpm icon26 icon48 icon64
   qmlgui.files += EditPage.qml
   qmlgui.files += ListItem.qml
   qmlgui.files += AboutPage.qml
+  qmlgui.files += ListsPage.qml
+  qmlgui.files += ListsItemDelegate.qml
   qmlgui.files += ListItemDelegate.qml
 
   js.path = $$DATADIR/easylist
   js.files += mainPageDb.js
   js.files += editPageDb.js
   js.files += settingsDb.js
+  js.files += listsDb.js
 
   splash.path = $$DATADIR/easylist
   splash.files += splash.jpg

@@ -26,6 +26,11 @@ function loadDB(theListName)
     return resultText;
 }
 
+function setListName(theListName)
+{
+    listName = theListname;
+}
+
 /**
  * Populate the database with the given text. Each new line represents a new row.
  * A line starting with '!' is considered selected. The text is saved into the database
@@ -38,6 +43,7 @@ function populateDB(text)
         // Clear all items.
         tx.executeSql('DELETE FROM EasyListData WHERE listName=(?)', [listName]);
     });
+    text += "\n";
     var lines = text.split("\n");
     var lineNum = lines.length;
     for(var i = 0; i < lineNum; ++i)

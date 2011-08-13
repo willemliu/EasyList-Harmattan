@@ -8,6 +8,7 @@ Page {
     property string listName: SettingsDb.getListName()
     signal changeView
     signal aboutView
+    signal listsView
 
     tools: ToolBarLayout {
         id: myToolbar
@@ -29,6 +30,13 @@ Page {
             onClicked: {
                 myMenu.close();
                 removeDialog.open();
+            }
+        }
+        ToolIcon {
+            iconId: "toolbar-list";
+            onClicked: {
+                myMenu.close();
+                mainPage.listsView();
             }
         }
         ToolIcon {
@@ -149,10 +157,28 @@ Page {
             itemIndex: model.itemIndex
             itemText: model.itemText
             itemSelected: model.itemSelected
+            height: 55
+            width: listView.width
 
             onCheckChanged: {
                 DbConnection.saveRecord(itemIndex, itemSelected);
                 DbConnection.loadDB(SettingsDb.getListName());
+            }
+
+            MouseArea {
+                id: mouseArea
+                anchors.fill: parent
+                onClicked: {
+                    if(listItem.itemSelected == "true")
+                    {
+                        DbConnection.saveRecord(listItem.itemIndex, "false");
+                    }
+                    else
+                    {
+                        DbConnection.saveRecord(listItem.itemIndex, "true");
+                    }
+                    DbConnection.loadDB(SettingsDb.getListName());
+                }
             }
 
             ListView.onAdd: ParallelAnimation {
@@ -165,6 +191,13 @@ Page {
                 NumberAnimation {target: listItem; property: "opacity"; to: 0.0; duration: 500;}
                 PropertyAction {target: listItem; property: "ListView.delayRemove"; value: false;}
             }
+        }
+    }
+
+    onVisibleChanged: {
+        if(visible)
+        {
+            reloadDb();
         }
     }
 

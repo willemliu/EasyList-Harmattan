@@ -4,14 +4,20 @@ import QtQuick 1.0
 PageStackWindow {
     id: pageStackWindow
 
+    ListsPage {
+        id: listsPage
+    }
+
     MainPage {
         id: myMainPage
         onChangeView: {
             pageStackWindow.pageStack.push(myEditPage);
-            myEditPage.reloadDb();
         }
         onAboutView: {
             pageStackWindow.pageStack.push(aboutPage);
+        }
+        onListsView: {
+            pageStackWindow.pageStack.push(listsPage);
         }
     }
 
@@ -19,7 +25,6 @@ PageStackWindow {
         id: myEditPage
         onChangeView: {
             pageStackWindow.pageStack.pop(myMainPage);
-            myMainPage.reloadDb();
         }
         onAboutView: {
             pageStackWindow.pageStack.push(aboutPage);

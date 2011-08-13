@@ -61,20 +61,20 @@ Page {
                     editPage.pageStack.pop();
                 }
             }
-//            MenuItem {
-//                text: "Copy";
-//                onClicked: {
-//                    textEdit.closeSoftwareInputPanel();
-//                    textEdit.copy();
-//                }
-//            }
-//            MenuItem {
-//                text: "Paste";
-//                onClicked: {
-//                    textEdit.closeSoftwareInputPanel();
-//                    textEdit.paste();
-//                }
-//            }
+            MenuItem {
+                text: "Copy";
+                onClicked: {
+                    textEdit.closeSoftwareInputPanel();
+                    textEdit.copy();
+                }
+            }
+            MenuItem {
+                text: "Paste";
+                onClicked: {
+                    textEdit.closeSoftwareInputPanel();
+                    textEdit.paste();
+                }
+            }
             MenuItem {
                 text: "About";
                 onClicked: {
@@ -178,5 +178,12 @@ Page {
     function reloadDb()
     {
       textEdit.text = EditDb.loadDB(SettingsDb.getListName());
+    }
+
+    onVisibleChanged: {
+        if(visible)
+        {
+            reloadDb();
+        }
     }
 }
