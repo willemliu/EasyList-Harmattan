@@ -177,7 +177,8 @@ Page {
     
     function reloadDb()
     {
-      textEdit.text = EditDb.loadDB(SettingsDb.getListName());
+        listName = SettingsDb.getListName();
+        textEdit.text = EditDb.loadDB(listName);
     }
 
     onVisibleChanged: {

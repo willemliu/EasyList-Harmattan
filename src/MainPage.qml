@@ -143,7 +143,7 @@ Page {
         anchors.bottom: parent.bottom
         anchors.leftMargin: 10
         anchors.rightMargin: 10
-        model: DbConnection.loadDB(SettingsDb.getListName())
+        model: DbConnection.loadDB(listName)
         delegate: itemComponent
     }
     ScrollDecorator {
@@ -162,7 +162,7 @@ Page {
 
             onCheckChanged: {
                 DbConnection.saveRecord(itemIndex, itemSelected);
-                DbConnection.loadDB(SettingsDb.getListName());
+                DbConnection.loadDB(listName);
             }
 
             MouseArea {
@@ -177,7 +177,7 @@ Page {
                     {
                         DbConnection.saveRecord(listItem.itemIndex, "true");
                     }
-                    DbConnection.loadDB(SettingsDb.getListName());
+                    DbConnection.loadDB(listName);
                 }
             }
 
@@ -203,7 +203,8 @@ Page {
 
     function reloadDb()
     {
-        DbConnection.loadDB(SettingsDb.getListName());
+        listName = SettingsDb.getListName();
+        DbConnection.loadDB(listName);
     }
 
     function removeSelected()
