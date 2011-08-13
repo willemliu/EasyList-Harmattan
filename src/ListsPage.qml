@@ -139,9 +139,13 @@ Page {
         ToolIcon {
             iconId: "toolbar-delete";
             onClicked: {
-                if(listModel.count > 0)
+                if(listModel.count > 1)
                 {
                     removeDialog.open();
+                }
+                else
+                {
+                    noRemoveDialog.open();
                 }
             }
         }
@@ -157,6 +161,13 @@ Page {
             ListsDb.removeList(listName);
             reloadDb();
         }
+    }
+
+    QueryDialog {
+        id: noRemoveDialog
+        titleText: "Can't remove"
+        message: "You can't remove the last list!"
+        acceptButtonText: "Ok"
     }
 
     onVisibleChanged: {
