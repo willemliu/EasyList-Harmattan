@@ -5,7 +5,7 @@ import "settingsDb.js" as SettingsDb
 
 Page {
     id: editPage
-    property string listName: SettingsDb.getListName()
+    property string listName: "default"
     property bool textChanged: false
     signal changeView
     signal aboutView
@@ -156,6 +156,7 @@ Page {
             focus: true
             color: "#333"
             onCursorRectangleChanged: flick.ensureVisible(cursorRectangle)
+
             MouseArea {
                 anchors.fill: parent
                 onClicked: {

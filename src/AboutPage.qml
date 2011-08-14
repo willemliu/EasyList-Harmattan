@@ -1,5 +1,6 @@
 import com.meego 1.0
 import QtQuick 1.0
+import "settingsDb.js" as SettingsDb
 
 Page {
     id: aboutPage
@@ -38,8 +39,8 @@ Page {
         anchors.top: text1.bottom
         anchors.horizontalCenter: text1.horizontalCenter
         font.family: "Helvetica"
-        font.pointSize: 24
-        text: "Created with Qt"
+        font.pointSize: 16
+        text: "Version 0.0.4"
     }
     Text {
         id: text3
@@ -47,9 +48,28 @@ Page {
         anchors.horizontalCenter: text2.horizontalCenter
         font.family: "Helvetica"
         font.pointSize: 24
+        text: "Created with Qt"
+    }
+    Text {
+        id: text4
+        anchors.top: text3.bottom
+        anchors.horizontalCenter: text3.horizontalCenter
+        font.family: "Helvetica"
+        font.pointSize: 24
         text: "Created by <a href='http://willemliu.nl/donate/'>Willem Liu</a>"
         onLinkActivated: {
             Qt.openUrlExternally(link);
+        }
+    }
+
+    QueryDialog {
+        id: removeDialog
+        titleText: "Drop tables?"
+        message: "Do you really want to remove all tables used by EasyList?"
+        acceptButtonText: "Ok"
+        rejectButtonText: "Cancel"
+        onAccepted: {
+            SettingsDb.removeTables();
         }
     }
 
@@ -59,6 +79,12 @@ Page {
             iconId: "toolbar-back";
             onClicked: {
                 pageStack.pop();
+            }
+        }
+        ToolIcon {
+            iconId: "toolbar-delete";
+            onClicked: {
+                removeDialog.open();
             }
         }
     }

@@ -38,6 +38,7 @@ Page {
             anchors.right: saveAsButton.left
             anchors.topMargin: 5
             anchors.top: parent.top
+            maximumLength: 20
         }
         ToolIcon {
             id: saveAsButton
@@ -81,7 +82,7 @@ Page {
         ListsItemDelegate {
             id: listsItem
             listName: model.listName
-            height: 55
+            height: 60
             width: listView.width
 
             MouseArea {
@@ -101,7 +102,7 @@ Page {
         id: highlight
         Rectangle {
             width: listView.width;
-            height: 55
+            height: 60
             color: "lightsteelblue";
             Behavior on y {
                 SpringAnimation {
@@ -137,6 +138,12 @@ Page {
             }
         }
         ToolIcon {
+            iconId: "invitation-pending";
+            onClicked: {
+                helpDialog.open();
+            }
+        }
+        ToolIcon {
             iconId: "toolbar-delete";
             onClicked: {
                 if(listModel.count > 1)
@@ -167,6 +174,13 @@ Page {
         id: noRemoveDialog
         titleText: "Can't remove"
         message: "You can't remove the last list!"
+        acceptButtonText: "Ok"
+    }
+
+    QueryDialog {
+        id: helpDialog
+        titleText: "Help"
+        message: "Here you can give your list a new name. Just enter the new name and click the \"done\" mark next to it!"
         acceptButtonText: "Ok"
     }
 

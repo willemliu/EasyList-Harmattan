@@ -1,5 +1,5 @@
+QT += core declarative
 TEMPLATE = app
-QT += declarative
 CONFIG += meegotouch
 TARGET = "easylist"
 DEPENDPATH += .
@@ -10,19 +10,19 @@ HEADERS += mainwindow.h
 SOURCES += main.cpp mainwindow.cpp
 #FORMS#
 
-  unix {
-    #VARIABLES
-    isEmpty(PREFIX) {
-        PREFIX = /usr
+unix {
+  #VARIABLES
+  isEmpty(PREFIX) {
+    PREFIX = /usr
   }
-BINDIR = $$PREFIX/bin
-DATADIR =$$PREFIX/share
+  BINDIR = $$PREFIX/bin
+  DATADIR =$$PREFIX/share
 
-DEFINES += DATADIR=\\\"$$DATADIR\\\" PKGDATADIR=\\\"$$PKGDATADIR\\\"
+  DEFINES += DATADIR=\\\"$$DATADIR\\\" PKGDATADIR=\\\"$$PKGDATADIR\\\"
 
-#MAKE INSTALL
+  #MAKE INSTALL
 
-INSTALLS += target qmlgui js splash desktop service iconxpm icon26 icon48 icon64
+  INSTALLS += target qmlgui js splash desktop service iconxpm icon26 icon48 icon64
 
   target.path =$$BINDIR
 

@@ -7,7 +7,6 @@ Item {
     property string itemIndex: "0"
     property string itemText: "No text"
     property string itemSelected: "false"
-    height: 55
 
     CheckBox {
         id: checkBox

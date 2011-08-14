@@ -4,7 +4,6 @@ import QtQuick 1.0
 Item {
     id: listsItem
     property string listName: "No text"
-    height: 55
 
     Text {
         id: checkBoxText

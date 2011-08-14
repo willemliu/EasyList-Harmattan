@@ -30,17 +30,24 @@ function getListsModel()
 
 function saveAs(listName, newListName)
 {
-    console.log("Save " + listName + " as " + newListName);
-    db = openDatabaseSync("EasyList", "1.0", "EasyList SQL", 1000000);
-    db.transaction(function(tx) {
-        tx.executeSql('CREATE TABLE IF NOT EXISTS EasyListData(pid INTEGER PRIMARY KEY, listName STRING, itemText STRING, selected BOOLEAN)');
-        var rs = tx.executeSql("SELECT listName, itemText, selected FROM EasyListData WHERE listName=(?)ORDER BY pid", [listName]);
-        for(var i = 0; i < rs.rows.length; i++)
-        {
-            var item = rs.rows.item(i);
-            insertRecord(newListName, item.itemText, item.selected);
-        }
-    });
+    if(listName != newListName)
+    {
+        console.log("Save " + listName + " as " + newListName);
+        db = openDatabaseSync("EasyList", "1.0", "EasyList SQL", 1000000);
+        db.transaction(function(tx) {
+            tx.executeSql('CREATE TABLE IF NOT EXISTS EasyListData(pid INTEGER PRIMARY KEY, listName STRING, itemText STRING, selected BOOLEAN)');
+            var rs = tx.executeSql("SELECT listName, itemText, selected FROM EasyListData WHERE listName=(?)ORDER BY pid", [listName]);
+            for(var i = 0; i < rs.rows.length; i++)
+            {
+                var item = rs.rows.item(i);
+                insertRecord(newListName, item.itemText, item.selected);
+            }
+        });
+    }
+    else
+    {
+        console.log(listName + " is the same as " + newListName + " no save needed.");
+    }
 }
 
 /**

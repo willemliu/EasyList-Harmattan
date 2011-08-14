@@ -52,10 +52,11 @@ function getListName()
 /**
  * Drop table.
  */
-function removeTable()
+function removeTables()
 {
-    loadDB();
+    db = openDatabaseSync("EasyList", "1.0", "EasyList SQL", 1000000);
     db.transaction(function(tx) {
-        tx.executeSql('DROP TABLE EasyListApp');
+        tx.executeSql('DROP TABLE IF EXISTS EasyListData');
+        tx.executeSql('DROP TABLE IF EXISTS EasyListApp');
     });
 }

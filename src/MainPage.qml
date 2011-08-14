@@ -157,7 +157,7 @@ Page {
             itemIndex: model.itemIndex
             itemText: model.itemText
             itemSelected: model.itemSelected
-            height: 55
+            height: 60
             width: listView.width
 
             onCheckChanged: {
@@ -187,8 +187,7 @@ Page {
 
             ListView.onRemove: ParallelAnimation {
                 PropertyAction {target: listItem; property: "ListView.delayRemove"; value: true;}
-                NumberAnimation {target: listItem; property: "y"; to: 0; duration: 1000;}
-                NumberAnimation {target: listItem; property: "opacity"; to: 0.0; duration: 500;}
+                NumberAnimation {target: listItem; property: "opacity"; to: 0.0; duration: 1000;}
                 PropertyAction {target: listItem; property: "ListView.delayRemove"; value: false;}
             }
         }
