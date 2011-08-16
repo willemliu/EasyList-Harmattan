@@ -105,16 +105,17 @@ Page {
         z: 1
         Text {
             id: title
-            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
+            anchors.leftMargin: 20
             text: "EasyList"
-            font.pointSize: 30
+            font.pointSize: 26
             color: "#fff"
         }
         ToolIcon {
             anchors.verticalCenter: parent.verticalCenter
-            anchors.left: title.right
-            iconId: "toolbar-down-white";
+            anchors.right: parent.right
+            iconId: "textinput-combobox-arrow";
         }
         MouseArea {
             anchors.fill: parent
@@ -187,7 +188,7 @@ Page {
 
             ListView.onRemove: ParallelAnimation {
                 PropertyAction {target: listItem; property: "ListView.delayRemove"; value: true;}
-                NumberAnimation {target: listItem; property: "opacity"; to: 0.0; duration: 1000;}
+                NumberAnimation {target: listItem; property: "opacity"; to: 0.0; duration: 1000; easing.type: Easing.InOutQuad}
                 PropertyAction {target: listItem; property: "ListView.delayRemove"; value: false;}
             }
         }

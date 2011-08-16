@@ -15,14 +15,14 @@ Page {
         ToolIcon {
             iconId: "toolbar-back";
             onClicked: {
-                textEdit.closeSoftwareInputPanel();
+                textEdit.platformCloseSoftwareInputPanel();
                 pageStack.pop();
             }
         }
         ToolIcon {
             iconId: "toolbar-done";
             onClicked: {
-                textEdit.closeSoftwareInputPanel();
+                textEdit.platformCloseSoftwareInputPanel();
                 EditDb.populateDB(textEdit.text);
                 editPage.changeView();
             }
@@ -30,7 +30,7 @@ Page {
         ToolIcon {
             iconId: "toolbar-view-menu";
             onClicked: {
-                textEdit.closeSoftwareInputPanel();
+                textEdit.platformCloseSoftwareInputPanel();
                 if(myMenu.status == DialogStatus.Closed)
                 {
                     myMenu.open()
@@ -49,7 +49,7 @@ Page {
             MenuItem {
                 text: "Save";
                 onClicked: {
-                    textEdit.closeSoftwareInputPanel();
+                    textEdit.platformCloseSoftwareInputPanel();
                     EditDb.populateDB(textEdit.text);
                     editPage.changeView();
                 }
@@ -57,28 +57,14 @@ Page {
             MenuItem {
                 text: "Cancel";
                 onClicked: {
-                    textEdit.closeSoftwareInputPanel();
+                    textEdit.platformCloseSoftwareInputPanel();
                     editPage.pageStack.pop();
-                }
-            }
-            MenuItem {
-                text: "Copy";
-                onClicked: {
-                    textEdit.closeSoftwareInputPanel();
-                    textEdit.copy();
-                }
-            }
-            MenuItem {
-                text: "Paste";
-                onClicked: {
-                    textEdit.closeSoftwareInputPanel();
-                    textEdit.paste();
                 }
             }
             MenuItem {
                 text: "About";
                 onClicked: {
-                    textEdit.closeSoftwareInputPanel();
+                    textEdit.platformCloseSoftwareInputPanel();
                     editPage.aboutView();
                 }
             }
@@ -95,21 +81,22 @@ Page {
         z: 1
         Text {
             id: title
-            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
+            anchors.leftMargin: 20
             text: "EasyList - Edit"
-            font.pointSize: 30
+            font.pointSize: 26
             color: "#fff"
         }
         ToolIcon {
             anchors.verticalCenter: parent.verticalCenter
-            anchors.left: title.right
-            iconId: "toolbar-down-white";
+            anchors.right: parent.right
+            iconId: "textinput-combobox-arrow";
         }
         MouseArea {
             anchors.fill: parent
             onClicked: {
-                textEdit.closeSoftwareInputPanel();
+                textEdit.platformCloseSoftwareInputPanel();
                 if(myMenu.status == DialogStatus.Closed)
                 {
                     myMenu.open()
@@ -131,44 +118,19 @@ Page {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        contentHeight: textEdit.paintedHeight
-        contentWidth: textEdit.paintedWidth
+        contentHeight: textEdit.implicitHeight
+        contentWidth: textEdit.implicitWidth
         clip: true
 
-        function ensureVisible(r)
-        {
-            if (contentX >= r.x)
-                contentX = r.x;
-            else if (contentX+width <= r.x+r.width)
-                contentX = r.x+r.width-width;
-            if (contentY >= r.y)
-                contentY = r.y;
-            else if (contentY+height <= r.y+r.height)
-                contentY = r.y+r.height-height;
-        }
-
-        TextEdit {
+        TextArea {
             id: textEdit
-            width: flick.width
-            height: flick.height
-            font.family: "Helvetica"
-            font.pointSize: 22
+            width: Math.max (flick.width, implicitWidth);
+            height: Math.max (flick.height, implicitHeight)
+            placeholderText: "Enter text to create your list.\nEach new line represents a new item."
             focus: true
-            color: "#333"
-            onCursorRectangleChanged: flick.ensureVisible(cursorRectangle)
-
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    textEdit.forceActiveFocus();
-                    textEdit.openSoftwareInputPanel();
-                    textEdit.cursorPosition = textEdit.positionAt(mouse.x, mouse.y);
-                }
-                onPressAndHold: {
-                    textEdit.closeSoftwareInputPanel();
-                    myMenu.open();
-                }
-                onDoubleClicked: textEdit.selectWord();
+            inputMethodHints: Qt.ImhNoPredictiveText
+            onCursorPositionChanged: {
+                textEdit.positionToRectangle(cursorPosition);
             }
         }
     }

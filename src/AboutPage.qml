@@ -15,10 +15,11 @@ Page {
         z: 1
         Text {
             id: title
-            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
+            anchors.leftMargin: 20
             text: "EasyList - About"
-            font.pointSize: 30
+            font.pointSize: 26
             color: "#fff"
         }
     }
@@ -40,7 +41,7 @@ Page {
         anchors.horizontalCenter: text1.horizontalCenter
         font.family: "Helvetica"
         font.pointSize: 16
-        text: "Version 0.0.4"
+        text: "Version 0.0.5"
     }
     Text {
         id: text3

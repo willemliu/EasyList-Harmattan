@@ -43,7 +43,6 @@ function populateDB(text)
         // Clear all items.
         tx.executeSql('DELETE FROM EasyListData WHERE listName=(?)', [listName]);
     });
-    text += "\n";
     var lines = text.split("\n");
     var lineNum = lines.length;
     for(var i = 0; i < lineNum; ++i)

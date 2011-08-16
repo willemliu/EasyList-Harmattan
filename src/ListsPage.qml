@@ -17,10 +17,11 @@ Page {
         z: 1
         Text {
             id: title
-            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
+            anchors.leftMargin: 20
             text: "EasyList - Lists"
-            font.pointSize: 30
+            font.pointSize: 26
             color: "#fff"
         }
     }
@@ -39,6 +40,7 @@ Page {
             anchors.topMargin: 5
             anchors.top: parent.top
             maximumLength: 20
+            inputMethodHints: Qt.ImhNoPredictiveText
         }
         ToolIcon {
             id: saveAsButton
@@ -180,7 +182,7 @@ Page {
     QueryDialog {
         id: helpDialog
         titleText: "Help"
-        message: "Here you can give your list a new name. Just enter the new name and click the \"done\" mark next to it!"
+        message: "Here you can give your list a new name.\n\nJust enter the new name and click the \"done\" mark next to it!"
         acceptButtonText: "Ok"
     }
 
