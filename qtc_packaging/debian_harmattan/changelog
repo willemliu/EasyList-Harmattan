@@ -1,5 +1,8 @@
 easylist (0.0.5) unstable; urgency=low
 
-  * Now using.
+  * Now using TextArea instead of TextEdit.
+  * Changed title text position, size and icon.
+  * Disabled predictive input.
+  * Removed Copy/Paste buttons in menu. TextArea supports this out of the box.
 
  -- Willem Liu <willem.liu@gmail.com>  Tue, 16 Aug 2011 20:01:00 +0100
