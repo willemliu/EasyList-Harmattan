@@ -55,6 +55,13 @@ Page {
                 }
             }
             MenuItem {
+                text: "Paste";
+                    onClicked: {
+                        textEdit.platformCloseSoftwareInputPanel();
+                        textEdit.paste();
+                    }
+                }
+            MenuItem {
                 text: "Cancel";
                 onClicked: {
                     textEdit.platformCloseSoftwareInputPanel();
