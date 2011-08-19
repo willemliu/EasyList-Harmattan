@@ -4,6 +4,8 @@ import "settingsDb.js" as SettingsDb
 
 Page {
     id: aboutPage
+    orientationLock: SettingsDb.getOrientationLock();
+    property string version: "0.0.6";
 
     Rectangle {
         id: header
@@ -41,7 +43,7 @@ Page {
         anchors.horizontalCenter: text1.horizontalCenter
         font.family: "Helvetica"
         font.pointSize: 16
-        text: "Version 0.0.5"
+        text: version
     }
     Text {
         id: text3

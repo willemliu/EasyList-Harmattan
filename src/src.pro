@@ -35,12 +35,15 @@ unix {
   qmlgui.files += ListsPage.qml
   qmlgui.files += ListsItemDelegate.qml
   qmlgui.files += ListItemDelegate.qml
+  qmlgui.files += SettingsPage.qml
 
   js.path = $$DATADIR/easylist
   js.files += mainPageDb.js
   js.files += editPageDb.js
   js.files += settingsDb.js
   js.files += listsDb.js
+  js.files += db.js
+  js.files += ezConsts.js
 
   splash.path = $$DATADIR/easylist
   splash.files += splash.jpg

@@ -1,8 +1,11 @@
+Qt.include("db.js");
+Qt.include("settingsDb.js");
+Qt.include("ezConsts.js");
 var db;
 var resultText = "";
 var resultSet;
 var listName =  "default";
-var selectSql = "SELECT * FROM EasyListData WHERE listName=(?) ORDER BY selected ASC, itemText ASC, pid ASC";
+var selectSql = "SELECT * FROM EasyListData WHERE listName=(?)";
 
 /**
  * The entry point. This function needs to be called prior to the other functions
@@ -15,11 +18,10 @@ var selectSql = "SELECT * FROM EasyListData WHERE listName=(?) ORDER BY selected
 function loadDB(theListName)
 {
     listName = theListName;
-    db = openDatabaseSync("EasyList", "1.0", "EasyList SQL", 1000000);
+    db = getDbConnection();
     db.transaction(function(tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS EasyListData(pid INTEGER PRIMARY KEY, listName STRING, itemText STRING, selected BOOLEAN)');
-        console.log("load list: " + listName);
-        resultSet = tx.executeSql(selectSql, [listName]);
+        resultSet = tx.executeSql(getOrderBy(selectSql), [listName]);
     });
 
     populateModel();
@@ -38,7 +40,6 @@ function setListName(theListName)
  */
 function populateDB(text)
 {
-    console.log("populate list: " + listName);
     db.transaction(function(tx) {
         // Clear all items.
         tx.executeSql('DELETE FROM EasyListData WHERE listName=(?)', [listName]);
@@ -85,11 +86,10 @@ function populateModel()
  */
 function insertRecord(itemText, itemSelected)
 {
-    console.log("insert row: " + listName);
     var index = 0;
     db.transaction(function(tx) {
         tx.executeSql('INSERT INTO EasyListData (listName, itemText, selected) VALUES (?, ?, ?)', [listName, itemText, itemSelected]);
-        resultSet = tx.executeSql(selectSql, [listName]);
+        resultSet = tx.executeSql(getOrderBy(selectSql), [listName]);
         var rs = tx.executeSql('SELECT MAX(pid) as maxId FROM EasyListData');
         for(var i = 0; i < rs.rows.length; i++)
         {

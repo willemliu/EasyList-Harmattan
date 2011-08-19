@@ -5,9 +5,11 @@ import "settingsDb.js" as SettingsDb
 
 Page {
     id: editPage
+    orientationLock: SettingsDb.getOrientationLock();
     property string listName: "default"
     property bool textChanged: false
     signal changeView
+    signal settingsView
     signal aboutView
 
     tools: ToolBarLayout {
@@ -56,16 +58,23 @@ Page {
             }
             MenuItem {
                 text: "Paste";
-                    onClicked: {
-                        textEdit.platformCloseSoftwareInputPanel();
-                        textEdit.paste();
-                    }
+                onClicked: {
+                    textEdit.platformCloseSoftwareInputPanel();
+                    textEdit.paste();
                 }
+            }
             MenuItem {
                 text: "Cancel";
                 onClicked: {
                     textEdit.platformCloseSoftwareInputPanel();
                     editPage.pageStack.pop();
+                }
+            }
+            MenuItem {
+                text: "Settings";
+                onClicked: {
+                    textEdit.platformCloseSoftwareInputPanel();
+                    editPage.settingsView();
                 }
             }
             MenuItem {
@@ -120,6 +129,7 @@ Page {
         id: flick
         anchors.top: header.bottom
         anchors.topMargin: 10
+        anchors.bottomMargin: 10
         anchors.leftMargin: 10
         anchors.rightMargin: 10
         anchors.left: parent.left

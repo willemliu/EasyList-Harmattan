@@ -5,8 +5,10 @@ import "settingsDb.js" as SettingsDb
 
 Page {
     id: mainPage
+    orientationLock: SettingsDb.getOrientationLock();
     property string listName: SettingsDb.getListName()
     signal changeView
+    signal settingsView
     signal aboutView
     signal listsView
 
@@ -73,6 +75,12 @@ Page {
                 text: "Remove selected";
                 onClicked: {
                     removeDialog.open();
+                }
+            }
+            MenuItem {
+                text: "Settings";
+                onClicked: {
+                    mainPage.settingsView();
                 }
             }
             MenuItem {

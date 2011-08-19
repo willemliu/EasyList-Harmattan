@@ -1,11 +1,25 @@
 import com.meego 1.0
 import QtQuick 1.0
+import "settingsDb.js" as SettingsDb
 
 PageStackWindow {
     id: pageStackWindow
 
     ListsPage {
         id: listsPage
+    }
+
+    SettingsPage {
+        id: settingsPage
+        onAboutView: {
+            pageStackWindow.pageStack.push(aboutPage);
+        }
+        onOrientationLockChanged: {
+            listsPage.orientationLock = orientationLock;
+            myMainPage.orientationLock = orientationLock;
+            myEditPage.orientationLock = orientationLock;
+            aboutPage.orientationLock = orientationLock;
+        }
     }
 
     MainPage {
@@ -19,6 +33,9 @@ PageStackWindow {
         onListsView: {
             pageStackWindow.pageStack.push(listsPage);
         }
+        onSettingsView: {
+            pageStackWindow.pageStack.push(settingsPage);
+        }
     }
 
     EditPage {
@@ -28,6 +45,9 @@ PageStackWindow {
         }
         onAboutView: {
             pageStackWindow.pageStack.push(aboutPage);
+        }
+        onSettingsView: {
+            pageStackWindow.pageStack.push(settingsPage);
         }
     }
 

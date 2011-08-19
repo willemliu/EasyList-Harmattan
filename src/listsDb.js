@@ -1,3 +1,5 @@
+Qt.include("ezConsts.js");
+Qt.include("db.js");
 var db;
 
 /**
@@ -5,9 +7,8 @@ var db;
  */
 function removeList(listName)
 {
-    db = openDatabaseSync("EasyList", "1.0", "EasyList SQL", 1000000);
+    db = getDbConnection();
     db.transaction(function(tx) {
-        console.log("remove list name: " + listName);
         tx.executeSql('CREATE TABLE IF NOT EXISTS EasyListData(pid INTEGER PRIMARY KEY, listName STRING, itemText STRING, selected BOOLEAN)');
         tx.executeSql('DELETE FROM EasyListData WHERE listName=(?)', [listName]);
     });
@@ -16,7 +17,7 @@ function removeList(listName)
 function getListsModel()
 {
     listModel.clear();
-    db = openDatabaseSync("EasyList", "1.0", "EasyList SQL", 1000000);
+    db = getDbConnection();
     db.transaction(function(tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS EasyListData(pid INTEGER PRIMARY KEY, listName STRING, itemText STRING, selected BOOLEAN)');
         var rs = tx.executeSql("SELECT listName FROM EasyListData GROUP BY listName ORDER BY listName");
@@ -33,7 +34,7 @@ function saveAs(listName, newListName)
     if(listName != newListName)
     {
         console.log("Save " + listName + " as " + newListName);
-        db = openDatabaseSync("EasyList", "1.0", "EasyList SQL", 1000000);
+        db = getDbConnection();
         db.transaction(function(tx) {
             tx.executeSql('CREATE TABLE IF NOT EXISTS EasyListData(pid INTEGER PRIMARY KEY, listName STRING, itemText STRING, selected BOOLEAN)');
             var rs = tx.executeSql("SELECT listName, itemText, selected FROM EasyListData WHERE listName=(?)ORDER BY pid", [listName]);
@@ -55,7 +56,7 @@ function saveAs(listName, newListName)
  */
 function insertRecord(listName, itemText, itemSelected)
 {
-    db = openDatabaseSync("EasyList", "1.0", "EasyList SQL", 1000000);
+    db = getDbConnection();
     db.transaction(function(tx) {
         tx.executeSql('INSERT INTO EasyListData (listName, itemText, selected) VALUES (?, ?, ?)', [listName, itemText, itemSelected]);
     });

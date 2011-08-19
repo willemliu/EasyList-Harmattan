@@ -5,6 +5,7 @@ import "listsDb.js" as ListsDb
 
 Page {
     id: listsPage
+    orientationLock: SettingsDb.getOrientationLock();
     property string listName: SettingsDb.getListName()
 
     Rectangle {
