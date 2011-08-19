@@ -99,30 +99,30 @@ function getOrderBy(query)
 {
     var orderBy = "";
     var doOrder = false;
-    if(getProperty(propSort) == "true")
-    {
-        doOrder = true;
-        if(orderBy.length > 0)
-        {
-            orderBy += ",";
-        }
-        orderBy += SORT_A_Z;
-    }
     if(getProperty(propSortSelected) == "true")
     {
         doOrder = true;
         if(orderBy.length > 0)
         {
-            orderBy += ",";
+            orderBy += ", ";
         }
         orderBy += SORT_SELECTED;
+    }
+    if(getProperty(propSort) == "true")
+    {
+        doOrder = true;
+        if(orderBy.length > 0)
+        {
+            orderBy += ", ";
+        }
+        orderBy += SORT_A_Z;
     }
     if(getProperty(propSortPid) == "true")
     {
         doOrder = true;
         if(orderBy.length > 0)
         {
-            orderBy += ",";
+            orderBy += ", ";
         }
         orderBy += SORT_PID;
     }

@@ -5,7 +5,7 @@ import "settingsDb.js" as SettingsDb
 Page {
     id: aboutPage
     orientationLock: SettingsDb.getOrientationLock();
-    property string version: "0.0.6";
+    property string version: "0.0.7";
 
     Rectangle {
         id: header
