@@ -17,16 +17,12 @@ PageStackWindow {
         onOrientationLockChanged: {
             listsPage.orientationLock = orientationLock;
             myMainPage.orientationLock = orientationLock;
-            myEditPage.orientationLock = orientationLock;
             aboutPage.orientationLock = orientationLock;
         }
     }
 
     MainPage {
         id: myMainPage
-        onChangeView: {
-            pageStackWindow.pageStack.push(myEditPage);
-        }
         onAboutView: {
             pageStackWindow.pageStack.push(aboutPage);
         }
@@ -36,18 +32,8 @@ PageStackWindow {
         onSettingsView: {
             pageStackWindow.pageStack.push(settingsPage);
         }
-    }
-
-    EditPage {
-        id: myEditPage
-        onChangeView: {
-            pageStackWindow.pageStack.pop(myMainPage);
-        }
-        onAboutView: {
-            pageStackWindow.pageStack.push(aboutPage);
-        }
-        onSettingsView: {
-            pageStackWindow.pageStack.push(settingsPage);
+        onHideToolbar: {
+            pageStackWindow.showToolBar = !hideToolbar;
         }
     }
 

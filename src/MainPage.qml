@@ -7,24 +7,18 @@ Page {
     id: mainPage
     orientationLock: SettingsDb.getOrientationLock();
     property string listName: SettingsDb.getListName()
-    signal changeView
     signal settingsView
     signal aboutView
     signal listsView
+    signal hideToolbar(bool hideToolbar)
+    property int index: -1
 
     tools: ToolBarLayout {
         id: myToolbar
         ToolIcon {
-            iconId: "toolbar-back-dimmed";
-            enabled: false
-            onClicked: {
-                myMenu.close();
-            }
-        }
-        ToolIcon {
             iconId: "toolbar-edit";
             onClicked: {
-                mainPage.changeView()
+                myEditPage.open();
             }
         }
         ToolIcon {
@@ -61,7 +55,7 @@ Page {
             MenuItem {
                 text: "Edit";
                 onClicked: {
-                    mainPage.changeView()
+                    myEditPage.open();
                 }
             }
             MenuItem {
@@ -94,8 +88,8 @@ Page {
 
     QueryDialog {
         id: removeDialog
-        titleText: "Remove selected items?"
-        message: "Do you really want to remove all selected items?"
+        titleText: "Remove checked items?"
+        message: "Do you really want to remove all checked items?"
         acceptButtonText: "Ok"
         rejectButtonText: "Cancel"
         onAccepted: {
@@ -140,6 +134,30 @@ Page {
         }
     }
 
+    EditPage {
+        id: myEditPage
+        visualParent: mainPage
+        anchors.top: header.bottom
+        anchors.bottom: parent.bottom
+        z: 2
+        onAccepted: {
+            mainPage.reloadDb();
+        }
+        onRejected: {
+            mainPage.reloadDb();
+        }
+        onVisibleChanged: {
+            if(visible)
+            {
+                mainPage.hideToolbar(true);
+            }
+            else
+            {
+                mainPage.hideToolbar(false);
+            }
+        }
+    }
+
     ListModel {
         id: listModel
     }
@@ -154,6 +172,28 @@ Page {
         anchors.rightMargin: 10
         model: DbConnection.loadDB(listName)
         delegate: itemComponent
+
+        MouseArea {
+            id: listViewMouseArea
+            anchors.fill: parent
+            onClicked: {
+                var item = listModel.get(listView.indexAt(mouse.x, mouse.y));
+                if(item.itemSelected == "true")
+                {
+                    DbConnection.saveRecord(item.itemIndex, "false");
+                }
+                else
+                {
+                    DbConnection.saveRecord(item.itemIndex, "true");
+                }
+                DbConnection.loadDB(listName);
+            }
+            onPressAndHold: {
+                var item = listModel.get(listView.indexAt(mouse.x, mouse.y));
+                mainPage.index = item.itemIndex;
+                contextMenu.open();
+            }
+        }
     }
     ScrollDecorator {
         flickableItem: listView
@@ -174,22 +214,6 @@ Page {
                 DbConnection.loadDB(listName);
             }
 
-            MouseArea {
-                id: mouseArea
-                anchors.fill: parent
-                onClicked: {
-                    if(listItem.itemSelected == "true")
-                    {
-                        DbConnection.saveRecord(listItem.itemIndex, "false");
-                    }
-                    else
-                    {
-                        DbConnection.saveRecord(listItem.itemIndex, "true");
-                    }
-                    DbConnection.loadDB(listName);
-                }
-            }
-
             ListView.onAdd: ParallelAnimation {
                 NumberAnimation {target: listItem; property: "opacity"; to: 1.0; duration: 300;}
             }
@@ -198,6 +222,16 @@ Page {
                 PropertyAction {target: listItem; property: "ListView.delayRemove"; value: true;}
                 NumberAnimation {target: listItem; property: "opacity"; to: 0.0; duration: 1000; easing.type: Easing.InOutQuad}
                 PropertyAction {target: listItem; property: "ListView.delayRemove"; value: false;}
+            }
+        }
+    }
+
+    ContextMenu {
+        id: contextMenu
+        MenuLayout {
+            MenuItem {text: "Remove"; onClicked: {
+                    DbConnection.removeRecord(mainPage.index);
+                }
             }
         }
     }
