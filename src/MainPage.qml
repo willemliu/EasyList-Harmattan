@@ -12,6 +12,7 @@ Page {
     signal listsView
     signal hideToolbar(bool hideToolbar)
     property int index: -1
+    property int modelIndex: -1
 
     tools: ToolBarLayout {
         id: myToolbar
@@ -177,7 +178,8 @@ Page {
             id: listViewMouseArea
             anchors.fill: parent
             onClicked: {
-                var item = listModel.get(listView.indexAt(mouse.x, mouse.y));
+                mainPage.modelIndex = listView.indexAt(mouse.x, mouse.y);
+                var item = listModel.get(mainPage.modelIndex);
                 if(item.itemSelected == "true")
                 {
                     DbConnection.saveRecord(item.itemIndex, "false");
@@ -189,7 +191,8 @@ Page {
                 DbConnection.loadDB(listName);
             }
             onPressAndHold: {
-                var item = listModel.get(listView.indexAt(mouse.x, mouse.y));
+                mainPage.modelIndex = listView.indexAt(mouse.x, mouse.y);
+                var item = listModel.get(mainPage.modelIndex);
                 mainPage.index = item.itemIndex;
                 contextMenu.open();
             }
@@ -213,16 +216,6 @@ Page {
                 DbConnection.saveRecord(itemIndex, itemSelected);
                 DbConnection.loadDB(listName);
             }
-
-            ListView.onAdd: ParallelAnimation {
-                NumberAnimation {target: listItem; property: "opacity"; to: 1.0; duration: 300;}
-            }
-
-            ListView.onRemove: ParallelAnimation {
-                PropertyAction {target: listItem; property: "ListView.delayRemove"; value: true;}
-                NumberAnimation {target: listItem; property: "opacity"; to: 0.0; duration: 1000; easing.type: Easing.InOutQuad}
-                PropertyAction {target: listItem; property: "ListView.delayRemove"; value: false;}
-            }
         }
     }
 
@@ -231,6 +224,7 @@ Page {
         MenuLayout {
             MenuItem {text: "Remove"; onClicked: {
                     DbConnection.removeRecord(mainPage.index);
+                    mainPage.reloadDb();
                 }
             }
         }
