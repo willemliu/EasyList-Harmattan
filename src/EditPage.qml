@@ -29,7 +29,7 @@ Sheet {
             id: textEdit
             width: Math.max (flick.width, implicitWidth);
             height: Math.max (flick.height, implicitHeight)
-            placeholderText: "Enter text to create your list.\nEach new line represents a new item."
+            placeholderText: "Enter text to create your list.\nEach new line represents a new item.\nTip: You can copy text from other apps and paste it here as well."
             focus: true
             inputMethodHints: Qt.ImhNoPredictiveText
             onCursorPositionChanged: {
