@@ -106,32 +106,14 @@ Page {
         height: 70
         color: "#333"
         z: 1
-        Text {
+        Label {
             id: title
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
             anchors.leftMargin: 20
             text: "EasyList"
-            font.pointSize: 26
+            font.pixelSize: 32
             color: "#fff"
-        }
-        ToolIcon {
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.right: parent.right
-            iconId: "textinput-combobox-arrow";
-        }
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                if(myMenu.status == DialogStatus.Closed)
-                {
-                    myMenu.open()
-                }
-                else
-                {
-                    myMenu.close()
-                }
-            }
         }
     }
 

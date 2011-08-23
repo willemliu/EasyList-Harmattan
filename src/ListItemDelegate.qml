@@ -36,11 +36,11 @@ Item {
             checkChanged();
         }
     }
-    Text {
+    Label {
         id: checkBoxText
         text: getText()
         font.family: "Helvetica"
-        font.pointSize: 22
+        font.pixelSize: 26
         anchors.left: checkBox.right
         anchors.verticalCenter: checkBox.verticalCenter
     }

@@ -96,7 +96,6 @@ function saveRecord(pid, itemSelected)
 {
     db.transaction(function(tx) {
         tx.executeSql('UPDATE EasyListData SET selected=(?) WHERE pid=(?)', [itemSelected, pid]);
-                       console.log('UPDATE EasyListData SET selected=' + itemSelected + ' WHERE pid=' + pid);
         resultSet = tx.executeSql(getOrderBy(selectSql), [listName]);
     });
 }

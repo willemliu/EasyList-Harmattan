@@ -5,14 +5,14 @@ Item {
     id: listsItem
     property string listName: "No text"
 
-    Text {
+    Label {
         id: checkBoxText
         text: listName
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
         anchors.leftMargin: 10
         font.family: "Helvetica"
-        font.pointSize: 22
+        font.pixelSize: 26
     }
 
     Rectangle {
