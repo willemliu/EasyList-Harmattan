@@ -8,6 +8,16 @@ Sheet {
     property string listName: "default"
     acceptButtonText: "Save"
     rejectButtonText: "Cancel"
+    buttons: [
+        SheetButton {
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: "Paste"
+            onClicked: {
+                textEdit.paste();
+            }
+        }
+    ]
 
     onAccepted: {
         textEdit.platformCloseSoftwareInputPanel();
@@ -29,7 +39,7 @@ Sheet {
             id: textEdit
             width: Math.max (flick.width, implicitWidth);
             height: Math.max (flick.height, implicitHeight)
-            placeholderText: "Enter text to create your list.\nEach new line represents a new item.\nTip: You can copy text from other apps and paste it here as well."
+            placeholderText: "Enter text to create your list.\nEach new line represents a new item.\n\nTip: You can copy text from other apps\nand paste it here as well."
             focus: true
             inputMethodHints: Qt.ImhNoPredictiveText
             onCursorPositionChanged: {
