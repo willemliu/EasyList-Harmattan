@@ -1,7 +1,5 @@
-easylist (0.0.8) unstable; urgency=low
+easylist (0.0.9) unstable; urgency=low
 
-  * Multi-list functionality changed. Now uses + button to add new lists. Empty lists are possible.
-  * Now uses Nokia font where applicable by using Label.
-  * Edit page is now a Sheet.
+  * Changed splash screens
 
- -- Willem Liu <willem.liu@gmail.com>  Tue, 24 Aug 2011 20:49:00 +0100
+ -- Willem Liu <willem.liu@gmail.com>  Tue, 24 Aug 2011 21:30:00 +0100
