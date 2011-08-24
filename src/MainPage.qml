@@ -202,7 +202,7 @@ Page {
         id: contextMenu
         MenuLayout {
             MenuItem {
-                text: "Remove checked";
+                text: "Remove";
                 onClicked: {
                     DbConnection.removeRecord(mainPage.index);
                     mainPage.reloadDb();
