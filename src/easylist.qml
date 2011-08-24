@@ -7,6 +7,12 @@ PageStackWindow {
 
     ListsPage {
         id: listsPage
+        onAboutView: {
+            pageStackWindow.pageStack.push(aboutPage);
+        }
+        onSettingsView: {
+            pageStackWindow.pageStack.push(settingsPage);
+        }
         onHideToolbar: {
             pageStackWindow.showToolBar = !hideToolbar;
         }

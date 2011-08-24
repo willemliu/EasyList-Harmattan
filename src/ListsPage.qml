@@ -6,6 +6,8 @@ import "listsDb.js" as ListsDb
 Page {
     id: listsPage
     orientationLock: SettingsDb.getOrientationLock();
+    signal settingsView
+    signal aboutView
     property string listName: SettingsDb.getListName()
     signal hideToolbar(bool hideToolbar)
     property int index: -1
@@ -119,6 +121,24 @@ Page {
         }
     }
 
+    Menu {
+        id: myMenu
+        MenuLayout {
+            MenuItem {
+                text: "Settings";
+                onClicked: {
+                    listsPage.settingsView();
+                }
+            }
+            MenuItem {
+                text: "About";
+                onClicked: {
+                    onClicked: listsPage.aboutView()
+                }
+            }
+        }
+    }
+
     function reloadDb()
     {
         ListsDb.getListsModel();
@@ -153,6 +173,18 @@ Page {
             iconId: "toolbar-delete";
             onClicked: {
                 removeDialog.open();
+            }
+        }
+        ToolIcon {
+            iconId: "toolbar-view-menu";
+            onClicked: {
+                if(myMenu.status == DialogStatus.Closed)
+                {
+                    myMenu.open();
+                }
+                else {
+                    myMenu.close();
+                }
             }
         }
     }
