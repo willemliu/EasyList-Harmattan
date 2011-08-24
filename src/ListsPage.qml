@@ -206,8 +206,8 @@ Page {
             anchors.bottomMargin: 10
             anchors.leftMargin: 10
             anchors.rightMargin: 10
-            contentWidth: listNameRect.width
-            contentHeight: listNameRect.height
+            contentWidth: listNameRect.implicitWidth
+            contentHeight: listNameRect.implicitHeight
             clip: true
 
             Rectangle {
@@ -218,7 +218,6 @@ Page {
                 Label {
                     id: newListLabel
                     text: "Name your new list"
-                    anchors.verticalCenter: textField.verticalCenter
                     anchors.topMargin: 5
                     anchors.top: parent.top
                     anchors.left: parent.left
@@ -235,6 +234,7 @@ Page {
                 }
                 TextField {
                     id: textField
+                    anchors.topMargin: 5
                     anchors.top: newListLabel.bottom
                     anchors.left: listNameLabel.right
                     anchors.right: parent.right
