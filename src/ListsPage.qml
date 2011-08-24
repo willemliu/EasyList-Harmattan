@@ -216,17 +216,26 @@ Page {
                 height: Math.max (flick.height, implicitHeight)
                 color: "transparent"
                 Label {
+                    id: newListLabel
+                    text: "Name your new list"
+                    anchors.verticalCenter: textField.verticalCenter
+                    anchors.topMargin: 5
+                    anchors.top: parent.top
+                    anchors.left: parent.left
+                    anchors.leftMargin: 10
+                    font.pixelSize: 28
+                }
+                Label {
                     id: listNameLabel
                     text: "List name: "
                     anchors.verticalCenter: textField.verticalCenter
                     anchors.left: parent.left
                     anchors.leftMargin: 10
-                    font.pixelSize: 26
+                    font.pixelSize: 24
                 }
                 TextField {
                     id: textField
-                    anchors.topMargin: 5
-                    anchors.top: parent.top
+                    anchors.top: newListLabel.bottom
                     anchors.left: listNameLabel.right
                     anchors.right: parent.right
                     anchors.rightMargin: 10

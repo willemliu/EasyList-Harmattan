@@ -61,7 +61,7 @@ Page {
                 }
             }
             MenuItem {
-                text: "Remove selected";
+                text: "Remove checked";
                 onClicked: {
                     removeDialog.open();
                 }
@@ -202,7 +202,7 @@ Page {
         id: contextMenu
         MenuLayout {
             MenuItem {
-                text: "Remove";
+                text: "Remove checked";
                 onClicked: {
                     DbConnection.removeRecord(mainPage.index);
                     mainPage.reloadDb();
