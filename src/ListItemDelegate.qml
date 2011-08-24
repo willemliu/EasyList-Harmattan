@@ -39,7 +39,6 @@ Item {
     Label {
         id: checkBoxText
         text: getText()
-        font.family: "Helvetica"
         font.pixelSize: 26
         anchors.left: checkBox.right
         anchors.verticalCenter: checkBox.verticalCenter

@@ -7,6 +7,9 @@ PageStackWindow {
 
     ListsPage {
         id: listsPage
+        onHideToolbar: {
+            pageStackWindow.showToolBar = !hideToolbar;
+        }
     }
 
     SettingsPage {

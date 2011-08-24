@@ -7,6 +7,9 @@ Page {
     id: listsPage
     orientationLock: SettingsDb.getOrientationLock();
     property string listName: SettingsDb.getListName()
+    signal hideToolbar(bool hideToolbar)
+    property int index: -1
+    property int modelIndex: -1
 
     Rectangle {
         id: header
@@ -27,46 +30,12 @@ Page {
         }
     }
 
-    Rectangle {
-        id: saveArea
-        anchors.top: header.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
-        height: saveAsButton.height
-        z: 1
-        TextField {
-            id: textField
-            anchors.left: parent.left
-            anchors.right: saveAsButton.left
-            anchors.topMargin: 5
-            anchors.top: parent.top
-            maximumLength: 20
-            inputMethodHints: Qt.ImhNoPredictiveText
-        }
-        ToolIcon {
-            id: saveAsButton
-            iconId: "toolbar-done";
-            anchors.right: parent.right
-            anchors.verticalCenter: parent.verticalCenter
-            onClicked: {
-                if(listName.length > 0)
-                {
-                    ListsDb.saveAs(listName, textField.text);
-                    listName = textField.text;
-                    SettingsDb.setListName(listName);
-                    reloadDb();
-                }
-            }
-        }
-    }
-
-
     ListModel {
         id: listModel
     }
     ListView {
         id: listView
-        anchors.top: saveArea.bottom
+        anchors.top: header.bottom
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
@@ -75,6 +44,30 @@ Page {
         model: ListsDb.getListsModel()
         delegate: itemComponent
         highlight: highlight
+        MouseArea {
+            id: listViewMouseArea
+            anchors.fill: parent
+            onClicked: {
+                listsPage.modelIndex = listView.indexAt(mouse.x, mouse.y);
+                var item = listModel.get(listsPage.modelIndex);
+                listView.currentIndex = listsPage.modelIndex;
+                if(item !== undefined)
+                {
+                    listsPage.listName = item.listName;
+                    SettingsDb.setListName(item.listName);
+                }
+            }
+            onPressAndHold: {
+                listsPage.modelIndex = listView.indexAt(mouse.x, mouse.y);
+                listView.currentIndex = listsPage.modelIndex;
+                var item = listModel.get(listsPage.modelIndex);
+                if(item !== undefined)
+                {
+                    listsPage.listName = item.listName;
+                    contextMenu.open();
+                }
+            }
+        }
     }
     ScrollDecorator {
         flickableItem: listView
@@ -87,17 +80,6 @@ Page {
             listName: model.listName
             height: 60
             width: listView.width
-
-            MouseArea {
-                id: mouseArea
-                anchors.fill: parent
-                onClicked: {
-                    listView.currentIndex = index;
-                    listName = listView.currentItem.listName;
-                    SettingsDb.setListName(listName);
-                    reloadDb();
-                }
-            }
         }
     }
 
@@ -111,6 +93,27 @@ Page {
                 SpringAnimation {
                     spring: 3
                     damping: 0.2
+                }
+            }
+            radius: 5
+            Rectangle {
+                id: divisionLine
+                color: "#ccc"
+                height: 1
+                anchors.bottom: parent.bottom
+                anchors.left: parent.left
+                anchors.right: parent.right
+            }
+        }
+    }
+
+    ContextMenu {
+        id: contextMenu
+        MenuLayout {
+            MenuItem {
+                text: "Remove";
+                onClicked: {
+                    removeDialog.open();
                 }
             }
         }
@@ -141,22 +144,73 @@ Page {
             }
         }
         ToolIcon {
-            iconId: "invitation-pending";
+            iconId: "toolbar-add";
             onClicked: {
-                helpDialog.open();
+                addListSheet.open();
             }
         }
         ToolIcon {
             iconId: "toolbar-delete";
             onClicked: {
-                if(listModel.count > 1)
-                {
-                    removeDialog.open();
+                removeDialog.open();
+            }
+        }
+    }
+
+    Sheet {
+        id: addListSheet
+        visualParent: listsPage
+        anchors.top: header.bottom
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        z: 2
+        acceptButtonText: "Save"
+        rejectButtonText: "Cancel"
+        content: Flickable {
+            id: flick
+            anchors.fill: parent
+            contentWidth: listNameRect.width
+            contentHeight: listNameRect.height
+            Rectangle {
+                id: listNameRect
+                width: Math.max (flick.width, implicitWidth);
+                height: Math.max (flick.height, implicitHeight)
+                Label {
+                    id: listNameLabel
+                    text: "List name: "
+                    anchors.verticalCenter: textField.verticalCenter
+                    anchors.left: parent.left
+                    anchors.leftMargin: 10
+                    font.pixelSize: 26
                 }
-                else
-                {
-                    noRemoveDialog.open();
+                TextField {
+                    id: textField
+                    anchors.topMargin: 5
+                    anchors.top: parent.top
+                    anchors.left: listNameLabel.right
+                    anchors.right: parent.right
+                    anchors.rightMargin: 10
+                    maximumLength: 20
+                    inputMethodHints: Qt.ImhNoPredictiveText
                 }
+            }
+        }
+        onAccepted: {
+            ListsDb.addList(textField.text);
+            SettingsDb.setListName(textField.text);
+            listsPage.reloadDb();
+        }
+        onRejected: {
+        }
+        onVisibleChanged: {
+            if(visible)
+            {
+                listsPage.hideToolbar(true);
+            }
+            else
+            {
+                listsPage.hideToolbar(false);
             }
         }
     }
@@ -164,27 +218,14 @@ Page {
     QueryDialog {
         id: removeDialog
         titleText: "Remove list?"
-        message: "Do you really want to remove [" + listName + "] and all its items?"
+        message: "Do you really want to remove [" + listsPage.listName + "] and all its items?"
         acceptButtonText: "Ok"
         rejectButtonText: "Cancel"
         onAccepted: {
-            ListsDb.removeList(listName);
+            ListsDb.removeList(listsPage.listName);
+            SettingsDb.setListName(ListsDb.getFirstListName());
             reloadDb();
         }
-    }
-
-    QueryDialog {
-        id: noRemoveDialog
-        titleText: "Can't remove"
-        message: "You can't remove the last list!"
-        acceptButtonText: "Ok"
-    }
-
-    QueryDialog {
-        id: helpDialog
-        titleText: "Help"
-        message: "Here you can give your list a new name.\n\nJust enter the new name and click the \"done\" mark next to it!"
-        acceptButtonText: "Ok"
     }
 
     onVisibleChanged: {

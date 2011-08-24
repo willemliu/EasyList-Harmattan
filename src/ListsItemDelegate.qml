@@ -3,6 +3,7 @@ import QtQuick 1.0
 
 Item {
     id: listsItem
+    property string listIndex: "0"
     property string listName: "No text"
 
     Label {
@@ -11,7 +12,6 @@ Item {
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
         anchors.leftMargin: 10
-        font.family: "Helvetica"
         font.pixelSize: 26
     }
 

@@ -54,12 +54,6 @@ Page {
         id: myMenu
         MenuLayout {
             MenuItem {
-                text: "Edit";
-                onClicked: {
-                    myEditPage.open();
-                }
-            }
-            MenuItem {
                 text: "Deselect all";
                 onClicked: {
                     DbConnection.deselectAll()
@@ -126,9 +120,6 @@ Page {
         onAccepted: {
             mainPage.reloadDb();
         }
-        onRejected: {
-            mainPage.reloadDb();
-        }
         onVisibleChanged: {
             if(visible)
             {
@@ -162,21 +153,27 @@ Page {
             onClicked: {
                 mainPage.modelIndex = listView.indexAt(mouse.x, mouse.y);
                 var item = listModel.get(mainPage.modelIndex);
-                if(item.itemSelected == "true")
+                if(item !== undefined)
                 {
-                    DbConnection.saveRecord(item.itemIndex, "false");
-                }
-                else
-                {
-                    DbConnection.saveRecord(item.itemIndex, "true");
+                    if(item.itemSelected == "true")
+                    {
+                        DbConnection.saveRecord(item.itemIndex, "false");
+                    }
+                    else
+                    {
+                        DbConnection.saveRecord(item.itemIndex, "true");
+                    }
                 }
                 DbConnection.loadDB(listName);
             }
             onPressAndHold: {
                 mainPage.modelIndex = listView.indexAt(mouse.x, mouse.y);
                 var item = listModel.get(mainPage.modelIndex);
-                mainPage.index = item.itemIndex;
-                contextMenu.open();
+                if(item !== undefined)
+                {
+                    mainPage.index = item.itemIndex;
+                    contextMenu.open();
+                }
             }
         }
     }
@@ -204,7 +201,9 @@ Page {
     ContextMenu {
         id: contextMenu
         MenuLayout {
-            MenuItem {text: "Remove"; onClicked: {
+            MenuItem {
+                text: "Remove";
+                onClicked: {
                     DbConnection.removeRecord(mainPage.index);
                     mainPage.reloadDb();
                 }

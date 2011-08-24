@@ -142,5 +142,6 @@ function removeTables()
     db.transaction(function(tx) {
         tx.executeSql('DROP TABLE IF EXISTS EasyListData');
         tx.executeSql('DROP TABLE IF EXISTS EasyListApp');
+        tx.executeSql('DROP TABLE IF EXISTS EasyListLists');
     });
 }
