@@ -1,8 +1,7 @@
 easylist (0.0.8) unstable; urgency=low
 
-  * Now using TextArea instead of TextEdit.
-  * Changed title text position, size and icon.
-  * Disabled predictive input.
-  * Removed Copy/Paste buttons in menu. TextArea supports this out of the box.
+  * Multi-list functionality changed. Now uses + button to add new lists. Empty lists are possible.
+  * Now uses Nokia font where applicable by using Label.
+  * Edit page is now a Sheet.
 
- -- Willem Liu <willem.liu@gmail.com>  Tue, 16 Aug 2011 20:01:00 +0100
+ -- Willem Liu <willem.liu@gmail.com>  Tue, 24 Aug 2011 20:49:00 +0100
