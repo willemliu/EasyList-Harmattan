@@ -202,12 +202,19 @@ Page {
         content: Flickable {
             id: flick
             anchors.fill: parent
+            anchors.topMargin: 10
+            anchors.bottomMargin: 10
+            anchors.leftMargin: 10
+            anchors.rightMargin: 10
             contentWidth: listNameRect.width
             contentHeight: listNameRect.height
+            clip: true
+
             Rectangle {
                 id: listNameRect
                 width: Math.max (flick.width, implicitWidth);
                 height: Math.max (flick.height, implicitHeight)
+                color: "transparent"
                 Label {
                     id: listNameLabel
                     text: "List name: "
