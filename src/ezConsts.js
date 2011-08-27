@@ -1,3 +1,10 @@
 var SORT_SELECTED = "selected ASC"
 var SORT_A_Z = "itemText ASC";
 var SORT_PID = "pid ASC";
+var BACKGROUND_COLOR = "transparent"
+var HOVER_COLOR = "#d7d8d8";
+var HIGHLIGHT_COLOR = "lightsteelblue";
+var DIVISION_LINE = "#cccccc"
+var DIVISION_LINE_TEXT = "#333333"
+var HEADER_BACKGROUND_COLOR = "#333333"
+var HEADER_TEXT_COLOR = "#ffffff"

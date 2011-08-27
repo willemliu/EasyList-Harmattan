@@ -1,5 +1,6 @@
 import com.meego 1.0
 import QtQuick 1.0
+import "ezConsts.js" as Consts
 import "settingsDb.js" as SettingsDb
 import "listsDb.js" as ListsDb
 
@@ -10,8 +11,6 @@ Page {
     signal aboutView
     property string listName: SettingsDb.getListName()
     signal hideToolbar(bool hideToolbar)
-    property int index: -1
-    property int modelIndex: -1
 
     Rectangle {
         id: header
@@ -19,7 +18,7 @@ Page {
         anchors.left: parent.left
         anchors.right: parent.right
         height: 70
-        color: "#333"
+        color: Consts.HEADER_BACKGROUND_COLOR
         z: 1
         Label {
             id: title
@@ -28,7 +27,7 @@ Page {
             anchors.leftMargin: 20
             text: "EasyList - Lists"
             font.pixelSize: 32
-            color: "#fff"
+            color: Consts.HEADER_TEXT_COLOR
         }
     }
 
@@ -46,30 +45,6 @@ Page {
         model: ListsDb.getListsModel()
         delegate: itemComponent
         highlight: highlight
-        MouseArea {
-            id: listViewMouseArea
-            anchors.fill: parent
-            onClicked: {
-                listsPage.modelIndex = listView.indexAt(mouse.x, mouse.y);
-                var item = listModel.get(listsPage.modelIndex);
-                listView.currentIndex = listsPage.modelIndex;
-                if(item !== undefined)
-                {
-                    listsPage.listName = item.listName;
-                    SettingsDb.setListName(item.listName);
-                }
-            }
-            onPressAndHold: {
-                listsPage.modelIndex = listView.indexAt(mouse.x, mouse.y);
-                listView.currentIndex = listsPage.modelIndex;
-                var item = listModel.get(listsPage.modelIndex);
-                if(item !== undefined)
-                {
-                    listsPage.listName = item.listName;
-                    contextMenu.open();
-                }
-            }
-        }
     }
     ScrollDecorator {
         flickableItem: listView
@@ -82,6 +57,34 @@ Page {
             listName: model.listName
             height: 60
             width: listView.width
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    listsPage.listName = listsItem.listName;
+                    listView.currentIndex = model.index;
+                    SettingsDb.setListName(listsPage.listName);
+                    listsItem.backgroundColor = Consts.BACKGROUND_COLOR;
+                    pageStack.pop();
+                }
+                onPressAndHold: {
+                    listsPage.listName = listsItem.listName;
+                    contextMenu.open();
+                    listsItem.backgroundColor = Consts.BACKGROUND_COLOR;
+                }
+                onHoveredChanged: {
+                    if(containsMouse)
+                    {
+                        listsItem.backgroundColor = Consts.HOVER_COLOR;
+                    }
+                    else
+                    {
+                        listsItem.backgroundColor = Consts.BACKGROUND_COLOR;
+                    }
+                }
+                onReleased: {
+                    listsItem.backgroundColor = Consts.BACKGROUND_COLOR;
+                }
+            }
         }
     }
 
@@ -90,7 +93,7 @@ Page {
         Rectangle {
             width: listView.width;
             height: 60
-            color: "lightsteelblue";
+            color: Consts.HIGHLIGHT_COLOR;
             Behavior on y {
                 SpringAnimation {
                     spring: 3
@@ -100,7 +103,7 @@ Page {
             radius: 5
             Rectangle {
                 id: divisionLine
-                color: "#ccc"
+                color: Consts.DIVISION_LINE
                 height: 1
                 anchors.bottom: parent.bottom
                 anchors.left: parent.left
@@ -112,6 +115,13 @@ Page {
     ContextMenu {
         id: contextMenu
         MenuLayout {
+            MenuItem {
+                text: "Rename";
+                onClicked: {
+                    renameListSheet.oldListName = listsPage.listName;
+                    renameListSheet.open();
+                }
+            }
             MenuItem {
                 text: "Remove";
                 onClicked: {
@@ -199,6 +209,7 @@ Page {
         z: 2
         acceptButtonText: "Save"
         rejectButtonText: "Cancel"
+        focus: true
         content: Flickable {
             id: flick
             anchors.fill: parent
@@ -209,25 +220,19 @@ Page {
             contentWidth: listNameRect.implicitWidth
             contentHeight: listNameRect.implicitHeight
             clip: true
+            focus: true
 
             Rectangle {
                 id: listNameRect
                 width: Math.max (flick.width, implicitWidth);
                 height: Math.max (flick.height, implicitHeight)
-                color: "transparent"
+                color: Consts.BACKGROUND_COLOR
+                focus: true
                 Label {
                     id: newListLabel
-                    text: "Name your new list"
+                    text: "New list name:"
                     anchors.topMargin: 5
                     anchors.top: parent.top
-                    anchors.left: parent.left
-                    anchors.leftMargin: 10
-                    font.pixelSize: 28
-                }
-                Label {
-                    id: listNameLabel
-                    text: "List name: "
-                    anchors.verticalCenter: textField.verticalCenter
                     anchors.left: parent.left
                     anchors.leftMargin: 10
                     font.pixelSize: 24
@@ -236,9 +241,10 @@ Page {
                     id: textField
                     anchors.topMargin: 5
                     anchors.top: newListLabel.bottom
-                    anchors.left: listNameLabel.right
+                    anchors.left: parent.left
                     anchors.right: parent.right
                     anchors.rightMargin: 10
+                    focus: true
                     maximumLength: 20
                     inputMethodHints: Qt.ImhNoPredictiveText
                 }
@@ -254,6 +260,82 @@ Page {
         onVisibleChanged: {
             if(visible)
             {
+                textField.selectAll();
+                textField.platformOpenSoftwareInputPanel();
+                listsPage.hideToolbar(true);
+            }
+            else
+            {
+                listsPage.hideToolbar(false);
+            }
+        }
+    }
+
+    Sheet {
+        id: renameListSheet
+        property string oldListName:  ""
+        visualParent: listsPage
+        anchors.top: header.bottom
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        z: 2
+        acceptButtonText: "Rename"
+        rejectButtonText: "Cancel"
+        focus: true
+        content: Flickable {
+            id: renameFlick
+            anchors.fill: parent
+            anchors.topMargin: 10
+            anchors.bottomMargin: 10
+            anchors.leftMargin: 10
+            anchors.rightMargin: 10
+            contentWidth: renameListNameRect.implicitWidth
+            contentHeight: renameListNameRect.implicitHeight
+            clip: true
+            focus: true
+
+            Rectangle {
+                id: renameListNameRect
+                width: Math.max (renameFlick.width, implicitWidth);
+                height: Math.max (renameFlick.height, implicitHeight)
+                color: Consts.BACKGROUND_COLOR
+                focus: true
+                Label {
+                    id: renameNewListLabel
+                    text: "New list name:"
+                    anchors.topMargin: 5
+                    anchors.top: parent.top
+                    anchors.left: parent.left
+                    anchors.leftMargin: 10
+                    font.pixelSize: 24
+                }
+                TextField {
+                    id: renameTextField
+                    text: renameListSheet.oldListName
+                    anchors.topMargin: 5
+                    anchors.top: renameNewListLabel.bottom
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.rightMargin: 10
+                    focus: true
+                    maximumLength: 20
+                    inputMethodHints: Qt.ImhNoPredictiveText
+                }
+            }
+        }
+        onAccepted: {
+            ListsDb.renameList(renameListSheet.oldListName, renameTextField.text);
+            SettingsDb.setListName(renameTextField.text);
+            listsPage.reloadDb();
+        }
+        onRejected: {
+        }
+        onVisibleChanged: {
+            if(visible)
+            {
+                renameTextField.selectAll();
+                renameTextField.platformOpenSoftwareInputPanel();
                 listsPage.hideToolbar(true);
             }
             else

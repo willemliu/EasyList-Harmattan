@@ -60,6 +60,9 @@ function getListsModel()
     return listModel;
 }
 
+/**
+ * Clone a list.
+ */
 function saveAs(listName, newListName)
 {
     if(listName != newListName)
@@ -101,3 +104,14 @@ function addList(listName)
         tx.executeSql("INSERT OR IGNORE INTO EasyListLists (listName) VALUES (?)", [listName]);
     });
 }
+
+function renameList(oldListName, newListName)
+{
+    db = getDbConnection();
+    db.transaction(function(tx) {
+        tx.executeSql('CREATE TABLE IF NOT EXISTS EasyListLists(pid INTEGER PRIMARY KEY, listName STRING UNIQUE)');
+        tx.executeSql("UPDATE OR IGNORE EasyListLists SET listName=(?) WHERE listName=(?)", [newListName, oldListName]);
+        tx.executeSql("UPDATE OR IGNORE EasyListData SET listName=(?) WHERE listName=(?)", [newListName, oldListName]);
+    });
+}
+

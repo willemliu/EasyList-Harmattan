@@ -2,6 +2,7 @@ import com.meego 1.0
 import QtQuick 1.0
 import "mainPageDb.js" as DbConnection
 import "settingsDb.js" as SettingsDb
+import "ezConsts.js" as Consts
 
 Page {
     id: mainPage
@@ -98,16 +99,16 @@ Page {
         anchors.left: parent.left
         anchors.right: parent.right
         height: 70
-        color: "#333"
+        color: Consts.HEADER_BACKGROUND_COLOR
         z: 1
         Label {
             id: title
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
             anchors.leftMargin: 20
-            text: "EasyList"
+            text: "EasyList - [" + mainPage.listName + "]"
             font.pixelSize: 32
-            color: "#fff"
+            color: Consts.HEADER_TEXT_COLOR
         }
     }
 
@@ -146,36 +147,6 @@ Page {
         anchors.rightMargin: 10
         model: DbConnection.loadDB(listName)
         delegate: itemComponent
-
-        MouseArea {
-            id: listViewMouseArea
-            anchors.fill: parent
-            onClicked: {
-                mainPage.modelIndex = listView.indexAt(mouse.x, mouse.y);
-                var item = listModel.get(mainPage.modelIndex);
-                if(item !== undefined)
-                {
-                    if(item.itemSelected == "true")
-                    {
-                        DbConnection.saveRecord(item.itemIndex, "false");
-                    }
-                    else
-                    {
-                        DbConnection.saveRecord(item.itemIndex, "true");
-                    }
-                }
-                DbConnection.loadDB(listName);
-            }
-            onPressAndHold: {
-                mainPage.modelIndex = listView.indexAt(mouse.x, mouse.y);
-                var item = listModel.get(mainPage.modelIndex);
-                if(item !== undefined)
-                {
-                    mainPage.index = item.itemIndex;
-                    contextMenu.open();
-                }
-            }
-        }
     }
     ScrollDecorator {
         flickableItem: listView
@@ -194,6 +165,39 @@ Page {
             onCheckChanged: {
                 DbConnection.saveRecord(itemIndex, itemSelected);
                 DbConnection.loadDB(listName);
+            }
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    if(listItem.itemSelected == "true")
+                    {
+                        DbConnection.saveRecord(itemIndex, "false");
+                    }
+                    else
+                    {
+                        DbConnection.saveRecord(itemIndex, "true");
+                    }
+                    DbConnection.loadDB(listName);
+                    listItem.backgroundColor = Consts.BACKGROUND_COLOR;
+                }
+                onPressAndHold: {
+                    mainPage.index = listItem.itemIndex;
+                    contextMenu.open();
+                    listItem.backgroundColor = Consts.BACKGROUND_COLOR;
+                }
+                onHoveredChanged: {
+                    if(containsMouse)
+                    {
+                        listItem.backgroundColor = Consts.HOVER_COLOR;
+                    }
+                    else
+                    {
+                        listItem.backgroundColor = Consts.BACKGROUND_COLOR;
+                    }
+                }
+                onReleased: {
+                    listItem.backgroundColor = Consts.BACKGROUND_COLOR;
+                }
             }
         }
     }

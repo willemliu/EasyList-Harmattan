@@ -1,5 +1,6 @@
 import com.meego 1.0
 import QtQuick 1.0
+import "ezConsts.js" as Consts
 import "editPageDb.js" as EditDb
 import "settingsDb.js" as SettingsDb
 
@@ -41,7 +42,7 @@ Sheet {
             height: Math.max (flick.height, implicitHeight)
             placeholderText: "Enter text to create your list.\nEach new line represents a new item.\n\nTip: You can copy text from other apps\nand paste it here as well."
             focus: true
-            inputMethodHints: Qt.ImhNoPredictiveText
+            //inputMethodHints: Qt.ImhNoPredictiveText
             onCursorPositionChanged: {
                 textEdit.positionToRectangle(cursorPosition);
             }

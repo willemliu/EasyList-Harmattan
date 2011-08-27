@@ -1,6 +1,7 @@
 import com.meego 1.0
 import QtQuick 1.0
 import "settingsDb.js" as SettingsDb
+import "ezConsts.js" as Consts
 
 Page {
     id: settingsPage
@@ -15,24 +16,6 @@ Page {
                 pageStack.pop();
             }
         }
-        ToolIcon {
-            iconId: "invitation-pending";
-            onClicked: {
-                helpDialog.open();
-            }
-        }
-        ToolIcon {
-            iconId: "toolbar-view-menu";
-            onClicked: {
-                if(myMenu.status == DialogStatus.Closed)
-                {
-                    myMenu.open();
-                }
-                else {
-                    myMenu.close();
-                }
-            }
-        }
     }
 
     Rectangle {
@@ -41,7 +24,7 @@ Page {
         anchors.left: parent.left
         anchors.right: parent.right
         height: 70
-        color: "#333"
+        color: Consts.HEADER_BACKGROUND_COLOR
         z: 1
         Label {
             id: title
@@ -50,7 +33,7 @@ Page {
             anchors.leftMargin: 20
             text: "EasyList - Settings"
             font.pixelSize: 32
-            color: "#fff"
+            color: Consts.HEADER_TEXT_COLOR
         }
     }
 
@@ -74,11 +57,12 @@ Page {
             // Division line
             Rectangle {
                 id: sortingDivisionLine
-                color: "#666"
+                color: Consts.DIVISION_LINE
                 height: 1
-                anchors.rightMargin: 5
                 anchors.verticalCenter: sortingLabel.verticalCenter
+                anchors.leftMargin: 10
                 anchors.left: parent.left
+                anchors.rightMargin: 5
                 anchors.right: sortingLabel.left
             }
             Label {
@@ -87,25 +71,25 @@ Page {
                 font.pointSize: 26
                 anchors.top: parent.top
                 anchors.right: parent.right
-                anchors.rightMargin: 20
-                color: "#666";
+                anchors.rightMargin: 10
+                color: Consts.DIVISION_LINE_TEXT
             }
 
             // Sort alphabetically
             Label {
                 id: sortLabel
-                text: "Sort alphabetically:"
+                text: "Alphabetically:"
                 font.pointSize: 26
                 anchors.verticalCenter: sortSwitch.verticalCenter
                 anchors.left: parent.left
-                anchors.leftMargin: 20
+                anchors.leftMargin: 10
             }
             Switch {
                 id: sortSwitch
                 anchors.topMargin: 10
                 anchors.top: sortingLabel.bottom
                 anchors.right: parent.right
-                anchors.rightMargin: 20
+                anchors.rightMargin: 10
                 checked: {getBooleanProperty(SettingsDb.propSort);}
                 onCheckedChanged: {
                     saveBooleanProperty(SettingsDb.propSort, checked);
@@ -115,7 +99,7 @@ Page {
             // Sort selected items
             Label {
                 id: sortSelectedLabel
-                text: "Sort selected items to bottom:"
+                text: "Checked items to bottom:"
                 font.pointSize: 26
                 anchors.verticalCenter: sortSelectedSwitch.verticalCenter
                 anchors.left: sortLabel.left
@@ -134,11 +118,12 @@ Page {
             // Division line
             Rectangle {
                 id: orientationDivisionLine
-                color: "#666"
+                color: Consts.DIVISION_LINE
                 height: 1
                 anchors.verticalCenter: orientationLabel.verticalCenter
-                anchors.rightMargin: 5
+                anchors.leftMargin: 10
                 anchors.left: parent.left
+                anchors.rightMargin: 5
                 anchors.right: orientationLabel.left
             }
             Label {
@@ -148,80 +133,76 @@ Page {
                 anchors.right: parent.right
                 anchors.top: sortSelectedSwitch.bottom
                 anchors.topMargin: 10;
-                anchors.rightMargin: 20
-                color: "#666"
+                anchors.rightMargin: 10
+                color: Consts.DIVISION_LINE_TEXT
             }
 
-            // Orientation lock portrait
-            Label {
-                id: lockPortraitLabel
-                text: "Lock portrait:"
-                font.pointSize: 26
-                anchors.verticalCenter: lockPortraitSwitch.verticalCenter
-                anchors.left: sortLabel.left
-            }
-            Switch {
-                id: lockPortraitSwitch
+            ButtonRow {
                 anchors.topMargin: 10;
                 anchors.top: orientationLabel.bottom
-                anchors.right: sortSwitch.right
-                checked: {
-                    if(SettingsDb.getProperty(SettingsDb.propOrientationLock) == "Portrait")
-                    {
-                        return true;
+                anchors.leftMargin: 10;
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.rightMargin: 10
+                Button {
+                    id: lockPortraitButton
+                    text: "Portrait"
+                    checkable: true
+                    checked: {
+                        if(SettingsDb.getProperty(SettingsDb.propOrientationLock) == "Portrait")
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
-                    else
-                    {
-                        return false;
-                    }
-                }
-                onCheckedChanged: {
-                    if(checked)
-                    {
-                        lockLandscapeSwitch.checked = false;
+                    onClicked: {
+                        lockLandscapeButton.checked = false;
+                        autoOrientationButton.checked = false;
                         settingsPage.orientationLock = PageOrientation.LockPortrait;
                         SettingsDb.setProperty(SettingsDb.propOrientationLock, "Portrait");
                     }
-                    else
-                    {
-                        settingsPage.orientationLock = PageOrientation.Automatic;
-                        SettingsDb.setProperty(SettingsDb.propOrientationLock, "Automatic");
-                    }
                 }
-            }
-
-            // Orientation lock landscape
-            Label {
-                id: lockLandscapeLabel
-                text: "Lock landscape:"
-                font.pointSize: 26
-                anchors.verticalCenter: lockLandscapeSwitch.verticalCenter
-                anchors.left: sortLabel.left
-            }
-            Switch {
-                id: lockLandscapeSwitch
-                anchors.topMargin: 10;
-                anchors.top: lockPortraitSwitch.bottom
-                anchors.right: sortSwitch.right
-                checked: {
-                    if(SettingsDb.getProperty(SettingsDb.propOrientationLock) == "Landscape")
-                    {
-                        return true;
+                Button {
+                    id: lockLandscapeButton
+                    text: "Landscape"
+                    checkable: true
+                    checked: {
+                        if(SettingsDb.getProperty(SettingsDb.propOrientationLock) == "Landscape")
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
-                    else
-                    {
-                        return false;
-                    }
-                }
-                onCheckedChanged: {
-                    if(checked)
-                    {
-                        lockPortraitSwitch.checked = false;
+                    onClicked: {
+                        lockPortraitButton.checked = false;
+                        autoOrientationButton.checked = false;
                         settingsPage.orientationLock = PageOrientation.LockLandscape;
                         SettingsDb.setProperty(SettingsDb.propOrientationLock, "Landscape");
                     }
-                    else
-                    {
+                }
+                Button {
+                    id: autoOrientationButton
+                    text: "Auto"
+                    checkable: true
+                    checked: {
+                        if(SettingsDb.getProperty(SettingsDb.propOrientationLock) == "Automatic")
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    onClicked: {
+                        lockPortraitButton.checked = false;
+                        lockLandscapeButton.checked = false;
                         settingsPage.orientationLock = PageOrientation.Automatic;
                         SettingsDb.setProperty(SettingsDb.propOrientationLock, "Automatic");
                     }
@@ -231,31 +212,6 @@ Page {
     }
     ScrollDecorator {
         flickableItem: flick
-    }
-
-    QueryDialog {
-        id: helpDialog
-        titleText: "Help"
-        message: "Auto-orientation can be obtained by turning all orientation locks off!"
-        acceptButtonText: "Ok"
-    }
-
-    Menu {
-        id: myMenu
-        MenuLayout {
-            MenuItem {
-                text: "Back";
-                onClicked: {
-                    pageStack.pop();
-                }
-            }
-            MenuItem {
-                text: "About";
-                onClicked: {
-                    onClicked: settingsPage.aboutView()
-                }
-            }
-        }
     }
 
     function saveBooleanProperty(propertyName, booleanValue)

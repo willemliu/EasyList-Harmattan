@@ -1,11 +1,12 @@
 import com.meego 1.0
 import QtQuick 1.0
 import "settingsDb.js" as SettingsDb
+import "ezConsts.js" as Consts
 
 Page {
     id: aboutPage
     orientationLock: SettingsDb.getOrientationLock();
-    property string version: "0.0.10";
+    property string version: "0.0.11";
 
     Rectangle {
         id: header
@@ -13,7 +14,7 @@ Page {
         anchors.left: parent.left
         anchors.right: parent.right
         height: 70
-        color: "#333"
+        color: Consts.HEADER_BACKGROUND_COLOR
         z: 1
         Label {
             id: title
@@ -22,7 +23,7 @@ Page {
             anchors.leftMargin: 20
             text: "EasyList - About"
             font.pixelSize: 32
-            color: "#fff"
+            color: Consts.HEADER_TEXT_COLOR
         }
     }
 
