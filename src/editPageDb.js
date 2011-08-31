@@ -1,6 +1,4 @@
-Qt.include("db.js");
 Qt.include("settingsDb.js");
-Qt.include("ezConsts.js");
 var db;
 var resultText = "";
 var resultSet;
@@ -15,7 +13,7 @@ var selectSql = "SELECT * FROM EasyListData WHERE listName=(?)";
  *
  * Returns resultText.
  */
-function loadDB(theListName)
+function loadEditDb(theListName)
 {
     listName = theListName;
     db = getDbConnection();
@@ -24,7 +22,7 @@ function loadDB(theListName)
         resultSet = tx.executeSql(getOrderBy(selectSql), [listName]);
     });
 
-    populateModel();
+    populateEditModel();
     return resultText;
 }
 
@@ -38,7 +36,7 @@ function setListName(theListName)
  * A line starting with '!' is considered selected. The text is saved into the database
  * without the '!' character. Instead the selected flag is set to true.
  */
-function populateDB(text)
+function populateEditDb(text)
 {
     db.transaction(function(tx) {
         // Clear all items.
@@ -52,11 +50,11 @@ function populateDB(text)
         {
             if(lines[i].substring(0, 1) == "!")
             {
-                insertRecord(lines[i].substring(1), true);
+                insertEditRecord(lines[i].substring(1), true);
             }
             else
             {
-                insertRecord(lines[i], false);
+                insertEditRecord(lines[i], false);
             }
         }
     }
@@ -65,7 +63,7 @@ function populateDB(text)
 /**
  * Populate the model.
  */
-function populateModel()
+function populateEditModel()
 {
     resultText = "";
     for(var i = 0; i < resultSet.rows.length; i++)
@@ -84,7 +82,7 @@ function populateModel()
 /**
  * Insert a record.
  */
-function insertRecord(itemText, itemSelected)
+function insertEditRecord(itemText, itemSelected)
 {
     var index = 0;
     db.transaction(function(tx) {
@@ -95,15 +93,5 @@ function insertRecord(itemText, itemSelected)
         {
             index = rs.rows.item(i).maxId;
         }
-    });
-}
-
-/**
- * Drop table.
- */
-function removeTable()
-{
-    db.transaction(function(tx) {
-        tx.executeSql('DROP TABLE EasyListData');
     });
 }

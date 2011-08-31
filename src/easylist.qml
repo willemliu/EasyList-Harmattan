@@ -28,6 +28,12 @@ PageStackWindow {
             myMainPage.orientationLock = orientationLock;
             aboutPage.orientationLock = orientationLock;
         }
+        onThemeChanged: {
+            myMainPage.loadTheme();
+            settingsPage.loadTheme();
+            listsPage.loadTheme();
+            aboutPage.loadTheme();
+        }
     }
 
     MainPage {

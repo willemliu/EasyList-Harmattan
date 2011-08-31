@@ -1,5 +1,4 @@
 Qt.include("ezConsts.js");
-Qt.include("db.js");
 var db;
 var listName =  "default";
 var resultSet;
@@ -9,6 +8,7 @@ var propSort = "sort";
 var propSortSelected = "sortSelected";
 var propSortPid = "sortPid";
 var propOrientationLock = "orientationLock";
+var propTheme = "theme";
 
 /**
  * The entry point. This function is called by all other functions which need this
@@ -26,6 +26,7 @@ function loadSettingsDb()
         tx.executeSql("INSERT OR IGNORE INTO EasyListApp (property, value) VALUES (?,?)", [propSortSelected, "true"]);
         tx.executeSql("INSERT OR IGNORE INTO EasyListApp (property, value) VALUES (?,?)", [propSortPid, "true"]);
         tx.executeSql("INSERT OR IGNORE INTO EasyListApp (property, value) VALUES (?,?)", [propOrientationLock, "Automatic"]);
+        tx.executeSql("INSERT OR IGNORE INTO EasyListApp (property, value) VALUES (?,?)", [propTheme, "default"]);
     });
 }
 

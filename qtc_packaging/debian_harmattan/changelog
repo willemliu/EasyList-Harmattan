@@ -1,10 +1,10 @@
-easylist (0.0.11) unstable; urgency=low
+easylist (0.0.12) unstable; urgency=low
 
-  * Now when hovering over a list item or list will cause a grey highlight.
-  * Fixed a major bug with list items which didn't fit in the view. Those items didn't work.
-  * Selecting a list from the Lists page now brings you back to the List page.
-  * Colors now stored in ezConsts.js. First step towards theme support.
-  * Current list name now shown in List page header.
-  * Orientation setting is now a button row instead of switches.
+  * Sorting is now case-insensitive.
+  * Fixed JavaScript imports. Now startup time has been decreased.
+  * Added theme switching functionality.
+  * Added dark theme.
+  * Added pink theme.
+  * Added blue theme.
 
- -- Willem Liu <willem.liu@gmail.com>  Sat, 27 Aug 2011 22:07:00 +0100
+ -- Willem Liu <willem.liu@gmail.com>  Wed, 31 Aug 2011 21:51:00 +0100

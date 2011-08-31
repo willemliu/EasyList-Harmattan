@@ -8,7 +8,7 @@ Item {
     property string itemIndex: "0"
     property string itemText: "No text"
     property string itemSelected: "false"
-    property string backgroundColor: Consts.BACKGROUND_COLOR
+    property string backgroundColor: Consts.getValue("LIST_ITEM_BACKGROUND_COLOR")
 
     Rectangle {
         id: backgroundRect
@@ -46,13 +46,14 @@ Item {
             id: checkBoxText
             text: getText()
             font.pixelSize: 26
+            color: Consts.getValue("LIST_ITEM_TEXT_COLOR")
             anchors.left: checkBox.right
             anchors.verticalCenter: checkBox.verticalCenter
         }
 
         Rectangle {
             id: divisionLine
-            color: Consts.DIVISION_LINE
+            color: Consts.getValue("DIVISION_LINE_COLOR")
             height: 1
             anchors.bottom: parent.bottom
             anchors.left: parent.left

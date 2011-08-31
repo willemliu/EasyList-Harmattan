@@ -1,5 +1,4 @@
-Qt.include("ezConsts.js");
-Qt.include("db.js");
+Qt.include("settingsDb.js");
 var db;
 
 /**
@@ -22,7 +21,7 @@ function getFirstListName()
     db = getDbConnection();
     db.transaction(function(tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS EasyListLists(pid INTEGER PRIMARY KEY, listName STRING UNIQUE)');
-        var lists = tx.executeSql("SELECT listName FROM EasyListLists ORDER BY listName");
+        var lists = tx.executeSql("SELECT listName FROM EasyListLists ORDER BY UPPER(listName)");
         for(var j = 0; j < lists.rows.length; j++)
         {
             listName = lists.rows.item(j).listName;
@@ -38,11 +37,11 @@ function getListsModel()
     db = getDbConnection();
     db.transaction(function(tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS EasyListLists(pid INTEGER PRIMARY KEY, listName STRING UNIQUE)');
-        var lists = tx.executeSql("SELECT listName FROM EasyListLists ORDER BY listName");
+        var lists = tx.executeSql("SELECT listName FROM EasyListLists ORDER BY UPPER(listName)");
         if(lists.rows.length === 0)
         {
             tx.executeSql('CREATE TABLE IF NOT EXISTS EasyListData(pid INTEGER PRIMARY KEY, listName STRING, itemText STRING, selected BOOLEAN)');
-            var rs = tx.executeSql("SELECT listName FROM EasyListData GROUP BY listName ORDER BY listName");
+            var rs = tx.executeSql("SELECT listName FROM EasyListData GROUP BY listName ORDER BY UPPER(listName)");
             for(var i = 0; i < rs.rows.length; i++)
             {
                 addList(rs.rows.item(i).listName);
@@ -63,11 +62,11 @@ function getListsModel()
 /**
  * Clone a list.
  */
-function saveAs(listName, newListName)
+function cloneList(listName, newListName)
 {
     if(listName != newListName)
     {
-        console.log("Save " + listName + " as " + newListName);
+        console.log("Clone " + listName + " as " + newListName);
         db = getDbConnection();
         db.transaction(function(tx) {
             tx.executeSql('CREATE TABLE IF NOT EXISTS EasyListData(pid INTEGER PRIMARY KEY, listName STRING, itemText STRING, selected BOOLEAN)');
@@ -75,20 +74,20 @@ function saveAs(listName, newListName)
             for(var i = 0; i < rs.rows.length; i++)
             {
                 var item = rs.rows.item(i);
-                insertRecord(newListName, item.itemText, item.selected);
+                insertListRecord(newListName, item.itemText, item.selected);
             }
         });
     }
     else
     {
-        console.log(listName + " is the same as " + newListName + " no save needed.");
+        console.log(listName + " is the same as " + newListName + " no clone needed.");
     }
 }
 
 /**
  * Insert a record.
  */
-function insertRecord(listName, itemText, itemSelected)
+function insertListRecord(listName, itemText, itemSelected)
 {
     db = getDbConnection();
     db.transaction(function(tx) {

@@ -1,6 +1,4 @@
-Qt.include("db.js");
 Qt.include("settingsDb.js");
-Qt.include("ezConsts.js");
 var db;
 var resultSet;
 var listName;

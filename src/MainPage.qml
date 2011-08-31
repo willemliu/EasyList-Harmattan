@@ -1,13 +1,19 @@
 import com.meego 1.0
 import QtQuick 1.0
 import "mainPageDb.js" as DbConnection
-import "settingsDb.js" as SettingsDb
-import "ezConsts.js" as Consts
 
 Page {
     id: mainPage
-    orientationLock: SettingsDb.getOrientationLock();
-    property string listName: SettingsDb.getListName()
+    orientationLock: DbConnection.getOrientationLock();
+    property string listName: DbConnection.getListName()
+    property color backgroundColor: DbConnection.getValue("BACKGROUND_COLOR")
+    property color headerBackgroundColor: DbConnection.getValue("HEADER_BACKGROUND_COLOR")
+    property color headerTextColor: DbConnection.getValue("HEADER_TEXT_COLOR")
+    property color divisionLineColor: DbConnection.getValue("DIVISION_LINE_COLOR")
+    property color divisionLineTextColor: DbConnection.getValue("DIVISION_LINE_TEXT_COLOR")
+    property color textColor: DbConnection.getValue("TEXT_COLOR")
+    property color listItemBackgroundColor: DbConnection.getValue("LIST_ITEM_BACKGROUND_COLOR")
+    property color hoverColor: DbConnection.getValue("HOVER_COLOR");
     signal settingsView
     signal aboutView
     signal listsView
@@ -24,6 +30,7 @@ Page {
             }
         }
         ToolIcon {
+            id: deleteIcon
             iconId: "toolbar-delete";
             onClicked: {
                 myMenu.close();
@@ -94,109 +101,115 @@ Page {
     }
 
     Rectangle {
-        id: header
-        anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.right: parent.right
-        height: 70
-        color: Consts.HEADER_BACKGROUND_COLOR
-        z: 1
-        Label {
-            id: title
+        id: background
+        color: backgroundColor
+        anchors.fill: parent
+
+        Rectangle {
+            id: header
+            anchors.top: parent.top
             anchors.left: parent.left
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.leftMargin: 20
-            text: "EasyList - [" + mainPage.listName + "]"
-            font.pixelSize: 32
-            color: Consts.HEADER_TEXT_COLOR
-        }
-    }
-
-    EditPage {
-        id: myEditPage
-        visualParent: mainPage
-        anchors.top: header.bottom
-        anchors.bottom: parent.bottom
-        z: 2
-        onAccepted: {
-            mainPage.reloadDb();
-        }
-        onVisibleChanged: {
-            if(visible)
-            {
-                mainPage.hideToolbar(true);
-            }
-            else
-            {
-                mainPage.hideToolbar(false);
+            anchors.right: parent.right
+            height: 70
+            color: headerBackgroundColor
+            z: 10
+            Label {
+                id: title
+                anchors.left: parent.left
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.leftMargin: 20
+                text: "EasyList - [" + mainPage.listName + "]"
+                font.pixelSize: 32
+                color: headerTextColor
             }
         }
-    }
 
-    ListModel {
-        id: listModel
-    }
-
-    ListView {
-        id: listView
-        anchors.top: header.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        anchors.leftMargin: 10
-        anchors.rightMargin: 10
-        model: DbConnection.loadDB(listName)
-        delegate: itemComponent
-    }
-    ScrollDecorator {
-        flickableItem: listView
-    }
-    
-    Component {
-        id: itemComponent
-        ListItemDelegate {
-            id: listItem
-            itemIndex: model.itemIndex
-            itemText: model.itemText
-            itemSelected: model.itemSelected
-            height: 60
-            width: listView.width
-
-            onCheckChanged: {
-                DbConnection.saveRecord(itemIndex, itemSelected);
-                DbConnection.loadDB(listName);
+        EditPage {
+            id: myEditPage
+            visualParent: mainPage
+            anchors.top: header.bottom
+            anchors.bottom: parent.bottom
+            z: 2
+            onAccepted: {
+                mainPage.reloadDb();
             }
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    if(listItem.itemSelected == "true")
-                    {
-                        DbConnection.saveRecord(itemIndex, "false");
-                    }
-                    else
-                    {
-                        DbConnection.saveRecord(itemIndex, "true");
-                    }
+            onVisibleChanged: {
+                if(visible)
+                {
+                    mainPage.hideToolbar(true);
+                }
+                else
+                {
+                    mainPage.hideToolbar(false);
+                }
+            }
+        }
+
+        ListModel {
+            id: listModel
+        }
+
+        ListView {
+            id: listView
+            anchors.top: header.bottom
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            anchors.leftMargin: 10
+            anchors.rightMargin: 10
+            model: DbConnection.loadDB(listName)
+            delegate: itemComponent
+        }
+        ScrollDecorator {
+            flickableItem: listView
+        }
+
+        Component {
+            id: itemComponent
+            ListItemDelegate {
+                id: listItem
+                itemIndex: model.itemIndex
+                itemText: model.itemText
+                itemSelected: model.itemSelected
+                height: 60
+                width: listView.width
+
+                onCheckChanged: {
+                    DbConnection.saveRecord(itemIndex, itemSelected);
                     DbConnection.loadDB(listName);
-                    listItem.backgroundColor = Consts.BACKGROUND_COLOR;
                 }
-                onPressAndHold: {
-                    mainPage.index = listItem.itemIndex;
-                    contextMenu.open();
-                    listItem.backgroundColor = Consts.BACKGROUND_COLOR;
-                }
-                onHoveredChanged: {
-                    if(containsMouse)
-                    {
-                        listItem.backgroundColor = Consts.HOVER_COLOR;
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        if(listItem.itemSelected == "true")
+                        {
+                            DbConnection.saveRecord(itemIndex, "false");
+                        }
+                        else
+                        {
+                            DbConnection.saveRecord(itemIndex, "true");
+                        }
+                        DbConnection.loadDB(listName);
+                        listItem.backgroundColor = DbConnection.getValue("LIST_ITEM_BACKGROUND_COLOR");
                     }
-                    else
-                    {
-                        listItem.backgroundColor = Consts.BACKGROUND_COLOR;
+                    onPressAndHold: {
+                        mainPage.index = listItem.itemIndex;
+                        contextMenu.open();
+                        listItem.backgroundColor = DbConnection.getValue("LIST_ITEM_BACKGROUND_COLOR");
                     }
-                }
-                onReleased: {
-                    listItem.backgroundColor = Consts.BACKGROUND_COLOR;
+                    onHoveredChanged: {
+                        if(containsMouse)
+                        {
+                            listItem.backgroundColor = DbConnection.getValue("HOVER_COLOR");
+                        }
+                        else
+                        {
+                            listItem.backgroundColor = DbConnection.getValue("LIST_ITEM_BACKGROUND_COLOR");
+                        }
+                    }
+                    onReleased: {
+                        listItem.backgroundColor = DbConnection.getValue("LIST_ITEM_BACKGROUND_COLOR");
+                    }
                 }
             }
         }
@@ -224,7 +237,7 @@ Page {
 
     function reloadDb()
     {
-        listName = SettingsDb.getListName();
+        listName = DbConnection.getListName();
         DbConnection.loadDB(listName);
     }
 
@@ -239,5 +252,19 @@ Page {
             }
         }
         DbConnection.populateModel();
+    }
+
+    function loadTheme()
+    {
+        DbConnection.loadTheme();
+        backgroundColor = DbConnection.getValue("BACKGROUND_COLOR");
+        headerBackgroundColor = DbConnection.getValue("HEADER_BACKGROUND_COLOR");
+        headerTextColor = DbConnection.getValue("HEADER_TEXT_COLOR");
+        divisionLineColor = DbConnection.getValue("DIVISION_LINE_COLOR");
+        divisionLineTextColor = DbConnection.getValue("DIVISION_LINE_TEXT_COLOR");
+        textColor = DbConnection.getValue("TEXT_COLOR");
+        listItemBackgroundColor = DbConnection.getValue("LIST_ITEM_BACKGROUND_COLOR");
+        hoverColor = DbConnection.getValue("HOVER_COLOR");
+        myEditPage.loadTheme();
     }
 }
