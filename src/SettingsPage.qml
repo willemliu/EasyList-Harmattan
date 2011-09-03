@@ -19,17 +19,7 @@ Page {
         ToolIcon {
             iconId: "toolbar-back";
             onClicked: {
-                SettingsDb.setProperty(SettingsDb.propSyncUrl, syncSourceTextField.text);
-                SettingsDb.setProperty(SettingsDb.propSyncUsername, syncUsernameTextField.text);
-                if(syncPasswordTextField.text.length > 0)
-                {
-                    SettingsDb.setProperty(SettingsDb.propSyncPassword, Qt.md5(syncPasswordTextField.text));
-                }
-                else
-                {
-                    SettingsDb.setProperty(SettingsDb.propSyncPassword, "");
-                }
-                pageStack.pop();
+                settingsPage.save();
             }
         }
         ToolIcon {
@@ -420,7 +410,7 @@ Page {
     QueryDialog {
         id: helpDialog
         titleText: "Synchronization"
-        message: "When you've setup your synchronization account then you'll be able to synchronize your list with your online list.\n\nYou can create your online account on http://easylist.willemliu.nl."
+        message: "When you've setup your synchronization account then you'll be able to synchronize your list with your online list.\n\nYou can create your online account on http://easylist.willemliu.nl.\nDefault sync URL is: http://easylist.willemliu.nl/getList.php"
         acceptButtonText: "Ok"
     }
 
@@ -462,6 +452,21 @@ Page {
         divisionLineColor = SettingsDb.getValue("DIVISION_LINE_COLOR");
         divisionLineTextColor = SettingsDb.getValue("DIVISION_LINE_TEXT_COLOR");
         textColor = SettingsDb.getValue("TEXT_COLOR");
+    }
+
+    function save()
+    {
+        SettingsDb.setProperty(SettingsDb.propSyncUrl, syncSourceTextField.text);
+        SettingsDb.setProperty(SettingsDb.propSyncUsername, syncUsernameTextField.text);
+        if(syncPasswordTextField.text.length > 0)
+        {
+            SettingsDb.setProperty(SettingsDb.propSyncPassword, Qt.md5(syncPasswordTextField.text));
+        }
+        else
+        {
+            SettingsDb.setProperty(SettingsDb.propSyncPassword, "");
+        }
+        pageStack.pop();
     }
 
     onVisibleChanged: {
