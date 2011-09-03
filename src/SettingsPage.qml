@@ -113,7 +113,7 @@ Page {
             Rectangle {
                 id: optionsRectangle
                 implicitWidth: flick.width
-                implicitHeight: 666
+                implicitHeight: 710
                 color: backgroundColor
 
                 // Division line
@@ -399,6 +399,19 @@ Page {
                     anchors.rightMargin: 10
                     focus: true
                     inputMethodHints: Qt.ImhNoPredictiveText
+                }
+                Button {
+                    id: saveSettingsButton
+                    text: "Save";
+                    anchors.topMargin: 10
+                    anchors.top: syncPasswordTextField.bottom
+                    anchors.left: parent.left
+                    anchors.leftMargin: 10;
+                    anchors.right: parent.right
+                    anchors.rightMargin: 10
+                    onClicked: {
+                        settingsPage.save();
+                    }
                 }
             }
         }
