@@ -1,4 +1,4 @@
-easylist (0.0.12) unstable; urgency=low
+easylist (0.0.13) unstable; urgency=low
 
   * Sorting is now case-insensitive.
   * Fixed JavaScript imports. Now startup time has been decreased.

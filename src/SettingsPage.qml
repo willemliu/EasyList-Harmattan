@@ -1,5 +1,5 @@
 import com.meego 1.0
-import QtQuick 1.0
+import QtQuick 1.1
 import "settingsDb.js" as SettingsDb
 
 Page {
@@ -19,6 +19,9 @@ Page {
         ToolIcon {
             iconId: "toolbar-back";
             onClicked: {
+                SettingsDb.setProperty(SettingsDb.propSyncUrl, syncSourceTextField.text);
+                SettingsDb.setProperty(SettingsDb.propSyncUsername, syncUsernameTextField.text);
+                SettingsDb.setProperty(SettingsDb.propSyncPassword, Qt.md5(syncPasswordTextField.text));
                 pageStack.pop();
             }
         }
@@ -45,6 +48,10 @@ Page {
                 font.pixelSize: 32
                 color: headerTextColor
             }
+        }
+
+        onHeightChanged: {
+            flick.height = height;
         }
 
         ListModel {
@@ -98,11 +105,14 @@ Page {
             contentHeight: optionsRectangle.implicitHeight
             contentWidth: optionsRectangle.implicitWidth
             flickableDirection: Flickable.VerticalFlick
+            clip: true
 
             Rectangle {
                 id: optionsRectangle
-                width: flick.width
+                implicitWidth: flick.width
+                implicitHeight: 666
                 color: backgroundColor
+
                 // Division line
                 Rectangle {
                     id: sortingDivisionLine
@@ -284,6 +294,7 @@ Page {
                 }
 
                 Button {
+                    id: themeButton
                     anchors.left: parent.left
                     anchors.leftMargin: 10;
                     anchors.right: parent.right
@@ -294,6 +305,97 @@ Page {
                     onClicked: {
                         singleSelectionDialog.open();
                     }
+                }
+                // Division line
+                Rectangle {
+                    id: syncDivisionLine
+                    color: divisionLineColor
+                    height: 1
+                    anchors.verticalCenter: syncLabel.verticalCenter
+                    anchors.leftMargin: 10
+                    anchors.left: parent.left
+                    anchors.rightMargin: 5
+                    anchors.right: syncLabel.left
+                }
+                Label {
+                    id: syncLabel
+                    text: "Sync"
+                    font.pointSize: 26
+                    anchors.right: parent.right
+                    anchors.top: themeButton.bottom
+                    anchors.topMargin: 10;
+                    anchors.rightMargin: 10
+                    color: divisionLineTextColor
+                }
+
+                Label {
+                    id: syncSourceLabel
+                    text: "Source:"
+                    font.pointSize: 26
+                    anchors.topMargin: 10
+                    anchors.top: syncLabel.bottom
+                    anchors.left: parent.left
+                    anchors.leftMargin: 10
+                    color: textColor
+                }
+                TextField {
+                    id: syncSourceTextField
+                    text: SettingsDb.getProperty(SettingsDb.propSyncUrl);
+                    anchors.topMargin: 5
+                    anchors.top: syncSourceLabel.bottom
+                    anchors.left: parent.left
+                    anchors.leftMargin: 10;
+                    anchors.right: parent.right
+                    anchors.rightMargin: 10
+                    focus: true
+                    inputMethodHints: Qt.ImhNoPredictiveText
+                }
+
+                Label {
+                    id: usernameLabel
+                    text: "Username:"
+                    font.pointSize: 26
+                    anchors.topMargin: 10
+                    anchors.top: syncSourceTextField.bottom
+                    anchors.left: parent.left
+                    anchors.leftMargin: 10
+                    color: textColor
+                }
+                TextField {
+                    id: syncUsernameTextField
+                    text: SettingsDb.getProperty(SettingsDb.propSyncUsername);
+                    anchors.topMargin: 5
+                    anchors.top: usernameLabel.bottom
+                    anchors.left: parent.left
+                    anchors.leftMargin: 10;
+                    anchors.right: parent.right
+                    anchors.rightMargin: 10
+                    focus: true
+                    inputMethodHints: Qt.ImhNoPredictiveText
+                }
+
+                Label {
+                    id: passwordLabel
+                    text: "Password:"
+                    font.pointSize: 26
+                    anchors.topMargin: 10
+                    anchors.top: syncUsernameTextField.bottom
+                    anchors.left: parent.left
+                    anchors.leftMargin: 10
+                    color: textColor
+                }
+                TextField {
+                    id: syncPasswordTextField
+                    text: SettingsDb.getProperty(SettingsDb.propSyncPassword);
+                    echoMode: TextInput.Password
+                    anchors.topMargin: 10
+                    anchors.top: passwordLabel.bottom
+                    anchors.left: parent.left
+                    anchors.leftMargin: 10;
+                    anchors.right: parent.right
+                    anchors.rightMargin: 10
+                    focus: true
+                    inputMethodHints: Qt.ImhNoPredictiveText
                 }
             }
         }

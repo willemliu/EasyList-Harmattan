@@ -71,4 +71,10 @@ Sheet {
         EditDb.loadTheme();
         backgroundColor = EditDb.getValue("BACKGROUND_COLOR");
     }
+
+    function saveText(listName, text)
+    {
+        EditDb.listName = listName
+        EditDb.populateEditDb(text);
+    }
 }

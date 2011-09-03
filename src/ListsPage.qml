@@ -168,6 +168,7 @@ Page {
             visualParent: listsPage
             anchors.top: header.bottom
             anchors.bottom: parent.bottom
+            anchors.bottomMargin: header.height
             anchors.left: parent.left
             anchors.right: parent.right
             z: 2
@@ -247,6 +248,7 @@ Page {
             visualParent: listsPage
             anchors.top: header.bottom
             anchors.bottom: parent.bottom
+            anchors.bottomMargin: header.height
             anchors.left: parent.left
             anchors.right: parent.right
             z: 2

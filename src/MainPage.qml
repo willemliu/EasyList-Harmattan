@@ -75,6 +75,12 @@ Page {
                 }
             }
             MenuItem {
+                text: "Sync";
+                onClicked: {
+                    syncDialog.open();
+                }
+            }
+            MenuItem {
                 text: "Settings";
                 onClicked: {
                     mainPage.settingsView();
@@ -97,6 +103,17 @@ Page {
         rejectButtonText: "Cancel"
         onAccepted: {
             removeSelected();
+        }
+    }
+
+    QueryDialog {
+        id: syncDialog
+        titleText: "Sync with online list?"
+        message: "Do you really want sync your current list with the online list?\n\nAll your current items will be overwritten."
+        acceptButtonText: "Ok"
+        rejectButtonText: "Cancel"
+        onAccepted: {
+            mainPage.sync();
         }
     }
 
@@ -266,5 +283,46 @@ Page {
         listItemBackgroundColor = DbConnection.getValue("LIST_ITEM_BACKGROUND_COLOR");
         hoverColor = DbConnection.getValue("HOVER_COLOR");
         myEditPage.loadTheme();
+    }
+
+    function sync()
+    {
+        var doc = new XMLHttpRequest();
+        doc.onreadystatechange = function() {
+            if (doc.readyState == XMLHttpRequest.HEADERS_RECEIVED)
+            {
+                //showRequestInfo("Headers -->");
+                //showRequestInfo(doc.getAllResponseHeaders ());
+                //showRequestInfo("Last modified -->");
+                //showRequestInfo(doc.getResponseHeader ("Last-Modified"));
+            }
+            else if (doc.readyState == XMLHttpRequest.DONE)
+            {
+                var a = doc.responseXML.documentElement;
+                if(a.nodeName == "ezList")
+                {
+                    for (var ii = 0; ii < a.childNodes.length; ++ii) {
+                        if(a.childNodes[ii].nodeName == "#cdata-section")
+                        {
+                            myEditPage.saveText(mainPage.listName, a.childNodes[ii].nodeValue);
+                            break;
+                        }
+                    }
+                    mainPage.reloadDb();
+                }
+                //showRequestInfo("Headers -->");
+                //showRequestInfo(doc.getAllResponseHeaders ());
+                //showRequestInfo("Last modified -->");
+                //showRequestInfo(doc.getResponseHeader ("Last-Modified"));
+            }
+        }
+        var syncUrl = DbConnection.getProperty(DbConnection.propSyncUrl);
+        var syncUsername = DbConnection.getProperty(DbConnection.propSyncUsername);
+        var syncPassword = DbConnection.getProperty(DbConnection.propSyncPassword);
+        doc.open("GET", syncUrl + "?username=" + syncUsername + "&password=" + syncPassword + "&xml=true");
+        doc.send();
+    }
+    function showRequestInfo(text) {
+        console.log(text)
     }
 }

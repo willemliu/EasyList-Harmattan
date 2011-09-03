@@ -1,5 +1,4 @@
 Qt.include("settingsDb.js");
-var db;
 var resultText = "";
 var resultSet;
 var listName =  "default";
@@ -16,7 +15,7 @@ var selectSql = "SELECT * FROM EasyListData WHERE listName=(?)";
 function loadEditDb(theListName)
 {
     listName = theListName;
-    db = getDbConnection();
+    var db = getDbConnection();
     db.transaction(function(tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS EasyListData(pid INTEGER PRIMARY KEY, listName STRING, itemText STRING, selected BOOLEAN)');
         resultSet = tx.executeSql(getOrderBy(selectSql), [listName]);
@@ -38,6 +37,7 @@ function setListName(theListName)
  */
 function populateEditDb(text)
 {
+    var db = getDbConnection();
     db.transaction(function(tx) {
         // Clear all items.
         tx.executeSql('DELETE FROM EasyListData WHERE listName=(?)', [listName]);
@@ -85,6 +85,7 @@ function populateEditModel()
 function insertEditRecord(itemText, itemSelected)
 {
     var index = 0;
+    var db = getDbConnection();
     db.transaction(function(tx) {
         tx.executeSql('INSERT INTO EasyListData (listName, itemText, selected) VALUES (?, ?, ?)', [listName, itemText, itemSelected]);
         resultSet = tx.executeSql(getOrderBy(selectSql), [listName]);
