@@ -117,6 +117,13 @@ Page {
         }
     }
 
+    QueryDialog {
+        id: unableToSyncDialog
+        titleText: "Can't synchronize"
+        message: "Unable to synchronize with online list. Please make sure you've correctly setup your sync account in settings."
+        acceptButtonText: "Ok"
+    }
+
     Rectangle {
         id: background
         color: backgroundColor
@@ -287,40 +294,60 @@ Page {
 
     function sync()
     {
-        var doc = new XMLHttpRequest();
-        doc.onreadystatechange = function() {
-            if (doc.readyState == XMLHttpRequest.HEADERS_RECEIVED)
-            {
-                //showRequestInfo("Headers -->");
-                //showRequestInfo(doc.getAllResponseHeaders ());
-                //showRequestInfo("Last modified -->");
-                //showRequestInfo(doc.getResponseHeader ("Last-Modified"));
-            }
-            else if (doc.readyState == XMLHttpRequest.DONE)
-            {
-                var a = doc.responseXML.documentElement;
-                if(a.nodeName == "ezList")
-                {
-                    for (var ii = 0; ii < a.childNodes.length; ++ii) {
-                        if(a.childNodes[ii].nodeName == "#cdata-section")
-                        {
-                            myEditPage.saveText(mainPage.listName, a.childNodes[ii].nodeValue);
-                            break;
-                        }
-                    }
-                    mainPage.reloadDb();
-                }
-                //showRequestInfo("Headers -->");
-                //showRequestInfo(doc.getAllResponseHeaders ());
-                //showRequestInfo("Last modified -->");
-                //showRequestInfo(doc.getResponseHeader ("Last-Modified"));
-            }
-        }
         var syncUrl = DbConnection.getProperty(DbConnection.propSyncUrl);
         var syncUsername = DbConnection.getProperty(DbConnection.propSyncUsername);
         var syncPassword = DbConnection.getProperty(DbConnection.propSyncPassword);
-        doc.open("GET", syncUrl + "?username=" + syncUsername + "&password=" + syncPassword + "&xml=true");
-        doc.send();
+        if(syncUsername.length > 0 && syncPassword.length > 0)
+        {
+            var synced = false;
+            var doc = new XMLHttpRequest();
+            doc.onreadystatechange = function() {
+                if (doc.readyState == XMLHttpRequest.HEADERS_RECEIVED)
+                {
+                    //showRequestInfo("Headers -->");
+                    //showRequestInfo(doc.getAllResponseHeaders ());
+                    //showRequestInfo("Last modified -->");
+                    //showRequestInfo(doc.getResponseHeader ("Last-Modified"));
+                }
+                else if (doc.readyState == XMLHttpRequest.DONE)
+                {
+                    var response = doc.responseXML;
+                    if(response !== null)
+                    {
+                        var a = response.documentElement;
+                        if(a !== null)
+                        {
+                            if(a.nodeName == "ezList")
+                            {
+                                for (var ii = 0; ii < a.childNodes.length; ++ii) {
+                                    if(a.childNodes[ii].nodeName == "#cdata-section")
+                                    {
+                                        myEditPage.saveText(mainPage.listName, a.childNodes[ii].nodeValue);
+                                        synced = true;
+                                        break;
+                                    }
+                                }
+                                mainPage.reloadDb();
+                            }
+                            //showRequestInfo("Headers -->");
+                            //showRequestInfo(doc.getAllResponseHeaders ());
+                            //showRequestInfo("Last modified -->");
+                            //showRequestInfo(doc.getResponseHeader ("Last-Modified"));
+                        }
+                    }
+                    if(synced === false)
+                    {
+                        unableToSyncDialog.open();
+                    }
+                }
+            }
+            doc.open("GET", syncUrl + "?username=" + syncUsername + "&password=" + syncPassword + "&xml=true");
+            doc.send();
+        }
+        else
+        {
+            unableToSyncDialog.open();
+        }
     }
     function showRequestInfo(text) {
         console.log(text)

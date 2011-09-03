@@ -21,8 +21,21 @@ Page {
             onClicked: {
                 SettingsDb.setProperty(SettingsDb.propSyncUrl, syncSourceTextField.text);
                 SettingsDb.setProperty(SettingsDb.propSyncUsername, syncUsernameTextField.text);
-                SettingsDb.setProperty(SettingsDb.propSyncPassword, Qt.md5(syncPasswordTextField.text));
+                if(syncPasswordTextField.text.length > 0)
+                {
+                    SettingsDb.setProperty(SettingsDb.propSyncPassword, Qt.md5(syncPasswordTextField.text));
+                }
+                else
+                {
+                    SettingsDb.setProperty(SettingsDb.propSyncPassword, "");
+                }
                 pageStack.pop();
+            }
+        }
+        ToolIcon {
+            iconId: "invitation-pending";
+            onClicked: {
+                helpDialog.open();
             }
         }
     }
@@ -402,6 +415,13 @@ Page {
         ScrollDecorator {
             flickableItem: flick
         }
+    }
+
+    QueryDialog {
+        id: helpDialog
+        titleText: "Synchronization"
+        message: "When you've setup your synchronization account then you'll be able to synchronize your list with your online list.\n\nYou can create your online account on http://easylist.willemliu.nl."
+        acceptButtonText: "Ok"
     }
 
     function saveBooleanProperty(propertyName, booleanValue)
