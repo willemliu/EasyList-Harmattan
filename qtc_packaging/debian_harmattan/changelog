@@ -1,5 +1,5 @@
-easylist (0.0.15) unstable; urgency=low
+easylist (0.0.16) unstable; urgency=low
 
-  * Edit text area now resizes correctly.
+  * Now supported delimiters are new line and comma.
 
- -- Willem Liu <willem.liu@gmail.com>  Tue, 13 Sep 2011 19:04:00 +0100
+ -- Willem Liu <willem.liu@gmail.com>  Tue, 13 Sep 2011 20:16:00 +0100
