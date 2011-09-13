@@ -167,10 +167,9 @@ Page {
             id: addListSheet
             visualParent: listsPage
             anchors.top: header.bottom
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: header.height
-            anchors.left: parent.left
             anchors.right: parent.right
+            anchors.left: parent.left
+            height: parent.height - header.height
             z: 2
             acceptButtonText: "Save"
             rejectButtonText: "Cancel"
@@ -247,10 +246,9 @@ Page {
             property string oldListName:  ""
             visualParent: listsPage
             anchors.top: header.bottom
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: header.height
-            anchors.left: parent.left
             anchors.right: parent.right
+            anchors.left: parent.left
+            height: parent.height - header.height
             z: 2
             acceptButtonText: "Rename"
             rejectButtonText: "Cancel"

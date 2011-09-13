@@ -389,7 +389,6 @@ Page {
                 }
                 TextField {
                     id: syncPasswordTextField
-                    text: SettingsDb.getProperty(SettingsDb.propSyncPassword);
                     echoMode: TextInput.Password
                     anchors.topMargin: 10
                     anchors.top: passwordLabel.bottom
@@ -474,10 +473,6 @@ Page {
         if(syncPasswordTextField.text.length > 0)
         {
             SettingsDb.setProperty(SettingsDb.propSyncPassword, Qt.md5(syncPasswordTextField.text));
-        }
-        else
-        {
-            SettingsDb.setProperty(SettingsDb.propSyncPassword, "");
         }
         pageStack.pop();
     }

@@ -1,10 +1,5 @@
-easylist (0.0.13) unstable; urgency=low
+easylist (0.0.15) unstable; urgency=low
 
-  * Sorting is now case-insensitive.
-  * Fixed JavaScript imports. Now startup time has been decreased.
-  * Added theme switching functionality.
-  * Added dark theme.
-  * Added pink theme.
-  * Added blue theme.
+  * Edit text area now resizes correctly.
 
- -- Willem Liu <willem.liu@gmail.com>  Wed, 31 Aug 2011 21:51:00 +0100
+ -- Willem Liu <willem.liu@gmail.com>  Tue, 13 Sep 2011 19:04:00 +0100

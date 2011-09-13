@@ -152,7 +152,9 @@ Page {
             id: myEditPage
             visualParent: mainPage
             anchors.top: header.bottom
-            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            anchors.left: parent.left
+            height: parent.height - header.height
             z: 2
             onAccepted: {
                 mainPage.reloadDb();
