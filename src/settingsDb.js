@@ -50,7 +50,12 @@ function setListName(theListName)
  */
 function getListName()
 {
-    return getProperty(propListName);
+    var name = getProperty(propListName);
+    if(name.length === 0)
+    {
+        name = "default";
+    }
+    return name;
 }
 
 function getOrientationLock()

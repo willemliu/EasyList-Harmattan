@@ -1,5 +1,5 @@
 easylist (0.0.16) unstable; urgency=low
 
-  * Now supported delimiters are new line and comma.
+  * Changed version number in about.
 
- -- Willem Liu <willem.liu@gmail.com>  Tue, 13 Sep 2011 20:16:00 +0100
+ -- Willem Liu <willem.liu@gmail.com>  Fri, 16 Sep 2011 22:13:00 +0100
