@@ -9,7 +9,7 @@ Page {
     property color headerTextColor: SettingsDb.getValue("HEADER_TEXT_COLOR")
     property color textColor: SettingsDb.getValue("TEXT_COLOR")
     orientationLock: SettingsDb.getOrientationLock();
-    property string version: "0.0.16";
+    property string version: "0.0.17";
 
     Rectangle {
         id: background

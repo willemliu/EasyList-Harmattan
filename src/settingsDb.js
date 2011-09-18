@@ -3,15 +3,6 @@ var db;
 var listName =  "default";
 var resultSet;
 var selectSql = "SELECT * FROM EasyListApp WHERE property=(?) ORDER BY pid ASC";
-var propListName = "listName";
-var propSort = "sort";
-var propSortSelected = "sortSelected";
-var propSortPid = "sortPid";
-var propOrientationLock = "orientationLock";
-var propTheme = "theme";
-var propSyncUrl = "syncUrl";
-var propSyncUsername = "syncUsername";
-var propSyncPassword = "syncPassword";
 
 /**
  * The entry point. This function is called by all other functions which need this

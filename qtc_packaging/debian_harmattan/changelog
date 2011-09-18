@@ -1,5 +1,5 @@
-easylist (0.0.16) unstable; urgency=low
+easylist (0.0.17) unstable; urgency=low
 
-  * Changed version number in about.
+  * Edit page now without header to work better in landscape mode.
 
- -- Willem Liu <willem.liu@gmail.com>  Fri, 16 Sep 2011 22:13:00 +0100
+ -- Willem Liu <willem.liu@gmail.com>  Sun, 18 Sep 2011 17:24:00 +0100
