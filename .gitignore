@@ -3,4 +3,6 @@ debian
 *armel*
 *.o
 moc
+*.qm
+rcc
 

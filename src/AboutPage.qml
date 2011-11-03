@@ -1,4 +1,4 @@
-import com.meego 1.0
+import com.nokia.meego 1.0
 import QtQuick 1.0
 import "settingsDb.js" as SettingsDb
 
@@ -9,7 +9,7 @@ Page {
     property color headerTextColor: SettingsDb.getValue("HEADER_TEXT_COLOR")
     property color textColor: SettingsDb.getValue("TEXT_COLOR")
     orientationLock: SettingsDb.getOrientationLock();
-    property string version: "0.0.17";
+    property string version: "0.0.18";
 
     Rectangle {
         id: background
@@ -28,7 +28,7 @@ Page {
                 anchors.left: parent.left
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.leftMargin: 20
-                text: "EasyList - About"
+                text: qsTr("EasyList - About")
                 font.pixelSize: 32
                 color: headerTextColor
             }
@@ -61,7 +61,7 @@ Page {
             anchors.horizontalCenter: text2.horizontalCenter
             font.family: "Helvetica"
             font.pointSize: 24
-            text: "Created with Qt"
+            text: qsTr("Created with Qt")
             color: textColor
         }
         Text {
@@ -70,7 +70,7 @@ Page {
             anchors.horizontalCenter: text3.horizontalCenter
             font.family: "Helvetica"
             font.pointSize: 24
-            text: "Created by <a href='http://willemliu.nl/donate/'>Willem Liu</a>"
+            text: qsTr("Created by <a href='http://willemliu.nl/donate/'>Willem Liu</a>")
             onLinkActivated: {
                 Qt.openUrlExternally(link);
             }
@@ -80,10 +80,10 @@ Page {
 
     QueryDialog {
         id: removeDialog
-        titleText: "Drop tables?"
-        message: "Do you really want to remove all tables used by EasyList?"
-        acceptButtonText: "Ok"
-        rejectButtonText: "Cancel"
+        titleText: qsTr("Drop tables?")
+        message: qsTr("Do you really want to remove all tables used by EasyList?")
+        acceptButtonText: qsTr("Ok")
+        rejectButtonText: qsTr("Cancel")
         onAccepted: {
             SettingsDb.removeTables();
         }

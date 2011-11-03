@@ -1,4 +1,4 @@
-import com.meego 1.0
+import com.nokia.meego 1.0
 import QtQuick 1.0
 import "settingsDb.js" as SettingsDb
 

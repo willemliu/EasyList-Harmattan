@@ -1,4 +1,4 @@
-import com.meego 1.0
+import com.nokia.meego 1.0
 import QtQuick 1.1
 import "settingsDb.js" as SettingsDb
 
@@ -47,7 +47,7 @@ Page {
                 anchors.left: parent.left
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.leftMargin: 20
-                text: "EasyList - Settings"
+                text: qsTr("EasyList - Settings")
                 font.pixelSize: 32
                 color: headerTextColor
             }
@@ -63,7 +63,7 @@ Page {
 
         SelectionDialog {
             id: singleSelectionDialog
-            titleText: "Themes"
+            titleText: qsTr("Themes")
 
             model: {
                 listModel.clear();
@@ -129,7 +129,7 @@ Page {
                 }
                 Label {
                     id: sortingLabel
-                    text: "Sort"
+                    text: qsTr("Sort")
                     font.pointSize: 26
                     anchors.top: parent.top
                     anchors.right: parent.right
@@ -140,7 +140,7 @@ Page {
                 // Sort alphabetically
                 Label {
                     id: sortLabel
-                    text: "Alphabetically:"
+                    text: qsTr("Alphabetically:")
                     font.pointSize: 26
                     anchors.verticalCenter: sortSwitch.verticalCenter
                     anchors.left: parent.left
@@ -162,7 +162,7 @@ Page {
                 // Sort selected items
                 Label {
                     id: sortSelectedLabel
-                    text: "Checked items to bottom:"
+                    text: qsTr("Checked items to bottom:")
                     font.pointSize: 26
                     anchors.verticalCenter: sortSelectedSwitch.verticalCenter
                     anchors.left: sortLabel.left
@@ -192,7 +192,7 @@ Page {
                 }
                 Label {
                     id: orientationLabel
-                    text: "Orientation"
+                    text: qsTr("Orientation")
                     font.pointSize: 26
                     anchors.right: parent.right
                     anchors.top: sortSelectedSwitch.bottom
@@ -211,7 +211,7 @@ Page {
                     anchors.rightMargin: 10
                     Button {
                         id: lockPortraitButton
-                        text: "Portrait"
+                        text: qsTr("Portrait")
                         checkable: true
                         checked: {
                             if(SettingsDb.getProperty(SettingsDb.propOrientationLock) == "Portrait")
@@ -232,7 +232,7 @@ Page {
                     }
                     Button {
                         id: lockLandscapeButton
-                        text: "Landscape"
+                        text: qsTr("Landscape")
                         checkable: true
                         checked: {
                             if(SettingsDb.getProperty(SettingsDb.propOrientationLock) == "Landscape")
@@ -253,7 +253,7 @@ Page {
                     }
                     Button {
                         id: autoOrientationButton
-                        text: "Auto"
+                        text: qsTr("Auto")
                         checkable: true
                         checked: {
                             if(SettingsDb.getProperty(SettingsDb.propOrientationLock) == "Automatic")
@@ -287,7 +287,7 @@ Page {
                 }
                 Label {
                     id: themeLabel
-                    text: "Theme"
+                    text: qsTr("Theme")
                     font.pointSize: 26
                     anchors.right: parent.right
                     anchors.top: orientationButtonRow.bottom
@@ -304,7 +304,7 @@ Page {
                     anchors.rightMargin: 10
                     anchors.top: themeLabel.bottom
                     anchors.topMargin: 10;
-                    text: "Select Theme..."
+                    text: qsTr("Select Theme...")
                     onClicked: {
                         singleSelectionDialog.open();
                     }
@@ -322,7 +322,7 @@ Page {
                 }
                 Label {
                     id: syncLabel
-                    text: "Sync"
+                    text: qsTr("Synchronise")
                     font.pointSize: 26
                     anchors.right: parent.right
                     anchors.top: themeButton.bottom
@@ -333,7 +333,7 @@ Page {
 
                 Label {
                     id: syncSourceLabel
-                    text: "Source:"
+                    text: qsTr("Source:")
                     font.pointSize: 26
                     anchors.topMargin: 10
                     anchors.top: syncLabel.bottom
@@ -356,7 +356,7 @@ Page {
 
                 Label {
                     id: usernameLabel
-                    text: "Username:"
+                    text: qsTr("Username:")
                     font.pointSize: 26
                     anchors.topMargin: 10
                     anchors.top: syncSourceTextField.bottom
@@ -379,7 +379,7 @@ Page {
 
                 Label {
                     id: passwordLabel
-                    text: "Password:"
+                    text: qsTr("Password:")
                     font.pointSize: 26
                     anchors.topMargin: 10
                     anchors.top: syncUsernameTextField.bottom
@@ -401,7 +401,7 @@ Page {
                 }
                 Button {
                     id: saveSettingsButton
-                    text: "Save";
+                    text: qsTr("Save");
                     anchors.topMargin: 10
                     anchors.top: syncPasswordTextField.bottom
                     anchors.left: parent.left
@@ -421,9 +421,9 @@ Page {
 
     QueryDialog {
         id: helpDialog
-        titleText: "Synchronization"
-        message: "When you've setup your synchronization account then you'll be able to synchronize your list with your online list.\n\nYou can create your online account on http://easylist.willemliu.nl.\nDefault sync URL is: http://easylist.willemliu.nl/getList.php"
-        acceptButtonText: "Ok"
+        titleText: qsTr("Synchronization")
+        message: qsTr("When you've setup your synchronization account then you'll be able to synchronize your list with your online list.\n\nYou can create your online account on http://easylist.willemliu.nl.\nDefault sync URL is: http://easylist.willemliu.nl/getList.php")
+        acceptButtonText: qsTr("Ok")
     }
 
     function saveBooleanProperty(propertyName, booleanValue)

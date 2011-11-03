@@ -1,5 +1,5 @@
-easylist (0.0.17) unstable; urgency=low
+easylist (0.0.18) unstable; urgency=low
 
-  * Edit page now without header to work better in landscape mode.
+  * Added language support for NL, DE, FR.
 
  -- Willem Liu <willem.liu@gmail.com>  Sun, 18 Sep 2011 17:24:00 +0100

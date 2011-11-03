@@ -1,4 +1,4 @@
-import com.meego 1.0
+import com.nokia.meego 1.0
 import QtQuick 1.0
 import "listsDb.js" as ListsDb
 
@@ -37,7 +37,7 @@ Page {
                 anchors.left: parent.left
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.leftMargin: 20
-                text: "EasyList - Lists"
+                text: qsTr("EasyList - Lists")
                 font.pixelSize: 32
                 color: headerTextColor
             }
@@ -130,14 +130,14 @@ Page {
             id: contextMenu
             MenuLayout {
                 MenuItem {
-                    text: "Rename";
+                    text: qsTr("Rename");
                     onClicked: {
                         renameListSheet.oldListName = listsPage.listName;
                         renameListSheet.open();
                     }
                 }
                 MenuItem {
-                    text: "Remove";
+                    text: qsTr("Remove");
                     onClicked: {
                         removeDialog.open();
                     }
@@ -149,13 +149,13 @@ Page {
             id: myMenu
             MenuLayout {
                 MenuItem {
-                    text: "Settings";
+                    text: qsTr("Settings");
                     onClicked: {
                         listsPage.settingsView();
                     }
                 }
                 MenuItem {
-                    text: "About";
+                    text: qsTr("About");
                     onClicked: {
                         onClicked: listsPage.aboutView()
                     }
@@ -171,8 +171,8 @@ Page {
             anchors.left: parent.left
             height: parent.height - header.height
             z: 2
-            acceptButtonText: "Save"
-            rejectButtonText: "Cancel"
+            acceptButtonText: qsTr("Save")
+            rejectButtonText: qsTr("Cancel")
             focus: true
             content: Rectangle {
                 id: newListBackground
@@ -198,7 +198,7 @@ Page {
                         focus: true
                         Label {
                             id: newListLabel
-                            text: "New list name:"
+                            text: qsTr("New list name:")
                             anchors.topMargin: 5
                             anchors.top: parent.top
                             anchors.left: parent.left
@@ -250,8 +250,8 @@ Page {
             anchors.left: parent.left
             height: parent.height - header.height
             z: 2
-            acceptButtonText: "Rename"
-            rejectButtonText: "Cancel"
+            acceptButtonText: qsTr("Rename")
+            rejectButtonText: qsTr("Cancel")
             focus: true
             content: Rectangle {
                 id: renameListBackground
@@ -277,7 +277,7 @@ Page {
                         focus: true
                         Label {
                             id: renameNewListLabel
-                            text: "New list name:"
+                            text: qsTr("New list name:")
                             anchors.topMargin: 5
                             anchors.top: parent.top
                             anchors.left: parent.left
@@ -375,10 +375,10 @@ Page {
 
     QueryDialog {
         id: removeDialog
-        titleText: "Remove list?"
-        message: "Do you really want to remove [" + listsPage.listName + "] and all its items?"
-        acceptButtonText: "Ok"
-        rejectButtonText: "Cancel"
+        titleText: qsTr("Remove list?")
+        message: qsTr("Do you really want to remove [") + listsPage.listName + qsTr("] and all its items?")
+        acceptButtonText: qsTr("Ok")
+        rejectButtonText: qsTr("Cancel")
         onAccepted: {
             ListsDb.removeList(listsPage.listName);
             ListsDb.setListName(ListsDb.getFirstListName());

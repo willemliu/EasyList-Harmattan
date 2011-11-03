@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml-translations.de.qm</file>
+        <file>qml-translations.en.qm</file>
+        <file>qml-translations.fr.qm</file>
+        <file>qml-translations.nl.qm</file>
+    </qresource>
+</RCC>

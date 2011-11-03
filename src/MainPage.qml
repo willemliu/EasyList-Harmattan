@@ -1,4 +1,4 @@
-import com.meego 1.0
+import com.nokia.meego 1.0
 import QtQuick 1.0
 import "mainPageDb.js" as DbConnection
 
@@ -62,32 +62,32 @@ Page {
         id: myMenu
         MenuLayout {
             MenuItem {
-                text: "Deselect all";
+                text: qsTr("Deselect all");
                 onClicked: {
                     DbConnection.deselectAll()
                     DbConnection.loadDB(listName);
                 }
             }
             MenuItem {
-                text: "Remove checked";
+                text: qsTr("Remove checked");
                 onClicked: {
                     removeDialog.open();
                 }
             }
             MenuItem {
-                text: "Sync";
+                text: qsTr("Synchronise");
                 onClicked: {
                     syncDialog.open();
                 }
             }
             MenuItem {
-                text: "Settings";
+                text: qsTr("Settings");
                 onClicked: {
                     mainPage.settingsView();
                 }
             }
             MenuItem {
-                text: "About";
+                text: qsTr("About");
                 onClicked: {
                     onClicked: mainPage.aboutView()
                 }
@@ -97,10 +97,10 @@ Page {
 
     QueryDialog {
         id: removeDialog
-        titleText: "Remove checked items?"
-        message: "Do you really want to remove all checked items?"
-        acceptButtonText: "Ok"
-        rejectButtonText: "Cancel"
+        titleText: qsTr("Remove checked items?")
+        message: qsTr("Do you really want to remove all checked items?")
+        acceptButtonText: qsTr("Ok")
+        rejectButtonText: qsTr("Cancel")
         onAccepted: {
             removeSelected();
         }
@@ -108,10 +108,10 @@ Page {
 
     QueryDialog {
         id: syncDialog
-        titleText: "Sync with online list?"
-        message: "Do you really want sync your current list with the online list?\n\nAll your current items will be overwritten."
-        acceptButtonText: "Ok"
-        rejectButtonText: "Cancel"
+        titleText: qsTr("Sync with online list?")
+        message: qsTr("Do you really want sync your current list with the online list?\n\nAll your current items will be overwritten.")
+        acceptButtonText: qsTr("Ok")
+        rejectButtonText: qsTr("Cancel")
         onAccepted: {
             mainPage.sync();
         }
@@ -119,9 +119,9 @@ Page {
 
     QueryDialog {
         id: unableToSyncDialog
-        titleText: "Can't synchronize"
-        message: "Unable to synchronize with online list. Please make sure you've correctly setup your sync account in settings."
-        acceptButtonText: "Ok"
+        titleText: qsTr("Can't synchronize")
+        message: qsTr("Unable to synchronize with online list. Please make sure you've correctly setup your sync account in settings.")
+        acceptButtonText: qsTr("Ok")
     }
 
     Rectangle {
@@ -242,7 +242,7 @@ Page {
         id: contextMenu
         MenuLayout {
             MenuItem {
-                text: "Remove";
+                text: qsTr("Remove");
                 onClicked: {
                     DbConnection.removeRecord(mainPage.index);
                     mainPage.reloadDb();
