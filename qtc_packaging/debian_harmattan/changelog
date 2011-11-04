@@ -1,5 +1,5 @@
 easylist (0.0.18) unstable; urgency=low
 
-  * Added language support for NL, DE, FR.
+  * Added language support for NL. DE and FR are translated by Google translate.
 
- -- Willem Liu <willem.liu@gmail.com>  Sun, 18 Sep 2011 17:24:00 +0100
+ -- Willem Liu <willem.liu@gmail.com>  Sun, 04 nov 2011 14:42:00 +0100

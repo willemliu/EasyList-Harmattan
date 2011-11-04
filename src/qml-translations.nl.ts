@@ -121,17 +121,17 @@ en hier plakken.</translation>
     <message>
         <location filename="ListsPage.qml" line="378"/>
         <source>Remove list?</source>
-        <translation></translation>
+        <translation>Lijst verwijderen?</translation>
     </message>
     <message>
         <location filename="ListsPage.qml" line="379"/>
         <source>Do you really want to remove [</source>
-        <translation>Wilt us echt het volgende verwijderen [</translation>
+        <translation>Wilt u echt [</translation>
     </message>
     <message>
         <location filename="ListsPage.qml" line="379"/>
         <source>] and all its items?</source>
-        <translation>] en alle items?</translation>
+        <translation>] en alle items ervan verwijderen?</translation>
     </message>
     <message>
         <location filename="ListsPage.qml" line="380"/>

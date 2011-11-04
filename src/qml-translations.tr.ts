@@ -121,11 +121,13 @@ and paste it here as well.</source>
     <message>
         <location filename="ListsPage.qml" line="379"/>
         <source>Do you really want to remove [</source>
+        <translatorcomment>This is part of the sentence: &quot;Do you really want to remove [listname] and all its items?&quot;</translatorcomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ListsPage.qml" line="379"/>
         <source>] and all its items?</source>
+        <translatorcomment>This is part of the sentence: &quot;Do you really want to remove [listname] and all its items?&quot;</translatorcomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
