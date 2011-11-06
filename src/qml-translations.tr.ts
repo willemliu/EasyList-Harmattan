@@ -6,7 +6,7 @@
     <message>
         <location filename="AboutPage.qml" line="31"/>
         <source>EasyList - About</source>
-        <translation>KolayListe - Hakkında</translation>
+        <translation>EasyList - Hakkında</translation>
     </message>
     <message>
         <location filename="AboutPage.qml" line="64"/>
@@ -77,7 +77,7 @@ kopyalayıp buraya yapıştırabilirsiniz.</translation>
     <message>
         <location filename="ListsPage.qml" line="40"/>
         <source>EasyList - Lists</source>
-        <translation>KolayListe - Listeler</translation>
+        <translation>EasyList - Listeler</translation>
     </message>
     <message>
         <location filename="ListsPage.qml" line="133"/>
@@ -226,7 +226,7 @@ Varolan öğelerinizin üzerine yazılacak.</translation>
     <message>
         <location filename="SettingsPage.qml" line="50"/>
         <source>EasyList - Settings</source>
-        <translation>KolayListe - Ayarlar</translation>
+        <translation>EasyList - Ayarlar</translation>
     </message>
     <message>
         <location filename="SettingsPage.qml" line="66"/>
