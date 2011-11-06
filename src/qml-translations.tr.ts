@@ -26,7 +26,7 @@
     <message>
         <location filename="AboutPage.qml" line="84"/>
         <source>Do you really want to remove all tables used by EasyList?</source>
-        <translation>KolayListe tarafından kullanılan tüm tabloları silmek istediğinize emin misiniz?</translation>
+        <translation>EasyList tarafından kullanılan tüm tabloları silmek istediğinize emin misiniz?</translation>
     </message>
     <message>
         <location filename="AboutPage.qml" line="85"/>
