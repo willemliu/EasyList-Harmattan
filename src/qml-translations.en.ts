@@ -126,7 +126,7 @@ and paste it here as well.</translation>
     <message>
         <location filename="ListsPage.qml" line="379"/>
         <source>Do you really want to remove [</source>
-        <translation></translation>
+        <translation>Do you really want to remove [</translation>
     </message>
     <message>
         <location filename="ListsPage.qml" line="379"/>

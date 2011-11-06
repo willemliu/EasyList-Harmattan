@@ -4,5 +4,6 @@
         <file>qml-translations.en.qm</file>
         <file>qml-translations.fr.qm</file>
         <file>qml-translations.nl.qm</file>
+        <file>qml-translations.tr.qm</file>
     </qresource>
 </RCC>
