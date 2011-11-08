@@ -1,4 +1,4 @@
-easylist (0.0.18) unstable; urgency=low
+easylist (0.0.19) unstable; urgency=low
 
   * Added language support for NL. DE and FR are translated by Google translate.
 
