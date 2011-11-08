@@ -82,3 +82,11 @@ unix:!symbian:!maemo5 {
 
 RESOURCES += \
     resources.qrc
+
+TRANSLATIONS += \
+    qml-translations.de.ts \
+    qml-translations.en.ts \
+    qml-translations.fr.ts \
+    qml-translations.nl.ts \
+    qml-translations.ru.ts \
+    qml-translations.tr.ts 
