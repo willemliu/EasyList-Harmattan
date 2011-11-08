@@ -4,37 +4,42 @@
 <context>
     <name>AboutPage</name>
     <message>
-        <location filename="AboutPage.qml" line="31"/>
+        <location filename="AboutPage.qml" line="42"/>
         <source>EasyList - About</source>
         <translation>EasyList - О программе</translation>
     </message>
     <message>
-        <location filename="AboutPage.qml" line="64"/>
+        <location filename="AboutPage.qml" line="75"/>
         <source>Created with Qt</source>
         <translation>Сделано на Qt</translation>
     </message>
     <message>
-        <location filename="AboutPage.qml" line="73"/>
+        <location filename="AboutPage.qml" line="84"/>
         <source>Created by &lt;a href=&apos;http://willemliu.nl/donate/&apos;&gt;Willem Liu&lt;/a&gt;</source>
         <translation>Автор &lt;a href=&apos;http://willemliu.nl/donate/&apos;&gt;Willem Liu&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="AboutPage.qml" line="83"/>
+        <location filename="AboutPage.qml" line="96"/>
+        <source>Thanks to:</source>
+        <translation>Благодаря:</translation>
+    </message>
+    <message>
+        <location filename="AboutPage.qml" line="109"/>
         <source>Drop tables?</source>
         <translation>Удалить таблицы?</translation>
     </message>
     <message>
-        <location filename="AboutPage.qml" line="84"/>
+        <location filename="AboutPage.qml" line="110"/>
         <source>Do you really want to remove all tables used by EasyList?</source>
         <translation>Вы действительно хотите удалить данные используемые EasyList?</translation>
     </message>
     <message>
-        <location filename="AboutPage.qml" line="85"/>
+        <location filename="AboutPage.qml" line="111"/>
         <source>Ok</source>
         <translation>ОК</translation>
     </message>
     <message>
-        <location filename="AboutPage.qml" line="86"/>
+        <location filename="AboutPage.qml" line="112"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>

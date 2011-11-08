@@ -13,7 +13,7 @@
     </message>
     <message>
         <source>Created by &lt;a href=&apos;http://willemliu.nl/donate/&apos;&gt;Willem Liu&lt;/a&gt;</source>
-        <translation type="obsolete">&lt;a href=&apos;http://willemliu.nl/donate/&apos;&gt;Willem Liu&lt;/a&gt; tarafından yaratılmıştır</translation>
+        <translation>&lt;a href=&apos;http://willemliu.nl/donate/&apos;&gt;Willem Liu&lt;/a&gt; tarafından yaratılmıştır</translation>
     </message>
     <message>
         <source>Drop tables?</source>
@@ -30,11 +30,6 @@
     <message>
         <source>Cancel</source>
         <translation>İptal</translation>
-    </message>
-    <message>
-        <source>Created by &lt;a href=&apos;http://willemliu.nl/donate/&apos;&gt;Willem Liu&lt;/a&gt;
-</source>
-        <translation></translation>
     </message>
     <message>
         <source>Thanks to:</source>

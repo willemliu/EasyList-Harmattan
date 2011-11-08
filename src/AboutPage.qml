@@ -81,7 +81,7 @@ Page {
                 anchors.horizontalCenter: text3.horizontalCenter
                 font.family: "Helvetica"
                 font.pointSize: 24
-                text: qsTr("Created by <a href='http://willemliu.nl/donate/'>Willem Liu</a>\n")
+                text: qsTr("Created by <a href='http://willemliu.nl/donate/'>Willem Liu</a>")
                 onLinkActivated: {
                     Qt.openUrlExternally(link);
                 }
