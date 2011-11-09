@@ -17,11 +17,11 @@
     </message>
     <message>
         <source>Drop tables?</source>
-        <translation>Supprimer des tables?</translation>
+        <translation>Supprimer des tables ?</translation>
     </message>
     <message>
         <source>Do you really want to remove all tables used by EasyList?</source>
-        <translation>Voulez-vous vraiment supprimer tous les tableaux utilisés par EasyList?</translation>
+        <translation>Voulez-vous vraiment supprimer tous les tables utilisés par EasyList ?</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -33,7 +33,7 @@
     </message>
     <message>
         <source>Thanks to:</source>
-        <translation>Merci à:</translation>
+        <translation>Merci à :</translation>
     </message>
 </context>
 <context>
@@ -57,12 +57,11 @@ a new item.
 
 Tip: You can copy text from other apps
 and paste it here as well.</source>
-        <translation>Entrez le texte à votre liste.
-Chaque nouvelle ligne ou une virgule délimitant
-un nouvel élément.
+        <translation>Saisissez du texte pour créer votre liste.
+Utilisez la virgule pour séparer les éléments, ou entrez les ligne par ligne.
 
-Astuce: Vous pouvez copier du texte depuis d&apos;autres applications
-et coller ici.</translation>
+Astuce : Vous pouvez aussi copier du texte depuis d&apos;autres applications
+et le coller ici.</translation>
     </message>
 </context>
 <context>
@@ -77,7 +76,7 @@ et coller ici.</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation>Retirer</translation>
+        <translation>Supprimer</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -97,19 +96,19 @@ et coller ici.</translation>
     </message>
     <message>
         <source>New list name:</source>
-        <translation>Nouveau nom de liste:</translation>
+        <translation>Nom de la nouvelle liste :</translation>
     </message>
     <message>
         <source>Remove list?</source>
-        <translation>Retirer la liste?</translation>
+        <translation>Supprimer la liste ?</translation>
     </message>
     <message>
         <source>Do you really want to remove [</source>
-        <translation>Pensez-vous vraiment supprimer [</translation>
+        <translation>Voulez-vous vraiment supprimer [</translation>
     </message>
     <message>
         <source>] and all its items?</source>
-        <translation>] et tous ses articles?</translation>
+        <translation>] et tous ses éléments ?</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -120,7 +119,7 @@ et coller ici.</translation>
     <name>MainPage</name>
     <message>
         <source>Deselect all</source>
-        <translation>Deselect all</translation>
+        <translation>Tout désélectionner</translation>
     </message>
     <message>
         <source>Remove checked</source>
@@ -140,11 +139,11 @@ et coller ici.</translation>
     </message>
     <message>
         <source>Remove checked items?</source>
-        <translation>Supprimer des éléments vérifiés?</translation>
+        <translation>Supprimer les éléments sélectionnés ?</translation>
     </message>
     <message>
         <source>Do you really want to remove all checked items?</source>
-        <translation>Voulez-vous vraiment supprimer tous les éléments vérifiés?</translation>
+        <translation>Voulez-vous vraiment supprimer tous les éléments sélectionnés ?</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -156,15 +155,15 @@ et coller ici.</translation>
     </message>
     <message>
         <source>Sync with online list?</source>
-        <translation>Synchroniser avec la liste en ligne?</translation>
+        <translation>Synchroniser avec le serveur ?</translation>
     </message>
     <message>
         <source>Do you really want sync your current list with the online list?
 
 All your current items will be overwritten.</source>
-        <translation>Voulez-vous vraiment synchroniser votre liste actuelle avec la liste en ligne?
+        <translation>Voulez-vous vraiment synchroniser votre liste actuelle avec le serveur ?
 
-Tous les articles actuels de votre sera écrasé.</translation>
+Tous les éléments actuels du serveur seront remplacés.</translation>
     </message>
     <message>
         <source>Can&apos;t synchronize</source>
@@ -172,11 +171,11 @@ Tous les articles actuels de votre sera écrasé.</translation>
     </message>
     <message>
         <source>Unable to synchronize with online list. Please make sure you&apos;ve correctly setup your sync account in settings.</source>
-        <translation>Impossible de synchroniser avec la liste en ligne. S&apos;il vous plaît assurez-vous que vous avez correctement configuré votre compte de synchronisation dans les paramètres.</translation>
+        <translation>Impossible de synchroniser avec le serveur. Vérifiez que les réglages de votre compte sont corrects.</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation>Retirer</translation>
+        <translation>Supprimer</translation>
     </message>
 </context>
 <context>
@@ -191,15 +190,15 @@ Tous les articles actuels de votre sera écrasé.</translation>
     </message>
     <message>
         <source>Sort</source>
-        <translation>Arranger</translation>
+        <translation>Tri</translation>
     </message>
     <message>
         <source>Alphabetically:</source>
-        <translation>Par ordre alphabétique:</translation>
+        <translation>Par ordre alphabétique :</translation>
     </message>
     <message>
         <source>Checked items to bottom:</source>
-        <translation>Les éléments cochés sur le fond:</translation>
+        <translation>Les éléments cochés en bas :</translation>
     </message>
     <message>
         <source>Orientation</source>
@@ -223,7 +222,7 @@ Tous les articles actuels de votre sera écrasé.</translation>
     </message>
     <message>
         <source>Select Theme...</source>
-        <translation>Sélectionnez Thème ...</translation>
+        <translation>Sélectionnez un thème ...</translation>
     </message>
     <message>
         <source>Synchronise</source>
@@ -231,15 +230,15 @@ Tous les articles actuels de votre sera écrasé.</translation>
     </message>
     <message>
         <source>Source:</source>
-        <translation>Source:</translation>
+        <translation>Source :</translation>
     </message>
     <message>
         <source>Username:</source>
-        <translation>Nom d&apos;utilisateur:</translation>
+        <translation>Nom d&apos;utilisateur :</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation>Mot de passe:</translation>
+        <translation>Mot de passe :</translation>
     </message>
     <message>
         <source>Save</source>
@@ -254,10 +253,10 @@ Tous les articles actuels de votre sera écrasé.</translation>
 
 You can create your online account on http://easylist.willemliu.nl.
 Default sync URL is: http://easylist.willemliu.nl/getList.php</source>
-        <translation>Lorsque vous synchronisez votre compte configuré, vous pourrez synchroniser votre liste avec votre liste en ligne.
+        <translation>Une fois votre compte configuré, vous pourrez synchroniser votre liste avec le serveur.
 
-Vous pouvez créer votre compte en ligne à http://easylist.willemliu.nl.
-URL standard de synchronisation est: http://easylist.willemliu.nl/getList.php</translation>
+Vous pouvez créer votre compte en ligne à l&apos;adresse : http://easylist.willemliu.nl.
+L&apos;URL standard de synchronisation est : http://easylist.willemliu.nl/getList.php</translation>
     </message>
     <message>
         <source>Ok</source>

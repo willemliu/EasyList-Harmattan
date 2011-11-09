@@ -125,6 +125,30 @@ Page {
                     }
                     color: textColor
                 }
+                Text {
+                    id: text8
+                    anchors.top: text7.bottom
+                    anchors.horizontalCenter: text7.horizontalCenter
+                    font.family: "Helvetica"
+                    font.pointSize: 24
+                    text: "Romu"
+                    onLinkActivated: {
+                        Qt.openUrlExternally(link);
+                    }
+                    color: textColor
+                }
+                Text {
+                    id: text9
+                    anchors.top: text8.bottom
+                    anchors.horizontalCenter: text8.horizontalCenter
+                    font.family: "Helvetica"
+                    font.pointSize: 24
+                    text: "Stephan Beyerle"
+                    onLinkActivated: {
+                        Qt.openUrlExternally(link);
+                    }
+                    color: textColor
+                }
             }
         }
     }
