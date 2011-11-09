@@ -24,22 +24,22 @@
         <translation>Благодаря:</translation>
     </message>
     <message>
-        <location filename="AboutPage.qml" line="134"/>
+        <location filename="AboutPage.qml" line="158"/>
         <source>Drop tables?</source>
         <translation>Удалить таблицы?</translation>
     </message>
     <message>
-        <location filename="AboutPage.qml" line="135"/>
+        <location filename="AboutPage.qml" line="159"/>
         <source>Do you really want to remove all tables used by EasyList?</source>
         <translation>Вы действительно хотите удалить данные используемые EasyList?</translation>
     </message>
     <message>
-        <location filename="AboutPage.qml" line="136"/>
+        <location filename="AboutPage.qml" line="160"/>
         <source>Ok</source>
         <translation>ОК</translation>
     </message>
     <message>
-        <location filename="AboutPage.qml" line="137"/>
+        <location filename="AboutPage.qml" line="161"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>

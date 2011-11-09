@@ -40,7 +40,7 @@
     <name>EditPage</name>
     <message>
         <source>Save</source>
-        <translation>Sauver</translation>
+        <translation>Sauvegarder</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -88,7 +88,7 @@ et le coller ici.</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>Sauver</translation>
+        <translation>Sauvegarder</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -242,7 +242,7 @@ Tous les éléments actuels du serveur seront remplacés.</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>Sauver</translation>
+        <translation>Sauvegarder</translation>
     </message>
     <message>
         <source>Synchronization</source>
