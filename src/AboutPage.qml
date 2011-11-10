@@ -35,9 +35,16 @@ Page {
             }
         }
 
+        onHeightChanged: {
+            flick.height = height;
+        }
+
         Flickable {
             id: flick
-            anchors.fill: parent
+            anchors.top: header.bottom
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
             contentHeight: content.implicitHeight
             contentWidth: content.implicitWidth
             flickableDirection: Flickable.VerticalFlick
@@ -46,10 +53,11 @@ Page {
             Rectangle {
                 id: content
                 implicitWidth: flick.width
-                implicitHeight: flick.height
+                implicitHeight: 600
+                color: backgroundColor
                 Text {
                     id: text1
-                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.top: parent.top
                     anchors.horizontalCenter: parent.horizontalCenter
                     font.family: "Helvetica"
                     font.pointSize: 48
