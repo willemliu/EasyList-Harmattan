@@ -96,9 +96,6 @@ Page {
                     font.family: "Helvetica"
                     font.pointSize: 24
                     text: qsTr("Thanks to:")
-                    onLinkActivated: {
-                        Qt.openUrlExternally(link);
-                    }
                     color: textColor
                 }
                 Text {
@@ -108,9 +105,6 @@ Page {
                     font.family: "Helvetica"
                     font.pointSize: 24
                     text: "Oytun Eren Şengül"
-                    onLinkActivated: {
-                        Qt.openUrlExternally(link);
-                    }
                     color: textColor
                 }
                 Text {
@@ -120,9 +114,6 @@ Page {
                     font.family: "Helvetica"
                     font.pointSize: 24
                     text: "Stanislav"
-                    onLinkActivated: {
-                        Qt.openUrlExternally(link);
-                    }
                     color: textColor
                 }
                 Text {
@@ -132,9 +123,6 @@ Page {
                     font.family: "Helvetica"
                     font.pointSize: 24
                     text: "Romu"
-                    onLinkActivated: {
-                        Qt.openUrlExternally(link);
-                    }
                     color: textColor
                 }
                 Text {
@@ -144,9 +132,24 @@ Page {
                     font.family: "Helvetica"
                     font.pointSize: 24
                     text: "Stephan Beyerle"
-                    onLinkActivated: {
-                        Qt.openUrlExternally(link);
-                    }
+                    color: textColor
+                }
+                Text {
+                    id: text10
+                    anchors.top: text9.bottom
+                    anchors.horizontalCenter: text9.horizontalCenter
+                    font.family: "Helvetica"
+                    font.pointSize: 24
+                    text: "Giovanni Grammatico"
+                    color: textColor
+                }
+                Text {
+                    id: text11
+                    anchors.top: text10.bottom
+                    anchors.horizontalCenter: text10.horizontalCenter
+                    font.family: "Helvetica"
+                    font.pointSize: 24
+                    text: "Ajalkane"
                     color: textColor
                 }
             }
