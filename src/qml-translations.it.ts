@@ -69,9 +69,12 @@ a new item.
 
 Tip: You can copy text from other apps
 and paste it here as well.</source>
-        <translation>Inserisci il testo per creare la tua lista. Ogni nuova riga o virgola delimita un nuovo elemento.
+        <translation>Inserisci il testo per creare la tua lista.
+Ogni nuova riga o virgola delimita un 
+nuovo elemento.
 
-Suggerimento: Puoi anche copiare testo da altre applicazioni ed incollarlo qui.</translation>
+Suggerimento: Puoi anche copiare testo
+da altre applicazioni ed incollarlo qui.</translation>
     </message>
 </context>
 <context>

@@ -196,7 +196,7 @@ and paste it here as well.</source>
     <message>
         <location filename="MainPage.qml" line="111"/>
         <source>Sync with online list?</source>
-        <translation>Обновление списка</translation>
+        <translation>Обновление списка?</translation>
     </message>
     <message>
         <location filename="MainPage.qml" line="112"/>

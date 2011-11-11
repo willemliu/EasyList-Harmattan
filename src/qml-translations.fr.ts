@@ -58,10 +58,12 @@ a new item.
 Tip: You can copy text from other apps
 and paste it here as well.</source>
         <translation>Saisissez du texte pour créer votre liste.
-Utilisez la virgule pour séparer les éléments, ou entrez les ligne par ligne.
+Utilisez la virgule pour séparer les
+éléments, ou entrez les ligne par ligne.
 
-Astuce : Vous pouvez aussi copier du texte depuis d&apos;autres applications
-et le coller ici.</translation>
+Astuce : Vous pouvez aussi copier du
+texte depuis d&apos;autres applications et le
+coller ici.</translation>
     </message>
 </context>
 <context>
