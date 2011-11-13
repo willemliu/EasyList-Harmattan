@@ -166,10 +166,11 @@ Page {
         Sheet {
             id: addListSheet
             visualParent: listsPage
-            anchors.top: header.bottom
-            anchors.right: parent.right
-            anchors.left: parent.left
-            height: parent.height - header.height
+            anchors.fill: parent
+//            anchors.top: header.bottom
+//            anchors.right: parent.right
+//            anchors.left: parent.left
+//            height: parent.height - header.height
             z: 2
             acceptButtonText: qsTr("Save")
             rejectButtonText: qsTr("Cancel")
@@ -245,10 +246,11 @@ Page {
             id: renameListSheet
             property string oldListName:  ""
             visualParent: listsPage
-            anchors.top: header.bottom
-            anchors.right: parent.right
-            anchors.left: parent.left
-            height: parent.height - header.height
+            anchors.fill: parent
+//            anchors.top: header.bottom
+//            anchors.right: parent.right
+//            anchors.left: parent.left
+//            height: parent.height - header.height
             z: 2
             acceptButtonText: qsTr("Rename")
             rejectButtonText: qsTr("Cancel")
