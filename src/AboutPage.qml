@@ -151,15 +151,15 @@ Page {
                     text: "Giovanni Grammatico"
                     color: textColor
                 }
-//                Text {
-//                    id: text11
-//                    anchors.top: text10.bottom
-//                    anchors.horizontalCenter: text10.horizontalCenter
-//                    font.family: "Helvetica"
-//                    font.pointSize: 24
-//                    text: "Ajalkane"
-//                    color: textColor
-//                }
+                Text {
+                    id: text11
+                    anchors.top: text10.bottom
+                    anchors.horizontalCenter: text10.horizontalCenter
+                    font.family: "Helvetica"
+                    font.pointSize: 24
+                    text: "Ajalkane"
+                    color: textColor
+                }
             }
         }
     }
