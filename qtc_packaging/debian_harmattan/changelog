@@ -1,5 +1,5 @@
-easylist (0.0.19) unstable; urgency=low
+easylist (0.0.20) unstable; urgency=low
 
-  * Added language support for NL. DE and FR are translated by Google translate.
+  * Added language support for Finnish.
 
- -- Willem Liu <willem.liu@gmail.com>  Sun, 04 nov 2011 14:42:00 +0100
+ -- Willem Liu <willem.liu@gmail.com>  Wed, 16 nov 2011 17:28:00 +0100
