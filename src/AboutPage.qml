@@ -157,7 +157,7 @@ Page {
                     anchors.horizontalCenter: text10.horizontalCenter
                     font.family: "Helvetica"
                     font.pointSize: 24
-                    text: "Ajalkane"
+                    text: "Arto Jalkanen"
                     color: textColor
                 }
             }
