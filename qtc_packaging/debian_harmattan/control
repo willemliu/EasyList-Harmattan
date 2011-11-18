@@ -14,14 +14,15 @@ Description: EasyList is an easy shopping/todo list tool.
  by entering text in a text area. Each new line represents a new item
  in the actual list.
  Some of EasyLists functions are:
- - Multiple list support
- - Sort alphabetically (can be turned on or off in Settings)
- - Sort checked items to bottom (can be turned on or off in Settings)
- - Lock portrait (can be turned on or off in Settings)
- - Lock landscape (can be turned on or off in Settings)
+ - Multiple list support*
+ - Sort alphabetically*
+ - Sort checked items to bottom*
+ - Lock portrait*
+ - Lock landscape*
+ * Can be turned on or off in Settings
  The key focus is the ease of use.
 XSBC-Maemo-Display-Name: EasyList
-XB-Maemo-Icon-26: 
+XB-Maemo-Icon-26:
  iVBORw0KGgoAAAANSUhEUgAAAE8AAABQCAYAAAEvsxheAAAACXBIWXMAAAsTAAALEwEAmpwYAAAK
  T2lDQ1BQaG90b3Nob3AgSUNDIHByb2ZpbGUAAHjanVNnVFPpFj333vRCS4iAlEtvUhUIIFJCi4AU
  kSYqIQkQSoghodkVUcERRUUEG8igiAOOjoCMFVEsDIoK2AfkIaKOg6OIisr74Xuja9a89+bN/rXX

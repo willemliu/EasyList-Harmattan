@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Terminal=false
+Name=EasyList
+Exec=/usr/bin/invoker --type=d --splash=/opt/easylist/qml/easylist/splash-p.jpg --splash-landscape=/opt/easylist/qml/easylist/splash.jpg -s /opt/easylist/bin/easylist
+Icon=easylist64
+X-Window-Icon=
+X-HildonDesk-ShowInToolbar=true
+X-Osso-Type=application/x-executable

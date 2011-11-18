@@ -1,5 +1,5 @@
-easylist (0.0.20) unstable; urgency=low
+easylist (0.0.21) unstable; urgency=low
+  * Create new project using new Qt Creator 2.3.1.
+  * Refactored entire project.
 
-  * Added language support for Finnish.
-
- -- Willem Liu <willem.liu@gmail.com>  Wed, 16 nov 2011 17:28:00 +0100
+ -- Willem Liu <willem.liu@gmail.com>  vr, 18 nov 2011 15:20:42 +0100

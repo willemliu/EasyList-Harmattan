@@ -2,11 +2,11 @@
     <qresource prefix="/">
         <file>qml-translations.de.qm</file>
         <file>qml-translations.en.qm</file>
-        <file>qml-translations.fr.qm</file>
-        <file>qml-translations.nl.qm</file>
-        <file>qml-translations.tr.qm</file>
-        <file>qml-translations.ru.qm</file>
-        <file>qml-translations.it.qm</file>
         <file>qml-translations.fi.qm</file>
+        <file>qml-translations.fr.qm</file>
+        <file>qml-translations.it.qm</file>
+        <file>qml-translations.nl.qm</file>
+        <file>qml-translations.ru.qm</file>
+        <file>qml-translations.tr.qm</file>
     </qresource>
 </RCC>
