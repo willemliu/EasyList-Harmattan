@@ -137,6 +137,7 @@ Page {
                     }
                 }
                 MenuItem {
+                    id: deleteMenuItem
                     text: qsTr("Remove");
                     onClicked: {
                         removeDialog.open();
@@ -339,6 +340,23 @@ Page {
                 break;
             }
         }
+        // update delete button / menu item status
+            
+        var itemsCount = listModel.count;
+        console.log("Updating button status ", itemsCount);
+        var visible = (itemsCount>0);
+
+        deleteMenuItem.visible = visible;
+        if (visible)
+        {
+            deleteToolIcon.iconId = "toolbar-delete";;
+        }
+        else
+        {
+            deleteToolIcon.iconId = "toolbar-delete-dimmed";
+        }
+
+        deleteToolIcon.enabled = visible;
     }
 
     tools: ToolBarLayout {
@@ -356,6 +374,7 @@ Page {
             }
         }
         ToolIcon {
+            id: deleteToolIcon
             iconId: "toolbar-delete";
             onClicked: {
                 removeDialog.open();

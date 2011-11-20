@@ -48,6 +48,16 @@ OTHER_FILES += \
 RESOURCES += \
     resources.qrc
 
+TRANSLATIONS += \
+    qml-translations.de.ts \
+    qml-translations.en.ts \
+    qml-translations.fi.ts \
+    qml-translations.fr.ts \
+    qml-translations.it.ts  \
+    qml-translations.nl.ts \
+    qml-translations.ru.ts \
+    qml-translations.tr.ts
+
 
 
 
