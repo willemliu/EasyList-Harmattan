@@ -21,6 +21,22 @@ Page {
     property int index: -1
     property int modelIndex: -1
 
+
+    onStatusChanged: {
+        //console.log("+++ MainPage::onStatusChanged", status);
+        if (status==PageStatus.Activating) {
+            updateButtonStatus();
+        }
+        if (status==PageStatus.Activated) {
+            //console.log("+++ MainPage::onStatusChanged.Activated");
+        }
+        if (status==PageStatus.Deactivating) {
+            //console.log("+++ MainPage::onStatusChanged .Deactivating");
+            listsPage.hideToolbar(false);
+        }
+    }
+
+
     tools: ToolBarLayout {
         id: myToolbar
         ToolIcon {
@@ -30,7 +46,7 @@ Page {
             }
         }
         ToolIcon {
-            id: deleteIcon
+            id: deleteToolIcon
             iconId: "toolbar-delete";
             onClicked: {
                 myMenu.close();
@@ -62,13 +78,16 @@ Page {
         id: myMenu
         MenuLayout {
             MenuItem {
+                id: deselectAllMenuItem
                 text: qsTr("Deselect all");
                 onClicked: {
                     DbConnection.deselectAll()
                     DbConnection.loadDB(listName);
-                }
+		    updateButtonStatus();
+				}
             }
             MenuItem {
+                id: removeSelectedMenuItem
                 text: qsTr("Remove checked");
                 onClicked: {
                     removeDialog.open();
@@ -200,6 +219,7 @@ Page {
                 onCheckChanged: {
                     DbConnection.saveRecord(itemIndex, itemSelected);
                     DbConnection.loadDB(listName);
+                    updateButtonStatus();
                 }
                 MouseArea {
                     anchors.fill: parent
@@ -214,6 +234,7 @@ Page {
                         }
                         DbConnection.loadDB(listName);
                         listItem.backgroundColor = DbConnection.getValue("LIST_ITEM_BACKGROUND_COLOR");
+                        updateButtonStatus();
                     }
                     onPressAndHold: {
                         mainPage.index = listItem.itemIndex;
@@ -275,6 +296,7 @@ Page {
             }
         }
         DbConnection.populateModel();
+        updateButtonStatus();
     }
 
     function loadTheme()
@@ -350,5 +372,34 @@ Page {
     }
     function showRequestInfo(text) {
         console.log(text)
+    }
+
+
+    function updateButtonStatus()
+    {
+        var itemsCount = listModel.count;
+        var selectedItems = false;
+        for(var i = 0; i < itemsCount; ++i)
+        {
+            if(listModel.get(i).itemSelected == "true")
+            {
+                selectedItems = true;
+                break;
+            }
+        }
+
+        //console.log("Updating button status ", itemsCount, ", ", selectedItems);
+
+        removeSelectedMenuItem.visible = selectedItems;
+        if (selectedItems)
+        {
+            deleteToolIcon.iconId = "toolbar-delete";;
+        }
+        else
+        {
+            deleteToolIcon.iconId = "toolbar-delete-dimmed";;
+        }
+
+        deleteToolIcon.enabled = selectedItems;
     }
 }
