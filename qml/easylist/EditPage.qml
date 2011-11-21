@@ -37,7 +37,7 @@ Sheet {
             anchors.rightMargin: 10
             contentHeight: textEdit.implicitHeight
             contentWidth: textEdit.implicitWidth
-            clip: true
+            //clip: true
 
             TextArea {
                 id: textEdit

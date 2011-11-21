@@ -48,7 +48,7 @@ Page {
             contentHeight: content.implicitHeight
             contentWidth: content.implicitWidth
             flickableDirection: Flickable.VerticalFlick
-            clip: true
+            //clip: true
 
             Rectangle {
                 id: content

@@ -14,10 +14,7 @@ Page {
     property color hoverColor: ListsDb.getValue("HOVER_COLOR");
     property color highlightColor: ListsDb.getValue("HIGHLIGHT_COLOR")
     orientationLock: ListsDb.getOrientationLock();
-    signal settingsView
-    signal aboutView
     property string listName: ListsDb.getListName()
-    signal hideToolbar(bool hideToolbar)
 
     Rectangle {
         id: background
@@ -152,13 +149,17 @@ Page {
                 MenuItem {
                     text: qsTr("Settings");
                     onClicked: {
-                        listsPage.settingsView();
+                        settingsPageLoader.sourceComponent = settingsPageComponent;
+                        pageStack.push(settingsPageLoader.item);
                     }
                 }
                 MenuItem {
                     text: qsTr("About");
                     onClicked: {
-                        onClicked: listsPage.aboutView()
+                        onClicked: {
+                            aboutPageLoader.source = "AboutPage.qml";
+                            pageStack.push(aboutPageLoader.item);
+                        }
                     }
                 }
             }
@@ -168,10 +169,6 @@ Page {
             id: addListSheet
             visualParent: listsPage
             anchors.fill: parent
-//            anchors.top: header.bottom
-//            anchors.right: parent.right
-//            anchors.left: parent.left
-//            height: parent.height - header.height
             z: 2
             acceptButtonText: qsTr("Save")
             rejectButtonText: qsTr("Cancel")
@@ -189,13 +186,13 @@ Page {
                     anchors.rightMargin: 10
                     contentWidth: listNameRect.implicitWidth
                     contentHeight: listNameRect.implicitHeight
-                    clip: true
+                    //clip: true
                     focus: true
 
                     Rectangle {
                         id: listNameRect
                         width: Math.max (flick.width, implicitWidth);
-                        height: Math.max (flick.height, implicitHeight)
+                        height: Math.max (flick.height, implicitHeight);
                         color: backgroundColor
                         focus: true
                         Label {
@@ -234,11 +231,11 @@ Page {
                 {
                     textField.selectAll();
                     textField.platformOpenSoftwareInputPanel();
-                    listsPage.hideToolbar(true);
+                    pageStackWindow.showToolBar = false;
                 }
                 else
                 {
-                    listsPage.hideToolbar(false);
+                    pageStackWindow.showToolBar = true;
                 }
             }
         }
@@ -248,10 +245,6 @@ Page {
             property string oldListName:  ""
             visualParent: listsPage
             anchors.fill: parent
-//            anchors.top: header.bottom
-//            anchors.right: parent.right
-//            anchors.left: parent.left
-//            height: parent.height - header.height
             z: 2
             acceptButtonText: qsTr("Rename")
             rejectButtonText: qsTr("Cancel")
@@ -269,7 +262,7 @@ Page {
                     anchors.rightMargin: 10
                     contentWidth: renameListNameRect.implicitWidth
                     contentHeight: renameListNameRect.implicitHeight
-                    clip: true
+                    //clip: true
                     focus: true
 
                     Rectangle {
@@ -315,11 +308,11 @@ Page {
                 {
                     renameTextField.selectAll();
                     renameTextField.platformOpenSoftwareInputPanel();
-                    listsPage.hideToolbar(true);
+                    pageStackWindow.showToolBar = false;
                 }
                 else
                 {
-                    listsPage.hideToolbar(false);
+                    pageStackWindow.showToolBar = true;
                 }
             }
         }

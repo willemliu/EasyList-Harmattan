@@ -14,13 +14,55 @@ Page {
     property color textColor: DbConnection.getValue("TEXT_COLOR")
     property color listItemBackgroundColor: DbConnection.getValue("LIST_ITEM_BACKGROUND_COLOR")
     property color hoverColor: DbConnection.getValue("HOVER_COLOR");
-    signal settingsView
-    signal aboutView
-    signal listsView
     signal hideToolbar(bool hideToolbar)
     property int index: -1
     property int modelIndex: -1
 
+    Loader {
+        id: aboutPageLoader
+        onLoaded: console.log("About page loaded");
+    }
+
+    Loader {
+        id: listsPageLoader
+        onLoaded: console.log("Lists page loaded");
+    }
+
+    Loader {
+        id: settingsPageLoader
+        onLoaded: console.log("Settings page loaded");
+    }
+
+    Loader {
+        id: editPageLoader
+        onLoaded: console.log("Edit page loaded");
+    }
+
+    Component {
+        id: settingsPageComponent
+        SettingsPage {
+            id: settingsPage
+            onAboutView: {
+                aboutPageLoader.source = "AboutPage.qml";
+                pageStack.push(aboutPageLoader.item);
+            }
+            onOrientationLockChanged: {
+                listsPageLoader.source = "ListsPage.qml";
+                listsPageLoader.item.orientationLock = orientationLock;
+                mainPage.orientationLock = orientationLock;
+                aboutPageLoader.source = "AboutPage.qml";
+                aboutPageLoader.item.orientationLock = orientationLock;
+            }
+            onThemeChanged: {
+                mainPage.loadTheme();
+                settingsPage.loadTheme();
+                listsPageLoader.source = "ListsPage.qml";
+                listsPageLoader.item.loadTheme();
+                aboutPageLoader.source = "AboutPage.qml";
+                aboutPageLoader.item.loadTheme();
+            }
+        }
+    }
 
     onStatusChanged: {
         //console.log("+++ MainPage::onStatusChanged", status);
@@ -32,7 +74,7 @@ Page {
         }
         if (status==PageStatus.Deactivating) {
             //console.log("+++ MainPage::onStatusChanged .Deactivating");
-            listsPage.hideToolbar(false);
+            pageStackWindow.showToolBar = true;
         }
     }
 
@@ -42,7 +84,8 @@ Page {
         ToolIcon {
             iconId: "toolbar-edit";
             onClicked: {
-                myEditPage.open();
+                editPageLoader.source = "EditPage.qml";
+                editPageLoader.item.open();
             }
         }
         ToolIcon {
@@ -57,7 +100,8 @@ Page {
             iconId: "toolbar-list";
             onClicked: {
                 myMenu.close();
-                mainPage.listsView();
+                listsPageLoader.source = "ListsPage.qml";
+                pageStack.push(listsPageLoader.item);
             }
         }
         ToolIcon {
@@ -83,8 +127,8 @@ Page {
                 onClicked: {
                     DbConnection.deselectAll()
                     DbConnection.loadDB(listName);
-		    updateButtonStatus();
-				}
+                    updateButtonStatus();
+                                }
             }
             MenuItem {
                 id: removeSelectedMenuItem
@@ -102,13 +146,17 @@ Page {
             MenuItem {
                 text: qsTr("Settings");
                 onClicked: {
-                    mainPage.settingsView();
+                    settingsPageLoader.sourceComponent = settingsPageComponent;
+                    pageStack.push(settingsPageLoader.item);
                 }
             }
             MenuItem {
                 text: qsTr("About");
                 onClicked: {
-                    onClicked: mainPage.aboutView()
+                    onClicked: {
+                        aboutPageLoader.source = "AboutPage.qml";
+                        pageStack.push(aboutPageLoader.item);
+                    }
                 }
             }
         }
@@ -167,22 +215,25 @@ Page {
             }
         }
 
-        EditPage {
-            id: myEditPage
-            visualParent: mainPage
-            anchors.fill: parent
-            z: 2
-            onAccepted: {
-                mainPage.reloadDb();
-            }
-            onVisibleChanged: {
-                if(visible)
-                {
-                    mainPage.hideToolbar(true);
+        Component {
+            id: editPageComponent
+            EditPage {
+                id: myEditPage
+                visualParent: mainPage
+                anchors.fill: parent
+                z: 2
+                onAccepted: {
+                    mainPage.reloadDb();
                 }
-                else
-                {
-                    mainPage.hideToolbar(false);
+                onVisibleChanged: {
+                    if(visible)
+                    {
+                        mainPage.hideToolbar(true);
+                    }
+                    else
+                    {
+                        mainPage.hideToolbar(false);
+                    }
                 }
             }
         }
@@ -310,7 +361,8 @@ Page {
         textColor = DbConnection.getValue("TEXT_COLOR");
         listItemBackgroundColor = DbConnection.getValue("LIST_ITEM_BACKGROUND_COLOR");
         hoverColor = DbConnection.getValue("HOVER_COLOR");
-        myEditPage.loadTheme();
+        editPageLoader.source = "EditPage.qml";
+        editPageLoader.item.loadTheme();
     }
 
     function sync()
@@ -343,7 +395,8 @@ Page {
                                 for (var ii = 0; ii < a.childNodes.length; ++ii) {
                                     if(a.childNodes[ii].nodeName == "#cdata-section")
                                     {
-                                        myEditPage.saveText(mainPage.listName, a.childNodes[ii].nodeValue);
+                                        editPageLoader.source = "EditPage.qml";
+                                        editPageLoader.item.saveText(mainPage.listName, a.childNodes[ii].nodeValue);
                                         synced = true;
                                         break;
                                     }
