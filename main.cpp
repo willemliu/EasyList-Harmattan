@@ -20,7 +20,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
      * for that + ".qm"; if not found, it will look for a
      * qml-translations.qm file; if not found, no translation is done
      */
-    if (translator.load("qml-translations." + locale, ":/"))
+    if (translator.load("qml/easylist/qml-translations." + locale, ":/"))
       app->installTranslator(&translator);
 
     viewer->setOrientation(QmlApplicationViewer::ScreenOrientationAuto);

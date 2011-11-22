@@ -55,6 +55,7 @@ TRANSLATIONS += \
     qml-translations.fr.ts \
     qml-translations.it.ts  \
     qml-translations.nl.ts \
+    qml-translations.ph.ts \
     qml-translations.ru.ts \
     qml-translations.tr.ts
 
