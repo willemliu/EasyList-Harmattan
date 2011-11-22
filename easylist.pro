@@ -49,15 +49,15 @@ RESOURCES += \
     resources.qrc
 
 TRANSLATIONS += \
-    qml-translations.de.ts \
-    qml-translations.en.ts \
-    qml-translations.fi.ts \
-    qml-translations.fr.ts \
-    qml-translations.it.ts  \
-    qml-translations.nl.ts \
-    qml-translations.tl.ts \
-    qml-translations.ru.ts \
-    qml-translations.tr.ts
+    qml/easylist/qml-translations.de.ts \
+    qml/easylist/qml-translations.en.ts \
+    qml/easylist/qml-translations.fi.ts \
+    qml/easylist/qml-translations.fr.ts \
+    qml/easylist/qml-translations.it.ts \
+    qml/easylist/qml-translations.nl.ts \
+    qml/easylist/qml-translations.tl.ts \
+    qml/easylist/qml-translations.ru.ts \
+    qml/easylist/qml-translations.tr.ts
 
 
 
