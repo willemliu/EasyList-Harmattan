@@ -84,7 +84,7 @@ Page {
         ToolIcon {
             iconId: "toolbar-edit";
             onClicked: {
-                editPageLoader.source = "EditPage.qml";
+                editPageLoader.sourceComponent = editPageComponent;
                 editPageLoader.item.open();
             }
         }
@@ -93,7 +93,8 @@ Page {
             iconId: "toolbar-delete";
             onClicked: {
                 myMenu.close();
-                removeDialog.open();
+                removeDialogLoader.sourceComponent = removeDialogComponent
+                removeDialogLoader.item.open();
             }
         }
         ToolIcon {
@@ -134,13 +135,15 @@ Page {
                 id: removeSelectedMenuItem
                 text: qsTr("Remove checked");
                 onClicked: {
-                    removeDialog.open();
+                    removeDialogLoader.sourceComponent = removeDialogComponent
+                    removeDialogLoader.item.open();
                 }
             }
             MenuItem {
                 text: qsTr("Synchronise");
                 onClicked: {
-                    syncDialog.open();
+                    syncDialogLoader.sourceComponent = syncDialogComponent
+                    syncDialogLoader.item.open();
                 }
             }
             MenuItem {
@@ -162,33 +165,66 @@ Page {
         }
     }
 
-    QueryDialog {
-        id: removeDialog
-        titleText: qsTr("Remove checked items?")
-        message: qsTr("Do you really want to remove all checked items?")
-        acceptButtonText: qsTr("Ok")
-        rejectButtonText: qsTr("Cancel")
-        onAccepted: {
-            removeSelected();
+    Loader {
+        id: removeDialogLoader
+        onLoaded: {
+            console.log("Remove dialog loaded");
+        }
+        anchors.fill: parent
+    }
+
+    Component {
+        id: removeDialogComponent
+        QueryDialog {
+            id: removeDialog
+            titleText: qsTr("Remove checked items?")
+            message: qsTr("Do you really want to remove all checked items?")
+            acceptButtonText: qsTr("Ok")
+            rejectButtonText: qsTr("Cancel")
+            onAccepted: {
+                mainPage.removeSelected();
+            }
         }
     }
 
-    QueryDialog {
-        id: syncDialog
-        titleText: qsTr("Sync with online list?")
-        message: qsTr("Do you really want sync your current list with the online list?\n\nAll your current items will be overwritten.")
-        acceptButtonText: qsTr("Ok")
-        rejectButtonText: qsTr("Cancel")
-        onAccepted: {
-            mainPage.sync();
+    Loader {
+        id: syncDialogLoader
+        onLoaded: {
+            console.log("Sync dialog loaded");
+        }
+        anchors.fill: parent
+    }
+
+    Component {
+        id: syncDialogComponent
+        QueryDialog {
+            id: syncDialog
+            titleText: qsTr("Sync with online list?")
+            message: qsTr("Do you really want sync your current list with the online list?\n\nAll your current items will be overwritten.")
+            acceptButtonText: qsTr("Ok")
+            rejectButtonText: qsTr("Cancel")
+            onAccepted: {
+                mainPage.sync();
+            }
         }
     }
 
-    QueryDialog {
-        id: unableToSyncDialog
-        titleText: qsTr("Can't synchronize")
-        message: qsTr("Unable to synchronize with online list. Please make sure you've correctly setup your sync account in settings.")
-        acceptButtonText: qsTr("Ok")
+    Loader {
+        id: unableToSyncDialogLoader
+        onLoaded: {
+            console.log("Unacle to sync dialog loaded");
+        }
+        anchors.fill: parent
+    }
+
+    Component {
+        id: unableToSyncDialogComponent
+        QueryDialog {
+            id: unableToSyncDialog
+            titleText: qsTr("Can't synchronize")
+            message: qsTr("Unable to synchronize with online list. Please make sure you've correctly setup your sync account in settings.")
+            acceptButtonText: qsTr("Ok")
+        }
     }
 
     Rectangle {
@@ -361,7 +397,7 @@ Page {
         textColor = DbConnection.getValue("TEXT_COLOR");
         listItemBackgroundColor = DbConnection.getValue("LIST_ITEM_BACKGROUND_COLOR");
         hoverColor = DbConnection.getValue("HOVER_COLOR");
-        editPageLoader.source = "EditPage.qml";
+        editPageLoader.sourceComponent = editPageComponent;
         editPageLoader.item.loadTheme();
     }
 
@@ -395,7 +431,7 @@ Page {
                                 for (var ii = 0; ii < a.childNodes.length; ++ii) {
                                     if(a.childNodes[ii].nodeName == "#cdata-section")
                                     {
-                                        editPageLoader.source = "EditPage.qml";
+                                        editPageLoader.sourceComponent = editPageComponent;
                                         editPageLoader.item.saveText(mainPage.listName, a.childNodes[ii].nodeValue);
                                         synced = true;
                                         break;
@@ -411,7 +447,8 @@ Page {
                     }
                     if(synced === false)
                     {
-                        unableToSyncDialog.open();
+                        unableToSyncDialogLoader.sourceComponent = unableToSyncDialogComponent;
+                        unableToSyncDialogLoader.item.open();
                     }
                 }
             }
@@ -420,7 +457,8 @@ Page {
         }
         else
         {
-            unableToSyncDialog.open();
+            unableToSyncDialogLoader.sourceComponent = unableToSyncDialogComponent;
+            unableToSyncDialogLoader.item.open();
         }
     }
     function showRequestInfo(text) {
