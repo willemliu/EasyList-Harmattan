@@ -37,22 +37,20 @@ function getListsModel()
     db = getDbConnection();
     db.transaction(function(tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS EasyListLists(pid INTEGER PRIMARY KEY, listName STRING UNIQUE)');
-        var lists = tx.executeSql("SELECT listName FROM EasyListLists ORDER BY UPPER(listName)");
-        if(lists.rows.length === 0)
+        tx.executeSql('CREATE TABLE IF NOT EXISTS EasyListData(pid INTEGER PRIMARY KEY, listName STRING, itemText STRING, selected BOOLEAN)');
+	    // the query calculates how many unchecked items exist for each distinct listName
+        var query = "SELECT EasyListLists.listName as lstName, count(selected='false') as notCheckedCount "+
+                    "FROM EasyListLists LEFT OUTER JOIN EasyListData "+
+                    "ON EasyListLists.listName=EasyListData.listName AND EasyListData.selected='false' "+
+                    "GROUP BY lstName ORDER BY UPPER(lstName)";
+        var lists = tx.executeSql(query);
+        for(var j = 0; j < lists.rows.length; j++)
         {
-            tx.executeSql('CREATE TABLE IF NOT EXISTS EasyListData(pid INTEGER PRIMARY KEY, listName STRING, itemText STRING, selected BOOLEAN)');
-            var rs = tx.executeSql("SELECT listName FROM EasyListData GROUP BY listName ORDER BY UPPER(listName)");
-            for(var i = 0; i < rs.rows.length; i++)
-            {
-                addList(rs.rows.item(i).listName);
-                listModel.append({listName: rs.rows.item(i).listName});
-            }
-        }
-        else
-        {
-            for(var j = 0; j < lists.rows.length; j++)
-            {
-                listModel.append({listName: lists.rows.item(j).listName});
+            var listName = lists.rows.item(j).lstName;
+            var listStats = lists.rows.item(j).notCheckedCount;
+            if (listName != "") {
+                addList(listName);
+                listModel.append({listName: listName, listStats: listStats});
             }
         }
     });

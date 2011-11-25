@@ -64,6 +64,7 @@ Page {
             ListsItemDelegate {
                 id: listsItem
                 listName: model.listName
+                listStats: model.listStats
                 height: 60
                 width: listView.width
                 backgroundColor: listItemBackgroundColor
@@ -336,7 +337,6 @@ Page {
         // update delete button / menu item status
             
         var itemsCount = listModel.count;
-        console.log("Updating button status ", itemsCount);
         var visible = (itemsCount>0);
 
         deleteMenuItem.visible = visible;

@@ -6,6 +6,7 @@ Item {
     id: listsItem
     property string listIndex: "0"
     property string listName: "No text"
+    property string listStats: "?"
     property color backgroundColor: Consts.getValue("LIST_ITEM_BACKGROUND_COLOR")
 
     Rectangle {
@@ -20,6 +21,17 @@ Item {
             anchors.left: parent.left
             anchors.leftMargin: 10
             font.pixelSize: 26
+        }
+        Label {
+            id: statisticsText
+            text: listStats
+            color: Consts.getValue("LIST_ITEM_TEXT_COLOR");
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: checkBoxText.right
+            anchors.right: parent.right
+            anchors.rightMargin: checkBoxText.anchors.leftMargin
+            font.pixelSize: 26
+            horizontalAlignment: Text.AlignRight
         }
 
         Rectangle {
