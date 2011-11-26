@@ -300,7 +300,7 @@ Page {
                 itemIndex: model.itemIndex
                 itemText: model.itemText
                 itemSelected: model.itemSelected
-                height: 60
+                height: Math.max(60, checkBoxText.implicitHeight + 20)
                 width: listView.width
 
                 onCheckChanged: {
@@ -308,6 +308,52 @@ Page {
                     DbConnection.loadDB(listName);
                     updateButtonStatus();
                 }
+
+                CheckBox {
+                    id: checkBox
+                    anchors.top: parent.top
+                    anchors.topMargin: 10
+                    //anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    anchors.leftMargin: 10
+                    checked: {
+                        if(itemSelected == "true")
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    onClicked: {
+                        if(checkBox.checked)
+                        {
+                            itemSelected = "true";
+                        }
+                        else
+                        {
+                            itemSelected = "false";
+                        }
+                        checkBoxText.text = getText();
+                        checkChanged();
+                    }
+                }
+
+                Label {
+                    id: checkBoxText
+                    text: getText()
+                    width: listView.width
+                    font.pixelSize: 26
+                    wrapMode: Text.Wrap
+                    color: DbConnection.getValue("LIST_ITEM_TEXT_COLOR")
+                    anchors.left: checkBox.right
+                    anchors.top: checkBox.top
+                    anchors.right: parent.right
+                    anchors.topMargin: 7
+                    anchors.leftMargin: 10
+                }
+
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
@@ -340,6 +386,18 @@ Page {
                     }
                     onReleased: {
                         listItem.backgroundColor = DbConnection.getValue("LIST_ITEM_BACKGROUND_COLOR");
+                    }
+                }
+                function getText()
+                {
+                    if(itemSelected == "true")
+                    {
+                        checkBoxText.font.strikeout = true;
+                        return itemText;
+                    }
+                    else
+                    {
+                        return itemText;
                     }
                 }
             }

@@ -1,3 +1,8 @@
+easylist (0.0.22) unstable; urgency=low
+  * Now supports wrapping of long text.
+
+ -- Willem Liu <willem.liu@gmail.com>  vr, 25 nov 2011 23:27:44 +0100
+
 easylist (0.0.21) unstable; urgency=low
   * Create new project using new Qt Creator 2.3.1.
   * Refactored entire project.
