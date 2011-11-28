@@ -16,8 +16,7 @@ function loadEditDb(theListName)
 {
     listName = theListName;
     var db = getDbConnection();
-    db.transaction(function(tx) {
-        tx.executeSql('CREATE TABLE IF NOT EXISTS EasyListData(pid INTEGER PRIMARY KEY, listName STRING, itemText STRING, selected BOOLEAN)');
+    db.readTransaction(function(tx) {
         resultSet = tx.executeSql(getOrderBy(selectSql), [listName]);
     });
 

@@ -1,18 +1,11 @@
 Qt.include("db.js");
 
-var propListName = "listName";
-var propSort = "sort";
-var propSortSelected = "sortSelected";
-var propSortPid = "sortPid";
-var propOrientationLock = "orientationLock";
-var propTheme = "theme";
-var propSyncUrl = "syncUrl";
-var propSyncUsername = "syncUsername";
-var propSyncPassword = "syncPassword";
-
 var SORT_SELECTED = "selected ASC"
 var SORT_A_Z = "UPPER(itemText) ASC";
 var SORT_PID = "pid ASC";
+
+console.log("ezConsts.init");
+initDb();
 
 /**
  * Here starts the code for themes.
@@ -124,25 +117,15 @@ function loadTheme()
  */
 function getProperty(propertyName)
 {
+    console.log("ezConsts::getProperty(" + propertyName + ")");
     var db = getDbConnection();
     var resultSet;
-    db.transaction(function(tx) {
-        tx.executeSql('CREATE TABLE IF NOT EXISTS EasyListApp(property STRING UNIQUE, value STRING)');
-        tx.executeSql("INSERT OR IGNORE INTO EasyListApp (property, value) VALUES (?,?)", [propListName, "default"]);
-        tx.executeSql("INSERT OR IGNORE INTO EasyListApp (property, value) VALUES (?,?)", [propSort, "true"]);
-        tx.executeSql("INSERT OR IGNORE INTO EasyListApp (property, value) VALUES (?,?)", [propSortSelected, "true"]);
-        tx.executeSql("INSERT OR IGNORE INTO EasyListApp (property, value) VALUES (?,?)", [propSortPid, "true"]);
-        tx.executeSql("INSERT OR IGNORE INTO EasyListApp (property, value) VALUES (?,?)", [propOrientationLock, "Automatic"]);
-        tx.executeSql("INSERT OR IGNORE INTO EasyListApp (property, value) VALUES (?,?)", [propTheme, "default"]);
-        tx.executeSql("INSERT OR IGNORE INTO EasyListApp (property, value) VALUES (?,?)", [propSyncUrl, "http://easylist.willemliu.nl/getList.php"]);
-        tx.executeSql("INSERT OR IGNORE INTO EasyListApp (property, value) VALUES (?,?)", [propSyncUsername, ""]);
-        tx.executeSql("INSERT OR IGNORE INTO EasyListApp (property, value) VALUES (?,?)", [propSyncPassword, ""]);
+    db.readTransaction(function(tx) {
         resultSet = tx.executeSql("SELECT * FROM EasyListApp WHERE property=(?)", [propertyName]);
     });
     var propertyValue;
-    for(var i = 0; i < resultSet.rows.length; i++)
-    {
-        propertyValue = resultSet.rows.item(i).value;
+    if (resultSet.rows.length>0) {
+        propertyValue = resultSet.rows.item(0).value;
     }
     return propertyValue;
 }
