@@ -1,12 +1,14 @@
 easylist (0.0.22) unstable; urgency=low
   * Now supports wrapping of long text.
+  * Now shows number of unchecked items in the Lists page by Stanislav.
+  * Improved JavaScript code with accessing database by Stanislav.
 
  -- Willem Liu <willem.liu@gmail.com>  vr, 25 nov 2011 23:27:44 +0100
 
 easylist (0.0.21) unstable; urgency=low
   * Create new project using new Qt Creator 2.3.1.
   * Refactored entire project.
-  * Delete button is now disabled when no items selected.
+  * Delete button is now disabled when no items selected by Stanislav.
   * Improved startup time.
   * Updated splash screens.
 
