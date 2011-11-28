@@ -1,4 +1,7 @@
 Qt.include("settingsDb.js");
+
+console.log("mainpageDb.js init");
+
 var db;
 var resultSet;
 var listName;
@@ -16,8 +19,7 @@ function loadDB(theListName)
 {
     listName = theListName;
     db = getDbConnection();
-    db.transaction(function(tx) {
-        tx.executeSql('CREATE TABLE IF NOT EXISTS EasyListData(pid INTEGER PRIMARY KEY, listName STRING, itemText STRING, selected BOOLEAN)');
+    db.readTransaction(function(tx) {
         resultSet = tx.executeSql(getOrderBy(selectSql), [listName]);
     });
 
@@ -81,12 +83,12 @@ function removeRecord(index)
 }
 
 /**
- * Drop table.
+ * Clear table.
  */
 function removeTable()
 {
     db.transaction(function(tx) {
-        tx.executeSql('DROP TABLE EasyListData');
+        tx.executeSql('DELETE FROM TABLE EasyListData');
     });
 }
 

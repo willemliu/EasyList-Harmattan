@@ -450,11 +450,6 @@ Page {
         }
     }
 
-    function reloadDb()
-    {
-        SettingsDb.loadSettingsDb();
-    }
-
     function loadTheme()
     {
         SettingsDb.loadTheme();
@@ -475,12 +470,5 @@ Page {
             SettingsDb.setProperty(SettingsDb.propSyncPassword, Qt.md5(syncPasswordTextField.text));
         }
         pageStack.pop();
-    }
-
-    onVisibleChanged: {
-        if(visible)
-        {
-            reloadDb();
-        }
     }
 }
