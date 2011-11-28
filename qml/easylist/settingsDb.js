@@ -5,29 +5,6 @@ var resultSet;
 var selectSql = "SELECT * FROM EasyListApp WHERE property=(?) ORDER BY pid ASC";
 
 /**
- * The entry point. This function is called by all other functions which need this
- * database connection te be setup. This function starts the database connection. The table
- * EasyListApp is also created if it does not exist yet.
- *
- */
-function loadSettingsDb()
-{
-    db = getDbConnection();
-    db.transaction(function(tx) {
-        tx.executeSql('CREATE TABLE IF NOT EXISTS EasyListApp(property STRING UNIQUE, value STRING)');
-        tx.executeSql("INSERT OR IGNORE INTO EasyListApp (property, value) VALUES (?,?)", [propListName, "default"]);
-        tx.executeSql("INSERT OR IGNORE INTO EasyListApp (property, value) VALUES (?,?)", [propSort, "true"]);
-        tx.executeSql("INSERT OR IGNORE INTO EasyListApp (property, value) VALUES (?,?)", [propSortSelected, "true"]);
-        tx.executeSql("INSERT OR IGNORE INTO EasyListApp (property, value) VALUES (?,?)", [propSortPid, "true"]);
-        tx.executeSql("INSERT OR IGNORE INTO EasyListApp (property, value) VALUES (?,?)", [propOrientationLock, "Automatic"]);
-        tx.executeSql("INSERT OR IGNORE INTO EasyListApp (property, value) VALUES (?,?)", [propTheme, "default"]);
-        tx.executeSql("INSERT OR IGNORE INTO EasyListApp (property, value) VALUES (?,?)", [propSyncUrl, "http://easylist.willemliu.nl/getList.php"]);
-        tx.executeSql("INSERT OR IGNORE INTO EasyListApp (property, value) VALUES (?,?)", [propSyncUsername, ""]);
-        tx.executeSql("INSERT OR IGNORE INTO EasyListApp (property, value) VALUES (?,?)", [propSyncPassword, ""]);
-    });
-}
-
-/**
  * Set the list name in the database.
  */
 function setListName(theListName)
@@ -72,7 +49,6 @@ function getOrientationLock()
  */
 function setProperty(propertyName, propertyValue)
 {
-    loadSettingsDb();
     db.transaction(function(tx) {
         tx.executeSql("INSERT OR REPLACE INTO EasyListApp (property, value) VALUES (?,?)", [propertyName, propertyValue]);
     });
@@ -83,8 +59,7 @@ function setProperty(propertyName, propertyValue)
  */
 function getProperty(propertyName)
 {
-    loadSettingsDb();
-    db.transaction(function(tx) {
+    db.readTransaction(function(tx) {
         resultSet = tx.executeSql("SELECT * FROM EasyListApp WHERE property=(?)", [propertyName]);
     });
     var propertyValue;
@@ -137,14 +112,14 @@ function getOrderBy(query)
 }
 
 /**
- * Drop tables.
+ * Clear tables.
  */
 function removeTables()
 {
     db = getDbConnection();
     db.transaction(function(tx) {
-        tx.executeSql('DROP TABLE IF EXISTS EasyListData');
-        tx.executeSql('DROP TABLE IF EXISTS EasyListApp');
-        tx.executeSql('DROP TABLE IF EXISTS EasyListLists');
+        tx.executeSql('DELETE FROM TABLE IF EXISTS EasyListData');
+        tx.executeSql('DELETE FROM TABLE IF EXISTS EasyListApp');
+        tx.executeSql('DELETE FROM TABLE IF EXISTS EasyListLists');
     });
 }
