@@ -2,6 +2,7 @@ easylist (0.0.22) unstable; urgency=low
   * Now supports wrapping of long text.
   * Now shows number of unchecked items in the Lists page by Stanislav.
   * Improved JavaScript code with accessing database by Stanislav.
+  * Fixed bug when all lists has been deleted and then adding an item it would not show any list the first time you go into Lists page.
 
  -- Willem Liu <willem.liu@gmail.com>  vr, 25 nov 2011 23:27:44 +0100
 

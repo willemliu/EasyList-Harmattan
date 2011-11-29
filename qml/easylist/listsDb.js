@@ -39,12 +39,25 @@ function getListsModel()
                     "ON EasyListLists.listName=EasyListData.listName AND EasyListData.selected='false' "+
                     "GROUP BY lstName ORDER BY UPPER(lstName)";
         var lists = tx.executeSql(query);
+        if(lists.rows.length === 0)
+        {
+            // This bit of code is needed to extrapolate List names from the existing list items. This is possible
+            // because the interface allows the user to add list items even when no lists has been added. The items
+            // will be saved under the list called "default".
+            tx.executeSql('CREATE TABLE IF NOT EXISTS EasyListData(pid INTEGER PRIMARY KEY, listName STRING, itemText STRING, selected BOOLEAN)');
+            var rs = tx.executeSql("SELECT listName FROM EasyListData GROUP BY listName ORDER BY UPPER(listName)");
+            for(var i = 0; i < rs.rows.length; i++)
+            {
+                addList(rs.rows.item(i).listName);
+            }
+            lists = tx.executeSql(query);
+        }
         for(var j = 0; j < lists.rows.length; j++)
         {
             var listName = lists.rows.item(j).lstName;
+            console.log("found list: " + listName);
             var listStats = lists.rows.item(j).notCheckedCount;
-            if (listName != "") {
-                addList(listName);
+            if (listName !== "") {
                 listModel.append({listName: listName, listStats: listStats});
             }
         }

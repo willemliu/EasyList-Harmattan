@@ -19,6 +19,7 @@ function setListName(theListName)
 function getListName()
 {
     var name = getProperty(propListName);
+    console.log("get listname: " + name);
     if(name.length === 0)
     {
         name = "default";
@@ -118,8 +119,8 @@ function removeTables()
 {
     db = getDbConnection();
     db.transaction(function(tx) {
-        tx.executeSql('DELETE FROM TABLE IF EXISTS EasyListData');
-        tx.executeSql('DELETE FROM TABLE IF EXISTS EasyListApp');
-        tx.executeSql('DELETE FROM TABLE IF EXISTS EasyListLists');
+        tx.executeSql('DROP TABLE IF EXISTS EasyListData');
+        tx.executeSql('DROP TABLE IF EXISTS EasyListApp');
+        tx.executeSql('DROP TABLE IF EXISTS EasyListLists');
     });
 }

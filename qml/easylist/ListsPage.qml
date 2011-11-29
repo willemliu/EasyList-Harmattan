@@ -52,8 +52,8 @@ Page {
             anchors.leftMargin: 10
             anchors.rightMargin: 10
             model: ListsDb.getListsModel()
-            delegate: itemComponent
             highlight: highlight
+            delegate: itemComponent
         }
         ScrollDecorator {
             flickableItem: listView
@@ -102,7 +102,6 @@ Page {
         Component {
             id: highlight
             Rectangle {
-                z: 1
                 width: listView.width;
                 height: 60
                 color: highlightColor;

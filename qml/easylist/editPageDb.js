@@ -37,6 +37,7 @@ function setListName(theListName)
 function populateEditDb(text)
 {
     var db = getDbConnection();
+    console.log("populate list: " + listName);
     db.transaction(function(tx) {
         // Clear all items.
         tx.executeSql('DELETE FROM EasyListData WHERE listName=(?)', [listName]);
