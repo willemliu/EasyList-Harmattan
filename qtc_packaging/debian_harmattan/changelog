@@ -1,3 +1,10 @@
+easylist (0.0.23) unstable; urgency=low
+  * Fixed Settings view height. Save button would not fit on screen.
+  * Added Terminal theme. Black background for battery saving.
+  * Added multiple online list support.
+
+ -- Willem Liu <willem.liu@gmail.com>  wed, 25 jan 2012 20:25:51 +0100
+
 easylist (0.0.22) unstable; urgency=low
   * Now supports wrapping of long text.
   * Now shows number of unchecked items in the Lists page by Stanislav.

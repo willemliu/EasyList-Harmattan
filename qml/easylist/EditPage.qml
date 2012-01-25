@@ -76,4 +76,9 @@ Sheet {
         EditDb.listName = listName
         EditDb.populateEditDb(text);
     }
+
+    function saveList(listName, text)
+    {
+        EditDb.setListDb(listName, text);
+    }
 }

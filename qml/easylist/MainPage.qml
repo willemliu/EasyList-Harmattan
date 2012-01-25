@@ -486,13 +486,40 @@ Page {
                         {
                             if(a.nodeName == "ezList")
                             {
-                                for (var ii = 0; ii < a.childNodes.length; ++ii) {
-                                    if(a.childNodes[ii].nodeName == "#cdata-section")
+                                if(a.childNodes.length > 0)
+                                {
+                                    var listsNode = a.childNodes[0];
+                                    for (var ii = 0; ii < listsNode.childNodes.length; ++ii)
                                     {
-                                        editPageLoader.sourceComponent = editPageComponent;
-                                        editPageLoader.item.saveText(mainPage.listName, a.childNodes[ii].nodeValue);
-                                        synced = true;
-                                        break;
+                                        var listNode = listsNode.childNodes[ii];
+                                        if(listNode.nodeName == "list")
+                                        {
+                                            var name;
+                                            var data;
+                                            for (var iii = 0; iii < listNode.childNodes.length; ++iii)
+                                            {
+                                                var dataNode = listNode.childNodes[iii];
+                                                if(dataNode.nodeName == "name")
+                                                {
+                                                    name = dataNode.childNodes[0].nodeValue;
+                                                }
+
+                                                if(dataNode.nodeName == "data")
+                                                {
+                                                    if(dataNode.childNodes[0].nodeName == "#cdata-section")
+                                                    {
+                                                        data = dataNode.childNodes[0].nodeValue;
+                                                    }
+                                                }
+                                            }
+                                            if(typeof name != 'undefined' && typeof data != 'undefined')
+                                            {
+                                                showRequestInfo(name + ", data:" + data );
+                                                editPageLoader.sourceComponent = editPageComponent;
+                                                editPageLoader.item.saveList(name, data);
+                                                synced = true;
+                                            }
+                                        }
                                     }
                                 }
                                 mainPage.reloadDb();
@@ -510,7 +537,7 @@ Page {
                     }
                 }
             }
-            doc.open("GET", syncUrl + "?username=" + syncUsername + "&password=" + syncPassword + "&xml=true");
+            doc.open("GET", syncUrl + "?username=" + syncUsername + "&password=" + syncPassword + "&xml=v2");
             doc.send();
         }
         else

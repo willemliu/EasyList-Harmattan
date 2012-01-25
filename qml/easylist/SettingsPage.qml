@@ -113,7 +113,7 @@ Page {
             Rectangle {
                 id: optionsRectangle
                 implicitWidth: flick.width
-                implicitHeight: 710
+                implicitHeight: 770
                 color: backgroundColor
 
                 // Division line
