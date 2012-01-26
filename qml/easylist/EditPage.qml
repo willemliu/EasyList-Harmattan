@@ -77,8 +77,8 @@ Sheet {
         EditDb.populateEditDb(text);
     }
 
-    function saveList(listName, text)
+    function saveList(listName, text, timestamp)
     {
-        EditDb.setListDb(listName, text);
+        EditDb.setListDb(listName, text, timestamp);
     }
 }

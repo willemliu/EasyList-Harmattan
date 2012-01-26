@@ -128,7 +128,7 @@ function loadTheme()
  */
 function getProperty(propertyName)
 {
-    console.log("ezConsts::getProperty(" + propertyName + ")");
+    //console.log("ezConsts::getProperty(" + propertyName + ")");
     var db = getDbConnection();
     var resultSet;
     db.readTransaction(function(tx) {

@@ -496,6 +496,7 @@ Page {
                                         {
                                             var name;
                                             var data;
+                                            var timestamp;
                                             for (var iii = 0; iii < listNode.childNodes.length; ++iii)
                                             {
                                                 var dataNode = listNode.childNodes[iii];
@@ -511,12 +512,15 @@ Page {
                                                         data = dataNode.childNodes[0].nodeValue;
                                                     }
                                                 }
+                                                if(dataNode.nodeName == "last-modified")
+                                                {
+                                                    timestamp = dataNode.childNodes[0].nodeValue;
+                                                }
                                             }
                                             if(typeof name != 'undefined' && typeof data != 'undefined')
                                             {
-                                                showRequestInfo(name + ", data:" + data );
                                                 editPageLoader.sourceComponent = editPageComponent;
-                                                editPageLoader.item.saveList(name, data);
+                                                editPageLoader.item.saveList(name, data, timestamp);
                                                 synced = true;
                                             }
                                         }

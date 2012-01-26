@@ -8,6 +8,7 @@ function removeList(listName)
 {
     db = getDbConnection();
     db.transaction(function(tx) {
+        tx.executeSql('DELETE FROM EasyListListsLastModified WHERE listName=(?)', [listName]);
         tx.executeSql('DELETE FROM EasyListData WHERE listName=(?)', [listName]);
         tx.executeSql('DELETE FROM EasyListLists WHERE listName=(?)', [listName]);
     });
