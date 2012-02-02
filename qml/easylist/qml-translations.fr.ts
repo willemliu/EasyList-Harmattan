@@ -163,9 +163,12 @@ coller ici.</translation>
         <source>Do you really want sync your current list with the online list?
 
 All your current items will be overwritten.</source>
-        <translation>Voulez-vous vraiment synchroniser votre liste actuelle avec le serveur ?
+        <translation type="unfinished">Voulez-vous vraiment synchroniser vos listes avec vos listes distantes ?
 
-Tous les éléments actuels du serveur seront remplacés.</translation>
+Vos listes distantes seront remplacées si :
+- Vos listes n&apos;ont jamais été synchronisées.
+- Des listes distantes existent avec le même nom.
+- Les listes distantes ont changé depuis la dernière synchronisation.</translation>
     </message>
     <message>
         <source>Can&apos;t synchronize</source>
@@ -255,10 +258,10 @@ Tous les éléments actuels du serveur seront remplacés.</translation>
 
 You can create your online account on http://easylist.willemliu.nl.
 Default sync URL is: http://easylist.willemliu.nl/getList.php</source>
-        <translation>Une fois votre compte configuré, vous pourrez synchroniser votre liste avec le serveur.
+        <translation type="unfinished">Pour synchroniser vos listes avec le serveur distant, vous devez d&apos;abord créer un compte.
 
-Vous pouvez créer votre compte en ligne à l&apos;adresse : http://easylist.willemliu.nl.
-L&apos;URL standard de synchronisation est : http://easylist.willemliu.nl/getList.php</translation>
+Créer un compte à cette adresse : http://easylist.willemliu.nl.
+L&apos;URL de synchronisation par défaut est : http://easylist.willemliu.nl/getList.php</translation>
     </message>
     <message>
         <source>Ok</source>

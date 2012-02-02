@@ -162,9 +162,12 @@ and paste it here as well.</translation>
         <source>Do you really want sync your current list with the online list?
 
 All your current items will be overwritten.</source>
-        <translation>Do you really want sync your current list with the online list?
+        <translation>Do you really want sync your current lists with the online lists?
 
-All your current items will be overwritten.</translation>
+Your lists will be overwritten if:
+- The list is never synced before.
+- Only lists with the same name are synced.
+- The online list has changed since the last sync.</translation>
     </message>
     <message>
         <source>Can&apos;t synchronize</source>
@@ -254,7 +257,7 @@ All your current items will be overwritten.</translation>
 
 You can create your online account on http://easylist.willemliu.nl.
 Default sync URL is: http://easylist.willemliu.nl/getList.php</source>
-        <translation>When you&apos;ve setup your synchronization account then you&apos;ll be able to synchronize your list with your online list.
+        <translation type="unfinished">When you&apos;ve setup your synchronization account then you&apos;ll be able to synchronize your lists with your online lists.
 
 You can create your online account on http://easylist.willemliu.nl.
 Default sync URL is: http://easylist.willemliu.nl/getList.php</translation>
