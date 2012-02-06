@@ -9,7 +9,7 @@ Page {
     property color headerTextColor: SettingsDb.getValue("HEADER_TEXT_COLOR")
     property color textColor: SettingsDb.getValue("TEXT_COLOR")
     orientationLock: SettingsDb.getOrientationLock();
-    property string version: "0.0.24";
+    property string version: "0.0.26";
 
     Rectangle {
         id: background
@@ -158,6 +158,15 @@ Page {
                     font.family: "Helvetica"
                     font.pointSize: 24
                     text: "Arto Jalkanen"
+                    color: textColor
+                }
+                Text {
+                    id: text12
+                    anchors.top: text11.bottom
+                    anchors.horizontalCenter: text11.horizontalCenter
+                    font.family: "Helvetica"
+                    font.pointSize: 24
+                    text: "Jan-Eric Lindh"
                     color: textColor
                 }
             }

@@ -162,7 +162,7 @@ ohjelmista ja liittää sen tänne.</translation>
         <source>Do you really want sync your current list with the online list?
 
 All your current items will be overwritten.</source>
-        <translation type="unfinished">Oletko varma että haluat synkronoida nykyiset listasi palvelimen kanssa?
+        <translation>Oletko varma että haluat synkronoida nykyiset listasi palvelimen kanssa?
 
 Listasi korvautuvat palvelimen listoilla jos:
 - Listaa ei ole synkronoitu aikaisemmin.
@@ -257,7 +257,7 @@ Listasi korvautuvat palvelimen listoilla jos:
 
 You can create your online account on http://easylist.willemliu.nl.
 Default sync URL is: http://easylist.willemliu.nl/getList.php</source>
-        <translation type="unfinished">Kun olet määrittänyt synkronointi tilin, pystyt synkronoimaan listasi palvelimella olevaan listaasi.
+        <translation>Kun olet määrittänyt synkronointi tilin, pystyt synkronoimaan listasi palvelimella olevaan listaasi.
 
 Voit luoda tilin palvelimelle osoitteessa http://easylist.willemliu.nl.
 Oletusarvoinen synkronointi URL on: http://easylist.willemliu.nl/getList.php</translation>

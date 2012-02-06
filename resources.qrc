@@ -8,5 +8,6 @@
         <file>qml/easylist/qml-translations.nl.qm</file>
         <file>qml/easylist/qml-translations.ru.qm</file>
         <file>qml/easylist/qml-translations.tr.qm</file>
+        <file>qml/easylist/qml-translations.sv.qm</file>
     </qresource>
 </RCC>

@@ -4,7 +4,7 @@ var SORT_SELECTED = "selected ASC"
 var SORT_A_Z = "UPPER(itemText) ASC";
 var SORT_PID = "pid ASC";
 
-console.log("ezConsts.init");
+//console.log("ezConsts.init");
 initDb();
 
 /**

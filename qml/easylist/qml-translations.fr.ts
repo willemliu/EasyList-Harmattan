@@ -163,7 +163,7 @@ coller ici.</translation>
         <source>Do you really want sync your current list with the online list?
 
 All your current items will be overwritten.</source>
-        <translation type="unfinished">Voulez-vous vraiment synchroniser vos listes avec vos listes distantes ?
+        <translation>Voulez-vous vraiment synchroniser vos listes avec vos listes distantes ?
 
 Vos listes distantes seront remplacées si :
 - Vos listes n&apos;ont jamais été synchronisées.
@@ -258,7 +258,7 @@ Vos listes distantes seront remplacées si :
 
 You can create your online account on http://easylist.willemliu.nl.
 Default sync URL is: http://easylist.willemliu.nl/getList.php</source>
-        <translation type="unfinished">Pour synchroniser vos listes avec le serveur distant, vous devez d&apos;abord créer un compte.
+        <translation>Pour synchroniser vos listes avec le serveur distant, vous devez d&apos;abord créer un compte.
 
 Créer un compte à cette adresse : http://easylist.willemliu.nl.
 L&apos;URL de synchronisation par défaut est : http://easylist.willemliu.nl/getList.php</translation>

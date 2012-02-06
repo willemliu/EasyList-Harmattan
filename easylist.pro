@@ -57,6 +57,7 @@ TRANSLATIONS += \
     qml/easylist/qml-translations.nl.ts \
     qml/easylist/qml-translations.tl.ts \
     qml/easylist/qml-translations.ru.ts \
+    qml/easylist/qml-translations.sv.ts \
     qml/easylist/qml-translations.tr.ts
 
 

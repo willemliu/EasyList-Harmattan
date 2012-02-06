@@ -257,7 +257,7 @@ Your lists will be overwritten if:
 
 You can create your online account on http://easylist.willemliu.nl.
 Default sync URL is: http://easylist.willemliu.nl/getList.php</source>
-        <translation type="unfinished">When you&apos;ve setup your synchronization account then you&apos;ll be able to synchronize your lists with your online lists.
+        <translation>When you&apos;ve setup your synchronization account then you&apos;ll be able to synchronize your lists with your online lists.
 
 You can create your online account on http://easylist.willemliu.nl.
 Default sync URL is: http://easylist.willemliu.nl/getList.php</translation>

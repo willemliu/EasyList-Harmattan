@@ -17,6 +17,7 @@ Page {
     signal hideToolbar(bool hideToolbar)
     property int index: -1
     property int modelIndex: -1
+    property int scrollTo: 0
 
     Loader {
         id: aboutPageLoader
@@ -357,6 +358,7 @@ Page {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
+                        scrollTo = listView.contentY;
                         if(listItem.itemSelected == "true")
                         {
                             DbConnection.saveRecord(itemIndex, "false");
@@ -368,8 +370,10 @@ Page {
                         DbConnection.loadDB(listName);
                         listItem.backgroundColor = DbConnection.getValue("LIST_ITEM_BACKGROUND_COLOR");
                         updateButtonStatus();
+                        listView.contentY = scrollTo;
                     }
                     onPressAndHold: {
+                        scrollTo = listView.contentY;
                         mainPage.index = listItem.itemIndex;
                         contextMenu.open();
                         listItem.backgroundColor = DbConnection.getValue("LIST_ITEM_BACKGROUND_COLOR");
@@ -412,6 +416,7 @@ Page {
                 onClicked: {
                     DbConnection.removeRecord(mainPage.index);
                     mainPage.reloadDb();
+                    listView.contentY = scrollTo;
                 }
             }
         }
@@ -442,6 +447,8 @@ Page {
         }
         DbConnection.populateModel();
         updateButtonStatus();
+        console.log("Scroll To3: " + scrollTo);
+        listView.contentY = scrollTo;
     }
 
     function loadTheme()

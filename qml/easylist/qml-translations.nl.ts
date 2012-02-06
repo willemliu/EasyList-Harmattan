@@ -162,7 +162,7 @@ en hier plakken.</translation>
         <source>Do you really want sync your current list with the online list?
 
 All your current items will be overwritten.</source>
-        <translation type="unfinished">Wilt u echt uw huidige lijsten synchroniseren met de online lijsten?
+        <translation>Wilt u echt uw huidige lijsten synchroniseren met de online lijsten?
 
 Uw lijsten worden overschreven als:
 - De lijst nooit eerder is gesynchroniseerd.
@@ -257,7 +257,7 @@ Uw lijsten worden overschreven als:
 
 You can create your online account on http://easylist.willemliu.nl.
 Default sync URL is: http://easylist.willemliu.nl/getList.php</source>
-        <translation type="unfinished">Wanneer u uw synchronisatie-account hebt ingesteld dan zul je in staat zijn om uw lijsten te synchroniseren met uw online lijsten.
+        <translation>Wanneer u uw synchronisatie-account hebt ingesteld dan zul je in staat zijn om uw lijsten te synchroniseren met uw online lijsten.
 
 U kunt uw online account op http://easylist.willemliu.nl creëren.
 Standaard sync URL is: http://easylist.willemliu.nl/getList.php</translation>

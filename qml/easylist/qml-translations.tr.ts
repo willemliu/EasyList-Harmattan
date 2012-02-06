@@ -164,7 +164,7 @@ kopyalayıp buraya yapıştırabilirsiniz.</translation>
         <source>Do you really want sync your current list with the online list?
 
 All your current items will be overwritten.</source>
-        <translation type="unfinished">Mevcut listenizi internet listenizle senkronize etmek ister misiniz?
+        <translation>Mevcut listenizi internet listenizle senkronize etmek ister misiniz?
 
 Eğer isterseniz listeniz üstüne yazılacak:
 - Listeniz daha önce senkronize edilmemiş.
@@ -259,7 +259,7 @@ Eğer isterseniz listeniz üstüne yazılacak:
 
 You can create your online account on http://easylist.willemliu.nl.
 Default sync URL is: http://easylist.willemliu.nl/getList.php</source>
-        <translation type="unfinished">Senkronizasyon hesaplarınızı ayarladıktan sonra internet listenizle mevcut listenizi senkronize edebilirsiniz.
+        <translation>Senkronizasyon hesaplarınızı ayarladıktan sonra internet listenizle mevcut listenizi senkronize edebilirsiniz.
 
 Online hesabınızı http://easylist.willemliu.nl adresinde yaratabilirsiniz.
 Varsayılan senkronizasyon adresi: http://easylist.willemliu.nl/getList.php</translation>
