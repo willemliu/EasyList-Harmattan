@@ -478,10 +478,10 @@ Page {
             doc.onreadystatechange = function() {
                 if (doc.readyState == XMLHttpRequest.HEADERS_RECEIVED)
                 {
-                    //showRequestInfo("Headers -->");
-                    //showRequestInfo(doc.getAllResponseHeaders ());
-                    //showRequestInfo("Last modified -->");
-                    //showRequestInfo(doc.getResponseHeader ("Last-Modified"));
+                    showRequestInfo("Headers -->");
+                    showRequestInfo(doc.getAllResponseHeaders ());
+                    showRequestInfo("Last modified -->");
+                    showRequestInfo(doc.getResponseHeader ("Last-Modified"));
                 }
                 else if (doc.readyState == XMLHttpRequest.DONE)
                 {
@@ -548,8 +548,9 @@ Page {
                     }
                 }
             }
-            doc.open("GET", syncUrl + "?username=" + syncUsername + "&password=" + syncPassword + "&xml=v2");
-            doc.send();
+            doc.open("POST", syncUrl + "?username=" + syncUsername + "&password=" + syncPassword + "&xml=v2", true);
+            doc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            doc.send("name=asadasdasd");
         }
         else
         {

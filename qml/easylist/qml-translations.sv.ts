@@ -24,22 +24,22 @@
         <translation>Tack till:</translation>
     </message>
     <message>
-        <location filename="AboutPage.qml" line="169"/>
+        <location filename="AboutPage.qml" line="178"/>
         <source>Drop tables?</source>
         <translation>Ta bort tabeller?</translation>
     </message>
     <message>
-        <location filename="AboutPage.qml" line="170"/>
+        <location filename="AboutPage.qml" line="179"/>
         <source>Do you really want to remove all tables used by EasyList?</source>
         <translation>Vill du verkligen ta bort alla Easylist-tabeller?</translation>
     </message>
     <message>
-        <location filename="AboutPage.qml" line="171"/>
+        <location filename="AboutPage.qml" line="180"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="AboutPage.qml" line="172"/>
+        <location filename="AboutPage.qml" line="181"/>
         <source>Cancel</source>
         <translation>Avbryt</translation>
     </message>
@@ -145,60 +145,60 @@ och klistra in den här.</translation>
 <context>
     <name>MainPage</name>
     <message>
-        <location filename="MainPage.qml" line="127"/>
+        <location filename="MainPage.qml" line="128"/>
         <source>Deselect all</source>
         <translation>Avmarkera alla</translation>
     </message>
     <message>
-        <location filename="MainPage.qml" line="136"/>
+        <location filename="MainPage.qml" line="137"/>
         <source>Remove checked</source>
         <translation>Ta bort markerad</translation>
     </message>
     <message>
-        <location filename="MainPage.qml" line="143"/>
+        <location filename="MainPage.qml" line="144"/>
         <source>Synchronise</source>
         <translation>Synkronisera</translation>
     </message>
     <message>
-        <location filename="MainPage.qml" line="150"/>
+        <location filename="MainPage.qml" line="151"/>
         <source>Settings</source>
         <translation>Inställningar</translation>
     </message>
     <message>
-        <location filename="MainPage.qml" line="157"/>
+        <location filename="MainPage.qml" line="158"/>
         <source>About</source>
         <translation>Om</translation>
     </message>
     <message>
-        <location filename="MainPage.qml" line="180"/>
+        <location filename="MainPage.qml" line="181"/>
         <source>Remove checked items?</source>
         <translation>Ta bort markerade poster?</translation>
     </message>
     <message>
-        <location filename="MainPage.qml" line="181"/>
+        <location filename="MainPage.qml" line="182"/>
         <source>Do you really want to remove all checked items?</source>
         <translation>Vill du verkligen ta bort alla markerade poster?</translation>
     </message>
     <message>
-        <location filename="MainPage.qml" line="182"/>
-        <location filename="MainPage.qml" line="204"/>
-        <location filename="MainPage.qml" line="226"/>
+        <location filename="MainPage.qml" line="183"/>
+        <location filename="MainPage.qml" line="205"/>
+        <location filename="MainPage.qml" line="227"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="MainPage.qml" line="183"/>
-        <location filename="MainPage.qml" line="205"/>
+        <location filename="MainPage.qml" line="184"/>
+        <location filename="MainPage.qml" line="206"/>
         <source>Cancel</source>
         <translation>Avbryt</translation>
     </message>
     <message>
-        <location filename="MainPage.qml" line="202"/>
+        <location filename="MainPage.qml" line="203"/>
         <source>Sync with online list?</source>
         <translation>Synkronisera med listan på internet?</translation>
     </message>
     <message>
-        <location filename="MainPage.qml" line="203"/>
+        <location filename="MainPage.qml" line="204"/>
         <source>Do you really want sync your current list with the online list?
 
 All your current items will be overwritten.</source>
@@ -209,17 +209,17 @@ Listan kommer att skrivas över om:
 - listan på internet har ändrats sedan senaste synkroniseringen.</translation>
     </message>
     <message>
-        <location filename="MainPage.qml" line="224"/>
+        <location filename="MainPage.qml" line="225"/>
         <source>Can&apos;t synchronize</source>
         <translation>Kan inte synkronisera</translation>
     </message>
     <message>
-        <location filename="MainPage.qml" line="225"/>
+        <location filename="MainPage.qml" line="226"/>
         <source>Unable to synchronize with online list. Please make sure you&apos;ve correctly setup your sync account in settings.</source>
         <translation>Kan inte synkronisera med internetlistan. Var vänlig kontrollera att kontouppgifterna är rätt under inställningar.</translation>
     </message>
     <message>
-        <location filename="MainPage.qml" line="411"/>
+        <location filename="MainPage.qml" line="415"/>
         <source>Remove</source>
         <translation>Ta bort</translation>
     </message>
@@ -238,81 +238,91 @@ Listan kommer att skrivas över om:
     </message>
     <message>
         <location filename="SettingsPage.qml" line="132"/>
+        <source>Delimit by:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SettingsPage.qml" line="142"/>
+        <source>Comma delimited:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SettingsPage.qml" line="174"/>
         <source>Sort</source>
         <translation>Sortera</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="143"/>
+        <location filename="SettingsPage.qml" line="185"/>
         <source>Alphabetically:</source>
         <translation>Alfabetiskt:</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="165"/>
+        <location filename="SettingsPage.qml" line="207"/>
         <source>Checked items to bottom:</source>
         <translation>Flytta markera poster till slutet:</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="195"/>
+        <location filename="SettingsPage.qml" line="237"/>
         <source>Orientation</source>
         <translation>Orientering</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="214"/>
+        <location filename="SettingsPage.qml" line="256"/>
         <source>Portrait</source>
         <translation>Porträtt</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="235"/>
+        <location filename="SettingsPage.qml" line="277"/>
         <source>Landscape</source>
         <translation>Landskap</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="256"/>
+        <location filename="SettingsPage.qml" line="298"/>
         <source>Auto</source>
         <translation>Auto</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="290"/>
+        <location filename="SettingsPage.qml" line="332"/>
         <source>Theme</source>
         <translation>Tema</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="307"/>
+        <location filename="SettingsPage.qml" line="349"/>
         <source>Select Theme...</source>
         <translation>Välj tema...</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="325"/>
+        <location filename="SettingsPage.qml" line="367"/>
         <source>Synchronise</source>
         <translation>Synkronisera</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="336"/>
+        <location filename="SettingsPage.qml" line="378"/>
         <source>Source:</source>
         <translation>Källa:</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="359"/>
+        <location filename="SettingsPage.qml" line="401"/>
         <source>Username:</source>
         <translation>Användarnamn:</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="382"/>
+        <location filename="SettingsPage.qml" line="424"/>
         <source>Password:</source>
         <translation>Lösenord:</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="404"/>
+        <location filename="SettingsPage.qml" line="446"/>
         <source>Save</source>
         <translation>Spara</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="424"/>
+        <location filename="SettingsPage.qml" line="466"/>
         <source>Synchronization</source>
         <translation>Synkronisering</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="425"/>
+        <location filename="SettingsPage.qml" line="467"/>
         <source>When you&apos;ve setup your synchronization account then you&apos;ll be able to synchronize your list with your online list.
 
 You can create your online account on http://easylist.willemliu.nl.
@@ -323,7 +333,7 @@ Du kan skapa ditt internetkonto här http://easylist.willemliu.nl.
 Förvald synkroniseringslänk är: http://easylist.willemliu.nl/getList.php</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="426"/>
+        <location filename="SettingsPage.qml" line="468"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>

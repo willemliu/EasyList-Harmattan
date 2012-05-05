@@ -266,5 +266,13 @@ L&apos;indirizzo di sincronizzazione di default è: http://easylist.willemliu.nl
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
+    <message>
+        <source>Delimit by:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comma delimited:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

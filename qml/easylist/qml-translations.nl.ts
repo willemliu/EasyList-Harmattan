@@ -266,5 +266,13 @@ Standaard sync URL is: http://easylist.willemliu.nl/getList.php</translation>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
+    <message>
+        <source>Delimit by:</source>
+        <translation>Splitsen met:</translation>
+    </message>
+    <message>
+        <source>Comma delimited:</source>
+        <translation>Komma gesplitst:</translation>
+    </message>
 </context>
 </TS>

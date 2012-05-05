@@ -118,6 +118,48 @@ Page {
 
                 // Division line
                 Rectangle {
+                    id: commaDelimitedDivisionLine
+                    color: divisionLineColor
+                    height: 1
+                    anchors.verticalCenter: commaDelimitedDivisionLabel.verticalCenter
+                    anchors.leftMargin: 10
+                    anchors.left: parent.left
+                    anchors.rightMargin: 5
+                    anchors.right: commaDelimitedDivisionLabel.left
+                }
+                Label {
+                    id: commaDelimitedDivisionLabel
+                    text: qsTr("Delimit by:")
+                    font.pointSize: 26
+                    anchors.top: parent.top
+                    anchors.right: parent.right
+                    anchors.rightMargin: 10
+                    color: divisionLineTextColor
+                }
+                // Comma delimited
+                Label {
+                    id: commaDelimitedLabel
+                    text: qsTr("Comma delimited:")
+                    font.pointSize: 26
+                    anchors.verticalCenter: commaDelimitedSwitch.verticalCenter
+                    anchors.left: parent.left
+                    anchors.leftMargin: 10
+                    color: textColor
+                }
+                Switch {
+                    id: commaDelimitedSwitch
+                    anchors.topMargin: 10;
+                    anchors.top: commaDelimitedDivisionLabel.bottom
+                    anchors.right: parent.right
+                    anchors.rightMargin: 10
+                    checked: {getBooleanProperty(SettingsDb.propCommaDelimitedSelected);}
+                    onCheckedChanged: {
+                        saveBooleanProperty(SettingsDb.propCommaDelimitedSelected, checked);
+                    }
+                }
+
+                // Division line
+                Rectangle {
                     id: sortingDivisionLine
                     color: divisionLineColor
                     height: 1
@@ -131,7 +173,7 @@ Page {
                     id: sortingLabel
                     text: qsTr("Sort")
                     font.pointSize: 26
-                    anchors.top: parent.top
+                    anchors.top: commaDelimitedSwitch.bottom
                     anchors.right: parent.right
                     anchors.rightMargin: 10
                     color: divisionLineTextColor
