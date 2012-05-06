@@ -263,11 +263,11 @@ Default sync URL is: http://easylist.willemliu.nl/getList.php</source>
         <translation>ОК</translation>
     </message>
     <message>
-        <source>Delimit by:</source>
+        <source>Comma delimited:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Comma delimited:</source>
+        <source>Delimit by</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

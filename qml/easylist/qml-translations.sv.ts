@@ -238,13 +238,14 @@ Listan kommer att skrivas över om:
     </message>
     <message>
         <location filename="SettingsPage.qml" line="132"/>
-        <source>Delimit by:</source>
-        <translation type="unfinished"></translation>
+        <source>Delimit by</source>
+        <oldsource>Delimit by:</oldsource>
+        <translation>Avgränsa med</translation>
     </message>
     <message>
         <location filename="SettingsPage.qml" line="142"/>
         <source>Comma delimited:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommaavgränsad:</translation>
     </message>
     <message>
         <location filename="SettingsPage.qml" line="174"/>
@@ -252,77 +253,77 @@ Listan kommer att skrivas över om:
         <translation>Sortera</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="185"/>
+        <location filename="SettingsPage.qml" line="186"/>
         <source>Alphabetically:</source>
         <translation>Alfabetiskt:</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="207"/>
+        <location filename="SettingsPage.qml" line="208"/>
         <source>Checked items to bottom:</source>
         <translation>Flytta markera poster till slutet:</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="237"/>
+        <location filename="SettingsPage.qml" line="238"/>
         <source>Orientation</source>
         <translation>Orientering</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="256"/>
+        <location filename="SettingsPage.qml" line="257"/>
         <source>Portrait</source>
         <translation>Porträtt</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="277"/>
+        <location filename="SettingsPage.qml" line="278"/>
         <source>Landscape</source>
         <translation>Landskap</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="298"/>
+        <location filename="SettingsPage.qml" line="299"/>
         <source>Auto</source>
         <translation>Auto</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="332"/>
+        <location filename="SettingsPage.qml" line="333"/>
         <source>Theme</source>
         <translation>Tema</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="349"/>
+        <location filename="SettingsPage.qml" line="350"/>
         <source>Select Theme...</source>
         <translation>Välj tema...</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="367"/>
+        <location filename="SettingsPage.qml" line="368"/>
         <source>Synchronise</source>
         <translation>Synkronisera</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="378"/>
+        <location filename="SettingsPage.qml" line="379"/>
         <source>Source:</source>
         <translation>Källa:</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="401"/>
+        <location filename="SettingsPage.qml" line="402"/>
         <source>Username:</source>
         <translation>Användarnamn:</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="424"/>
+        <location filename="SettingsPage.qml" line="425"/>
         <source>Password:</source>
         <translation>Lösenord:</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="446"/>
+        <location filename="SettingsPage.qml" line="447"/>
         <source>Save</source>
         <translation>Spara</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="466"/>
+        <location filename="SettingsPage.qml" line="467"/>
         <source>Synchronization</source>
         <translation>Synkronisering</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="467"/>
+        <location filename="SettingsPage.qml" line="468"/>
         <source>When you&apos;ve setup your synchronization account then you&apos;ll be able to synchronize your list with your online list.
 
 You can create your online account on http://easylist.willemliu.nl.
@@ -333,7 +334,7 @@ Du kan skapa ditt internetkonto här http://easylist.willemliu.nl.
 Förvald synkroniseringslänk är: http://easylist.willemliu.nl/getList.php</translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="468"/>
+        <location filename="SettingsPage.qml" line="469"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>

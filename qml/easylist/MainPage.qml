@@ -327,18 +327,6 @@ Page {
                             return false;
                         }
                     }
-                    onClicked: {
-                        if(checkBox.checked)
-                        {
-                            itemSelected = "true";
-                        }
-                        else
-                        {
-                            itemSelected = "false";
-                        }
-                        checkBoxText.text = getText();
-                        checkChanged();
-                    }
                 }
 
                 Label {

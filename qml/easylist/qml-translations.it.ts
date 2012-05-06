@@ -268,11 +268,15 @@ L&apos;indirizzo di sincronizzazione di default è: http://easylist.willemliu.nl
     </message>
     <message>
         <source>Delimit by:</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Delimitato da:</translation>
     </message>
     <message>
         <source>Comma delimited:</source>
-        <translation type="unfinished"></translation>
+        <translation>Delimitato da virgole:</translation>
+    </message>
+    <message>
+        <source>Delimit by</source>
+        <translation>Delimitato da</translation>
     </message>
 </context>
 </TS>

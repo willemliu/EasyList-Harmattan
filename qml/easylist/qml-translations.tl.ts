@@ -231,7 +231,8 @@ All your current items will be overwritten.</source>
     </message>
     <message>
         <location filename="SettingsPage.qml" line="132"/>
-        <source>Delimit by:</source>
+        <source>Delimit by</source>
+        <oldsource>Delimit by:</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -245,77 +246,77 @@ All your current items will be overwritten.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="185"/>
+        <location filename="SettingsPage.qml" line="186"/>
         <source>Alphabetically:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="207"/>
+        <location filename="SettingsPage.qml" line="208"/>
         <source>Checked items to bottom:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="237"/>
+        <location filename="SettingsPage.qml" line="238"/>
         <source>Orientation</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="256"/>
+        <location filename="SettingsPage.qml" line="257"/>
         <source>Portrait</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="277"/>
+        <location filename="SettingsPage.qml" line="278"/>
         <source>Landscape</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="298"/>
+        <location filename="SettingsPage.qml" line="299"/>
         <source>Auto</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="332"/>
+        <location filename="SettingsPage.qml" line="333"/>
         <source>Theme</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="349"/>
+        <location filename="SettingsPage.qml" line="350"/>
         <source>Select Theme...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="367"/>
+        <location filename="SettingsPage.qml" line="368"/>
         <source>Synchronise</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="378"/>
+        <location filename="SettingsPage.qml" line="379"/>
         <source>Source:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="401"/>
+        <location filename="SettingsPage.qml" line="402"/>
         <source>Username:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="424"/>
+        <location filename="SettingsPage.qml" line="425"/>
         <source>Password:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="446"/>
+        <location filename="SettingsPage.qml" line="447"/>
         <source>Save</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="466"/>
+        <location filename="SettingsPage.qml" line="467"/>
         <source>Synchronization</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="467"/>
+        <location filename="SettingsPage.qml" line="468"/>
         <source>When you&apos;ve setup your synchronization account then you&apos;ll be able to synchronize your list with your online list.
 
 You can create your online account on http://easylist.willemliu.nl.
@@ -323,7 +324,7 @@ Default sync URL is: http://easylist.willemliu.nl/getList.php</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="SettingsPage.qml" line="468"/>
+        <location filename="SettingsPage.qml" line="469"/>
         <source>Ok</source>
         <translation></translation>
     </message>

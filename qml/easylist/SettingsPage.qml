@@ -113,7 +113,7 @@ Page {
             Rectangle {
                 id: optionsRectangle
                 implicitWidth: flick.width
-                implicitHeight: 770
+                implicitHeight: 870
                 color: backgroundColor
 
                 // Division line
@@ -129,7 +129,7 @@ Page {
                 }
                 Label {
                     id: commaDelimitedDivisionLabel
-                    text: qsTr("Delimit by:")
+                    text: qsTr("Delimit by")
                     font.pointSize: 26
                     anchors.top: parent.top
                     anchors.right: parent.right
@@ -175,6 +175,7 @@ Page {
                     font.pointSize: 26
                     anchors.top: commaDelimitedSwitch.bottom
                     anchors.right: parent.right
+                    anchors.topMargin: 10;
                     anchors.rightMargin: 10
                     color: divisionLineTextColor
                 }
