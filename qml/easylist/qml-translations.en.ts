@@ -276,7 +276,7 @@ Default sync URL is: http://easylist.willemliu.nl/getList.php</translation>
     </message>
     <message>
         <source>Delimit by</source>
-        <translation>Delmit by</translation>
+        <translation>Delimited by</translation>
     </message>
 </context>
 </TS>

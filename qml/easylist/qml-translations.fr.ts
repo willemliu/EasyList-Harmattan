@@ -269,11 +269,11 @@ L&apos;URL de synchronisation par défaut est : http://easylist.willemliu.nl/get
     </message>
     <message>
         <source>Comma delimited:</source>
-        <translation type="unfinished"></translation>
+        <translation>Séparé par des virgules:</translation>
     </message>
     <message>
         <source>Delimit by</source>
-        <translation type="unfinished"></translation>
+        <translation>Délimité par</translation>
     </message>
 </context>
 </TS>

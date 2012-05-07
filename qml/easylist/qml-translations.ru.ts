@@ -264,11 +264,11 @@ Default sync URL is: http://easylist.willemliu.nl/getList.php</source>
     </message>
     <message>
         <source>Comma delimited:</source>
-        <translation type="unfinished"></translation>
+        <translation>через запятую</translation>
     </message>
     <message>
         <source>Delimit by</source>
-        <translation type="unfinished"></translation>
+        <translation>разделенных</translation>
     </message>
 </context>
 </TS>

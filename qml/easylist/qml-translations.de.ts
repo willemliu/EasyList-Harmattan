@@ -268,11 +268,11 @@ Die Standard sync URL lautet: http://easylist.willemliu.nl/getList.php</translat
     </message>
     <message>
         <source>Comma delimited:</source>
-        <translation type="unfinished"></translation>
+        <translation>Komma getrennt:</translation>
     </message>
     <message>
         <source>Delimit by</source>
-        <translation type="unfinished"></translation>
+        <translation>Getrennt durch</translation>
     </message>
 </context>
 </TS>

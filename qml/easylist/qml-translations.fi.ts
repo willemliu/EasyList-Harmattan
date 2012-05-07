@@ -268,11 +268,11 @@ Oletusarvoinen synkronointi URL on: http://easylist.willemliu.nl/getList.php</tr
     </message>
     <message>
         <source>Comma delimited:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pilkulla erotettu:</translation>
     </message>
     <message>
         <source>Delimit by</source>
-        <translation type="unfinished"></translation>
+        <translation>Erotinmerkki</translation>
     </message>
 </context>
 </TS>

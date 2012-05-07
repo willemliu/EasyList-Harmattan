@@ -270,11 +270,11 @@ Varsayılan senkronizasyon adresi: http://easylist.willemliu.nl/getList.php</tra
     </message>
     <message>
         <source>Comma delimited:</source>
-        <translation type="unfinished"></translation>
+        <translation>Virgülle sınırlandırıldı:</translation>
     </message>
     <message>
         <source>Delimit by</source>
-        <translation type="unfinished"></translation>
+        <translation>Sınırlandırıldı</translation>
     </message>
 </context>
 </TS>
