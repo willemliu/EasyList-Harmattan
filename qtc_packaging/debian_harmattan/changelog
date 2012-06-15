@@ -1,3 +1,8 @@
+easylist (0.0.29) unstable; urgency=low
+  * Added Hebrew translations by Schturman.
+
+ -- Willem Liu <willem.liu@gmail.com>  vr, 15 jun 2012 15:03:29 +0200
+
 easylist (0.0.28) unstable; urgency=low
   * Added Setting to turn on/off comma delimit.
 
