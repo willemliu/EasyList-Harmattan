@@ -103,10 +103,13 @@ function setListDb(listName, text, timestamp)
             var rs = tx.executeSql('SELECT * FROM EasyListListsLastModified WHERE listName=(?) AND lastModified<(?)', [listName, timestamp]);
             for(var i = 0; i < rs.rows.length; i++)
             {
-                console.log(timestamp-rs.rows.item(i).lastModified);
+                //console.log(timestamp-rs.rows.item(i).lastModified);
                 newer = true;
             }
-            tx.executeSql("UPDATE EasyListListsLastModified SET lastModified=(?) WHERE listName=(?)", [(parseInt(timestamp, 10)+1), listName]);
+            if(newer)
+            {
+                tx.executeSql("UPDATE EasyListListsLastModified SET lastModified=(?) WHERE listName=(?)", [(parseInt(timestamp, 10)+1), listName]);
+            }
         }
         if(newer == true)
         {
@@ -165,6 +168,8 @@ function insertEditRecord(itemText, itemSelected)
         tx.executeSql('UPDATE EasyListListsLastModified SET lastModified=lastModified+1 WHERE listName=(?)', listName);
         tx.executeSql('INSERT INTO EasyListData (listName, itemText, selected) VALUES (?, ?, ?)', [listName, itemText, itemSelected]);
         resultSet = tx.executeSql(getOrderBy(selectSql), [listName]);
+        tx.executeSql("INSERT OR IGNORE INTO EasyListListsLastModified (listName, lastModified) VALUES (?, ?)", [listName, 0]);
+
         var rs = tx.executeSql('SELECT MAX(pid) as maxId FROM EasyListData');
         for(var i = 0; i < rs.rows.length; i++)
         {
@@ -181,9 +186,11 @@ function insertEditRecord(listName, itemText, itemSelected)
     var index = 0;
     var db = getDbConnection();
     db.transaction(function(tx) {
-        tx.executeSql('UPDATE EasyListListsLastModified SET lastModified=lastModified+1 WHERE listName=(?)', [listName]);
+        //tx.executeSql('UPDATE EasyListListsLastModified SET lastModified=lastModified+1 WHERE listName=(?)', [listName]);
         var res = tx.executeSql('INSERT INTO EasyListData (listName, itemText, selected) VALUES (?, ?, ?)', [listName, itemText, itemSelected]);
         resultSet = tx.executeSql(getOrderBy(selectSql), [listName]);
+        tx.executeSql("INSERT OR IGNORE INTO EasyListListsLastModified (listName, lastModified) VALUES (?, ?)", [listName, 0]);
+
         var rs = tx.executeSql('SELECT MAX(pid) as maxId FROM EasyListData');
         for(var i = 0; i < rs.rows.length; i++)
         {
@@ -197,5 +204,6 @@ function addList(listName)
     db = getDbConnection();
     db.transaction(function(tx) {
         tx.executeSql("INSERT OR IGNORE INTO EasyListLists (listName) VALUES (?)", [listName]);
+        tx.executeSql("INSERT OR IGNORE INTO EasyListListsLastModified (listName, lastModified) VALUES (?, ?)", [listName, 0]);
     });
 }

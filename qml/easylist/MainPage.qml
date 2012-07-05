@@ -228,6 +228,24 @@ Page {
         }
     }
 
+    Loader {
+        id: ableToSyncDialogLoader
+        onLoaded: {
+            console.log("sync OK dialog loaded");
+        }
+        anchors.fill: parent
+    }
+
+    Component {
+        id: ableToSyncDialogComponent
+        QueryDialog {
+            id: ableToSyncDialog
+            titleText: qsTr("Synchronize OK")
+            message: qsTr("Synchronization ready.")
+            acceptButtonText: qsTr("Ok")
+        }
+    }
+
     Rectangle {
         id: background
         color: backgroundColor
@@ -466,14 +484,16 @@ Page {
             doc.onreadystatechange = function() {
                 if (doc.readyState == XMLHttpRequest.HEADERS_RECEIVED)
                 {
-                    showRequestInfo("Headers -->");
-                    showRequestInfo(doc.getAllResponseHeaders ());
-                    showRequestInfo("Last modified -->");
-                    showRequestInfo(doc.getResponseHeader ("Last-Modified"));
+                    //showRequestInfo("Headers -->");
+                    //showRequestInfo(doc.getAllResponseHeaders ());
+                    //showRequestInfo("Last modified -->");
+                    //showRequestInfo(doc.getResponseHeader ("Last-Modified"));
                 }
                 else if (doc.readyState == XMLHttpRequest.DONE)
                 {
                     var response = doc.responseXML;
+                    //showRequestInfo("Response -->");
+                    //showRequestInfo(doc.responseText);
                     if(response !== null)
                     {
                         var a = response.documentElement;
@@ -534,11 +554,18 @@ Page {
                         unableToSyncDialogLoader.sourceComponent = unableToSyncDialogComponent;
                         unableToSyncDialogLoader.item.open();
                     }
+                    else
+                    {
+                        ableToSyncDialogLoader.sourceComponent = ableToSyncDialogComponent;
+                        ableToSyncDialogLoader.item.open();
+                    }
                 }
             }
-            doc.open("POST", syncUrl + "?username=" + syncUsername + "&password=" + syncPassword + "&xml=v2", true);
+            doc.open("POST", syncUrl + "?username=" + syncUsername + "&password=" + syncPassword + "&xml=v2&", true);
             doc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            doc.send("name=asadasdasd");
+            //showRequestInfo(syncUrl + "?username=" + syncUsername + "&password=" + syncPassword + "&xml=v2&");
+            //showRequestInfo(DbConnection.getUri());
+            doc.send(DbConnection.getUri());
         }
         else
         {

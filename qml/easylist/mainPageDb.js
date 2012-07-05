@@ -107,3 +107,61 @@ function deselectAll()
         resultSet = tx.executeSql(getOrderBy(selectSql), [listName]);
     });
 }
+
+function getUri()
+{
+    var uri = "";
+    var listName = "";
+    var itemText = "";
+    var lastModified = "";
+    db = getDbConnection();
+    db.readTransaction(function(tx) {
+        var data = "SELECT eld.listName as ln, eld.itemText as it, eld.selected as els, elm.lastModified AS lm FROM "  +
+        "EasyListData AS eld, EasyListListsLastModified AS elm WHERE eld.listName=elm.listName " +
+        "ORDER BY eld.listName";
+        var rs = tx.executeSql(data);
+        var rowLength = rs.rows.length;
+        for(var j = 0; j < rowLength; j++)
+        {
+            if(listName.length == 0 || encodeURIComponent(rs.rows.item(j).ln) != listName)
+            {
+                if(uri.length > 0)
+                {
+                    uri += "&";
+                }
+                if(listName.length > 0)
+                {
+                    uri += "listName[]=" + listName + lastModified + itemText;
+                }
+                listName = encodeURIComponent(rs.rows.item(j).ln);
+                lastModified = "&lastModified['" + listName + "']=" + encodeURIComponent(rs.rows.item(j).lm);
+                itemText = "&itemText['" + listName + "']=";
+            }
+            var checked = "";
+            if(rs.rows.item(j).els == "true")
+            {
+                checked = "!";
+            }
+            itemText += encodeURIComponent(checked + rs.rows.item(j).it + "\r\n");
+            // In case it's the last item.
+            if((j+1) === rowLength)
+            {
+                if(uri.length > 0)
+                {
+                    uri += "&";
+                }
+                if(listName.length > 0)
+                {
+                    uri += "listName[]=" + listName + lastModified + itemText;
+                }
+                listName = encodeURIComponent(rs.rows.item(j).ln);
+                lastModified = "&lastModified['" + listName + "']=" + encodeURIComponent(rs.rows.item(j).lm);
+                itemText = "&itemText['" + listName + "']=";
+            }
+        }
+
+    });
+
+    return uri;
+}
+

@@ -98,6 +98,7 @@ function insertListRecord(listName, itemText, itemSelected)
     db = getDbConnection();
     db.transaction(function(tx) {
         tx.executeSql('INSERT INTO EasyListData (listName, itemText, selected) VALUES (?, ?, ?)', [listName, itemText, itemSelected]);
+        tx.executeSql("INSERT OR IGNORE INTO EasyListListsLastModified (listName, lastModified) VALUES (?, ?)", [listName, 0]);
     });
 }
 
@@ -106,6 +107,7 @@ function addList(listName)
     db = getDbConnection();
     db.transaction(function(tx) {
         tx.executeSql("INSERT OR IGNORE INTO EasyListLists (listName) VALUES (?)", [listName]);
+        tx.executeSql("INSERT OR IGNORE INTO EasyListListsLastModified (listName, lastModified) VALUES (?, ?)", [listName, 0]);
     });
 }
 
@@ -113,6 +115,7 @@ function renameList(oldListName, newListName)
 {
     db = getDbConnection();
     db.transaction(function(tx) {
+        tx.executeSql("UPDATE OR IGNORE EasyListListsLastModified SET listName=(?) WHERE listName=(?)", [newListName, oldListName]);
         tx.executeSql("UPDATE OR IGNORE EasyListLists SET listName=(?) WHERE listName=(?)", [newListName, oldListName]);
         tx.executeSql("UPDATE OR IGNORE EasyListData SET listName=(?) WHERE listName=(?)", [newListName, oldListName]);
     });

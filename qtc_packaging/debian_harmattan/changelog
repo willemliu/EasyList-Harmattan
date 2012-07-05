@@ -1,5 +1,11 @@
+easylist (0.0.30) unstable; urgency=low
+  * <Add change description here>
+
+ -- Willem Liu <willem.liu@gmail.com>  Thu, 05 Jul 2012 20:57:22 +0200
+
 easylist (0.0.29) unstable; urgency=low
   * Added Hebrew translations by Schturman.
+  * Added synchronization to website functionality.
 
  -- Willem Liu <willem.liu@gmail.com>  vr, 15 jun 2012 15:03:29 +0200
 
