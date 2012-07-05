@@ -6,3 +6,15 @@ moc
 *.qm
 rcc
 Makefile
+
+/.make.cache
+/bld.inf
+/easylist
+/easylist.loc
+/easylist.rss
+/easylist.sis
+/easylist_exe.mmp
+/easylist_installer.pkg
+/easylist_reg.rss
+/easylist_stub.pkg
+/easylist_template.pkg
